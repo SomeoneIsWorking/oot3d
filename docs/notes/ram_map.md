@@ -85,12 +85,10 @@ Actor.next @ +0x130`. Actor: id@0, category@2, pos@0x08, params@0x1C. The Actor 
   on a real Actor +0x1C is `params`. That accessor walks a different struct. Read id as s16 @ +0x00.
 
 ## CONTROL PRIMITIVES (live, via the actor chain — durable across boots)
-- **TELEPORT — WORKS.** Writing Link's canonical
-  `Actor.world.pos` @ `head+0x08` (Vec3f, reached via the actor chain) reliably teleports him.
-  Collision then resolves the final spot and will NOT cross walls (conservative — a teleport to a
-  point behind a wall snaps back to the nearest reachable floor). **This resolves the old RAM-scan
-  dead-end**: the prior poke-test (above) failed only because it wrote a *copy* (`0x0821e638`); the
-  actor-chain pos IS the canonical world.pos. Verified live 2026-06-21 at Link's House.
+- **TELEPORT:** write the player actor's `home` (+0x08), `world.pos` (+0x28) and `prevPos`
+  (+0x108) together. With `world.pos` alone (or with `prevPos`) the standing player is put back at
+  `home` the next frame; with all three Link stays and drops to the floor below (Kakariko,
+  2026-11-13, z3d-mods `teleport:` step). The actor is `gPlayState->actorCtx.actorLists[2].head`.
 - Link `world.rot.y` @ `head+0x16` reads a constant `-32767` regardless of facing — it is NOT his
   heading. The facing used for movement is elsewhere (shape.rot, not yet located). Don't steer on it.
 - **Closed-loop walk is feasible but the camera fights it**: the circle pad is camera-relative and
