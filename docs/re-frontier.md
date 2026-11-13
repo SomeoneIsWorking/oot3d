@@ -56,3 +56,13 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 - gap: manager bytes +0xF38 and +0xFA4 are unnamed
 - notes: 
 
+
+## message
+
+### message.layout — Message_LayoutText, its control codes and the text object methods
+- status: re-verified
+- deps: 
+- evidence: z3d-mods Quick Text built on it prints every box whole (Deku Tree after Gohma, opening narration); disassembly: the parse call at 0x2E0490, the 48-entry control-code table at 0x2E058C, handlers for 0x01, 0x04, 0x05 and 0x19 calling text object methods +0x14, +0x20, +0x24, +0x8C (vtable 0x4ECCD8)
+- where: docs/message.md
+- gap: 
+- notes: 

@@ -2,7 +2,7 @@
 
 GLOBAL_ASM("asm/FUN_002e03ac.s")
 
-GLOBAL_ASM("asm/FUN_002e03e8.s")
+GLOBAL_ASM("asm/Message_LayoutText.s")
 
 GLOBAL_ASM("asm/FUN_002e0f40.s")
 

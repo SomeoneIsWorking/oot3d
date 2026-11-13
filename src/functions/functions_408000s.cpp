@@ -255,7 +255,7 @@ GLOBAL_ASM("asm/FUN_0040b21c.s")
 
 GLOBAL_ASM("asm/FUN_0040b264.s")
 
-GLOBAL_ASM("asm/FUN_0040b2c0.s")
+GLOBAL_ASM("asm/MessageText_InstantOff.s")
 
 GLOBAL_ASM("asm/FUN_0040b31c.s")
 
@@ -273,7 +273,7 @@ GLOBAL_ASM("asm/FUN_0040b560.s")
 
 GLOBAL_ASM("asm/FUN_0040b588.s")
 
-GLOBAL_ASM("asm/FUN_0040b608.s")
+GLOBAL_ASM("asm/MessageText_InstantOn.s")
 
 GLOBAL_ASM("asm/FUN_0040b664.s")
 

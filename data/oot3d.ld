@@ -20496,9 +20496,9 @@ text 0x00100000
 	{
 		* (i.FUN_002e03ac)
 	}
-	FUN_002e03e8 0x002e03e8
+	Message_LayoutText 0x002e03e8
 	{
-		* (i.FUN_002e03e8)
+		* (i.Message_LayoutText)
 	}
 	FUN_002e0f40 0x002e0f40
 	{
@@ -38160,9 +38160,9 @@ text 0x00100000
 	{
 		* (i.FUN_0040b264)
 	}
-	FUN_0040b2c0 0x0040b2c0
+	MessageText_InstantOff 0x0040b2c0
 	{
-		* (i.FUN_0040b2c0)
+		* (i.MessageText_InstantOff)
 	}
 	FUN_0040b31c 0x0040b31c
 	{
@@ -38196,9 +38196,9 @@ text 0x00100000
 	{
 		* (i.FUN_0040b588)
 	}
-	FUN_0040b608 0x0040b608
+	MessageText_InstantOn 0x0040b608
 	{
-		* (i.FUN_0040b608)
+		* (i.MessageText_InstantOn)
 	}
 	FUN_0040b664 0x0040b664
 	{

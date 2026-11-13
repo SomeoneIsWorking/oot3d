@@ -5052,7 +5052,7 @@
 --keep=FUN_002df800
 --keep=FUN_002df850
 --keep=FUN_002e03ac
---keep=FUN_002e03e8
+--keep=Message_LayoutText
 --keep=FUN_002e0f40
 --keep=FUN_002e0f7c
 --keep=FUN_002e0f90
@@ -9404,7 +9404,7 @@
 --keep=FUN_0040b1c0
 --keep=FUN_0040b21c
 --keep=FUN_0040b264
---keep=FUN_0040b2c0
+--keep=MessageText_InstantOff
 --keep=FUN_0040b31c
 --keep=FUN_0040b378
 --keep=FUN_0040b3d4
@@ -9413,7 +9413,7 @@
 --keep=FUN_0040b4e8
 --keep=FUN_0040b560
 --keep=FUN_0040b588
---keep=FUN_0040b608
+--keep=MessageText_InstantOn
 --keep=FUN_0040b664
 --keep=FUN_0040b66c
 --keep=FUN_0040b71c
