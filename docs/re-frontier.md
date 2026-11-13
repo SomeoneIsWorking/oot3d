@@ -37,7 +37,7 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 - deps: 
 - evidence: docs/notes/cutscene_format.md: header and command shapes, interpreter end-frame store at 0x2C5C20 seen by watchpoint
 - where: docs/cutscene.md
-- gap: command payloads named only for the commands the title demo and z3d-mods use
+- gap: command payloads named only for the commands the title demo and z3d-mods use; command sizes and the text entry are in include/z3Dcutscene.hpp
 - notes: 
 
 ### cutscene.interpreter — CutsceneHandler_RunScript and Cutscene_ProcessCommands
@@ -51,8 +51,8 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 ### cutscene.textbox — Text commands, Message_GetState and Message_CloseTextbox
 - status: re-partial
 - deps: cutscene.interpreter
-- evidence: opening narration skip closes every box and lands in scene 81 like watching
+- evidence: opening narration skip closes every box and lands in scene 81 like watching; the Deku Tree's choice (spot04 0xFFF1, text 0x1092) waits for the answer and both answers land in scene 71 like watching
 - where: docs/cutscene.md
-- gap: manager bytes +0xF38 and +0xFA4 are unnamed; a choice (TEXT_STATE_CHOICE) inside a skipped cutscene is untested
+- gap: manager bytes +0xF38 and +0xFA4 are unnamed
 - notes: 
 

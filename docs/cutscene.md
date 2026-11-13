@@ -19,7 +19,11 @@ Findings from z3d-mods (its Start cutscene skip), checked on the USA build in Az
 - `Message_CloseTextbox(play)` (0x3725E0) closes the box. The message update finishes closing on a
   later frame: manager byte +0xF38 becomes 0x0E and the counter at +0xFA4 drops below 2. Calling it
   again every frame resets that counter and the cutscene stalls.
-- `TEXT_STATE_CHOICE` (4) waits for the player's answer.
+- `TEXT_STATE_CHOICE` (4) waits for the player's answer. A box reaches it only after its text has
+  printed (manager mode 7 in the state getter at 0x2C2700; 3 while printing), so a choice cannot be
+  told from the message on the frame it opens. The script's text entry says so up front:
+  `CsCmdText.type` is `CS_TEXT_CHOICE` (1), with `altTextId1`/`altTextId2` shown after the answer
+  (`include/z3Dcutscene.hpp`). The text command is inlined in `Cutscene_ProcessCommands` (0x2C79A4).
 
 ## Play state
 - `GameState.buttonsPressed` (+0x18) holds the buttons pressed this frame; bit 3 is Start.
@@ -34,3 +38,7 @@ Kakariko intro from Link's house (warp 0xDB) and the opening narration (nextCuts
 into Link's house): ending the script on Start through `Cutscene_ProcessCommands` lands where
 watching it lands, and the save context differs only in `naviTimer` (+0x4C) and the counter at
 +0x15B4.
+Deku Tree after Gohma (nextCutsceneIndex 0xFFF1 into Kokiri Forest, warp 0xEE): Start at frame 60
+runs to the choice at 499 ("wouldst thou listen", text 0x1092), which waits; after either answer
+the skip lands in the next script (scene 71), whose save context at its frame 100 differs from
+watching only in +0x15B4.
