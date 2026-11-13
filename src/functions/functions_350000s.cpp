@@ -178,7 +178,7 @@ GLOBAL_ASM("asm/FUN_00355264.s")
 
 GLOBAL_ASM("asm/FUN_003552bc.s")
 
-GLOBAL_ASM("asm/FUN_003553fc.s")
+GLOBAL_ASM("asm/Camera_BGCheckInfo.s")
 
 GLOBAL_ASM("asm/__hardfp_tanf.s")
 

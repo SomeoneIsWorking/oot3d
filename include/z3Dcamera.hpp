@@ -16,6 +16,36 @@
 #define SUBCAM_NONE -1
 #define SUBCAM_ACTIVE -1
 
+#define CAM_MODE_NORMAL 0
+#define CAM_MODE_Z_PARALLEL 1
+
+// Indices into sCameraFunctions, in the N64 order.
+#define CAM_FUNC_NORM1 2
+#define CAM_FUNC_NORM3 4
+#define CAM_FUNC_JUMP1 22
+
+// Camera_Update runs sCameraFunctions[sCameraSettings[setting & 0xFF].cameraModes[mode & 0xFF].funcIdx].
+typedef struct {
+    /* 0x00 */ s16 funcIdx;
+    /* 0x02 */ s16 valueCnt;
+    /* 0x04 */ void* values;
+} CameraMode; // size = 0x8
+
+typedef struct {
+    /* 0x00 */ u32 validModes; // bit n: cameraModes[n] exists
+    /* 0x04 */ CameraMode* cameraModes;
+} CameraSetting; // size = 0x8
+
+// Camera_BGCheckInfo(camera, from, colChk) line-tests from `from` to pos; on a hit it moves pos
+// in front of the wall and returns bgId + 1, otherwise 0.
+typedef struct {
+    /* 0x00 */ Vec3f pos;
+    /* 0x0C */ Vec3f norm;
+    /* 0x18 */ void* poly;
+    /* 0x1C */ char unk_1C[0x08];
+    /* 0x24 */ s32 bgId;
+} CamColChk; // size = 0x28
+
 typedef struct Camera {
     /* 0x000 */ char unk_0[0x080];
     /* 0x080 */ Vec3f at;

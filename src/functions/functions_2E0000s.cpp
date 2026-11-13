@@ -70,7 +70,7 @@ GLOBAL_ASM("asm/FUN_002e244c.s")
 
 GLOBAL_ASM("asm/Gameplay_Draw.s")
 
-GLOBAL_ASM("asm/FUN_002e2e60.s")
+GLOBAL_ASM("asm/Play_Update.s")
 
 GLOBAL_ASM("asm/FUN_002e4514.s")
 

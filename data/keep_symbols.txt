@@ -4923,7 +4923,7 @@
 --keep=FUN_002d7568
 --keep=FUN_002d75b0
 --keep=FUN_002d75dc
---keep=FUN_002d77dc
+--keep=View_LookAt
 --keep=FUN_002d7854
 --keep=FUN_002d7878
 --keep=FUN_002d78b4
@@ -5086,7 +5086,7 @@
 --keep=FUN_002e2424
 --keep=FUN_002e244c
 --keep=Gameplay_Draw
---keep=FUN_002e2e60
+--keep=Play_Update
 --keep=FUN_002e4514
 --keep=FUN_002e461c
 --keep=FUN_002e4660
@@ -6914,7 +6914,7 @@
 --keep=FUN_003551b4
 --keep=FUN_00355264
 --keep=FUN_003552bc
---keep=FUN_003553fc
+--keep=Camera_BGCheckInfo
 --keep=__hardfp_tanf
 --keep=Camera_LERPCeilF
 --keep=OLib_VecSphGeoToVec3f

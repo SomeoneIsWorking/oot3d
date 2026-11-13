@@ -592,7 +592,7 @@ GLOBAL_ASM("asm/FUN_002d75b0.s")
 
 GLOBAL_ASM("asm/FUN_002d75dc.s")
 
-GLOBAL_ASM("asm/FUN_002d77dc.s")
+GLOBAL_ASM("asm/View_LookAt.s")
 
 GLOBAL_ASM("asm/FUN_002d7854.s")
 

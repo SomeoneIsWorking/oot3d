@@ -72,7 +72,23 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 ### camera.fields — Camera fields the free camera reads and writes
 - status: re-partial
 - deps: 
-- evidence: live read of play+0x364 in Kokiri Forest: play (+0xD4) is the play state, |at-eye| matches dist (+0x124), playerPosRot (+0xDC) follows Link, camDir/inputDir (+0x182/+0x17C) turn as he walks, status 7, setting 1; Camera_Update (0x2D84C4) loads +0xD4 and checks +0x188
+- evidence: live read of play+0x364 in Kokiri Forest: play (+0xD4) is the play state, |at-eye| matches dist (+0x124), playerPosRot (+0xDC) follows Link, camDir/inputDir (+0x182/+0x17C) turn as he walks, status 7, setting 1; mode (+0x18C) reads 0 walking, 1 with L held, 6 in first person, 16 falling; Camera_Update (0x2D84C4) loads +0xD4 and checks +0x188
 - where: include/z3Dcamera.hpp
-- gap: mode, camDataIdx and prevSetting only read at rest; animState, behaviorFlags, stateFlags and the distortion fields not yet checked; Camera_BGCheckInfo, Quake_Update and Camera_GetCamDataId unchecked
+- gap: camDataIdx and prevSetting only read at rest; animState, behaviorFlags, stateFlags and the distortion fields not yet checked; Quake_Update and Camera_GetCamDataId unchecked
 - notes: the OoT3D Randomizer's layout (no licence) was the starting guess; only fields seen live are named
+
+### camera.update — Camera_Update's dispatch, call sites, View_LookAt and Camera_BGCheckInfo
+- status: re-verified
+- deps: camera.fields
+- evidence: z3d-mods' free camera built on it orbits Link in Kokiri Forest, stays inside Dodongo's Cavern's corridor walls and hands back on L, first person, text, the Market's fixed view and cutscenes (runs oot-fc6, oot-fc8); disassembly: the three bl Camera_Update sites (0x2E2DF8, 0x2E437C, 0x2E43A0), the settings and function tables loaded at 0x2D8890/0x2D88D4, the camDir store at 0x2D93EC, Camera_BGCheckInfo's reads and writes of colChk
+- where: docs/camera.md
+- gap: 
+- notes: 
+
+### camera.settings — sCameraSettings and the function each setting and mode runs
+- status: re-partial
+- deps: camera.update
+- evidence: table dumped from the binary (0x516FF0, 78 entries; function table 0x517260); settings read live in 14 scenes (docs/camera.md)
+- where: docs/camera.md, include/z3Dcamera.hpp
+- gap: settings are numbered, not named: only 0x01-0x06, 0x19, 0x1A and 0x1E are matched to their N64 names by function and scene; the horse (0x06) and the crawlspace (0x1E) are read from the table, not seen live; each mode's values are not decoded
+- notes: 

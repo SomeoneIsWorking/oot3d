@@ -19980,9 +19980,9 @@ text 0x00100000
 	{
 		* (i.FUN_002d75dc)
 	}
-	FUN_002d77dc 0x002d77dc
+	View_LookAt 0x002d77dc
 	{
-		* (i.FUN_002d77dc)
+		* (i.View_LookAt)
 	}
 	FUN_002d7854 0x002d7854
 	{
@@ -20656,9 +20656,9 @@ text 0x00100000
 	{
 		* (i.Gameplay_Draw)
 	}
-	FUN_002e2e60 0x002e2e60
+	Play_Update 0x002e2e60
 	{
-		* (i.FUN_002e2e60)
+		* (i.Play_Update)
 	}
 	FUN_002e4514 0x002e4514
 	{
@@ -28028,9 +28028,9 @@ text 0x00100000
 	{
 		* (i.FUN_003552bc)
 	}
-	FUN_003553fc 0x003553fc
+	Camera_BGCheckInfo 0x003553fc
 	{
-		* (i.FUN_003553fc)
+		* (i.Camera_BGCheckInfo)
 	}
 	__hardfp_tanf 0x003555d8
 	{

@@ -27,6 +27,8 @@ extern u32 gGsFlagsMask[4];
 extern u32 gGsFlagsShift[4];
 extern u8 gItemSlots[56];
 
+extern CameraSetting sCameraSettings[78]; //0x00516ff0
+
 extern GameInfo* gGameInfo;
 
 #endif
