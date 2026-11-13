@@ -21976,9 +21976,9 @@ text 0x00100000
 	{
 		* (i.FUN_002fdaa4)
 	}
-	FUN_002fdac8 0x002fdac8
+	Sram_WriteSave 0x002fdac8
 	{
-		* (i.FUN_002fdac8)
+		* (i.Sram_WriteSave)
 	}
 	FUN_002fde08 0x002fde08
 	{

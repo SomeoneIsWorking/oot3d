@@ -1,35 +1,48 @@
 # Scene collision and room meshes (romfs scene files)
 
 Recovered from the zelda3d project's notes (its repository is gone); checked there across spot00,
-spot01, spot04, gerudoway, ydan and ddan on the USA decrypted ROM. Our tool for it is not rebuilt
-yet.
+spot01, spot04, gerudoway, ydan and ddan on the USA decrypted ROM; the collision header and
+polygon layout were read again from spot01 with z3d-mods' `tools/z3dmods/zsi.py`.
 
 ## Scene header `<scene>_info.zsi`
-- A command list at file offset 0x10, 8 bytes per command, byte 0 the type. Command addresses are
-  plain file offsets (the Rooms command, 0x04, points at the room-name strings).
-- Command 0x03 (collision): its second word is the file offset of the collision header.
+- A command list at file offset 0x10, 8 bytes per command, byte 0 the type; a command's second
+  word, when it is an address, counts from 0x10.
+- Command 0x03 (collision): its second word is the collision header.
 
 ## Collision header
+At `0x10 + word`: like every offset in the file, the command's word and the header's own pointers
+count from 0x10, the end of the `ZSI\x01` name header.
+
 | Offset | Type | Field |
 |---|---|---|
-| 0x1C | u16 | vertex count |
-| 0x1E | u16 | polygon count |
-| 0x28 | u32 | vertex list |
-| 0x2C | u32 | polygon list |
-| 0x30 | u32 | surface type list |
-| 0x34 | u32 | camera data |
-| 0x38 | u32 | water boxes |
+| 0x00 | Vec3s | minimum bounds |
+| 0x06 | Vec3s | maximum bounds |
+| 0x0C | u16 | vertex count |
+| 0x0E | u16 | polygon count |
+| 0x10 | u16 | surface type count |
+| 0x12 | u16 | camera data count |
+| 0x14 | u16 | water box count |
+| 0x18 | u32 | vertex list |
+| 0x1C | u32 | polygon list |
+| 0x20 | u32 | surface type list (8 bytes each) |
+| 0x24 | u32 | camera data |
+| 0x28 | u32 | water boxes |
 
-The header's own pointers are not plain offsets: vertices start at `vertexList + 0x10` and the
-polygon array at `polygonList - 2`. Both shifts held in every scene checked; they differ and are
-both right. Surface types, camera data and water boxes are not decoded yet (likely `+0x10` too).
+Kakariko (spot01): 786 vertices at 0x4AC, 1222 polygons at 0x1718, 28 surface types at 0x7690,
+camera data at 0x7770, one water box at 0x787C, the header at 0x788C; each list ends where the
+next begins.
 
 - Vertex: `Vec3s` (s16 x, y, z), stride 6, world space in N64 units, the same frame as the room
   mesh (collision floors sit within about 0.1 unit of the drawn floor in spot01).
-- Polygon, stride 20: `+0 vA`, `+2 vB`, `+4 vC` (u16, index in the low 13 bits, flags in the top
-  3), `+6 u16` surface type index and flags, `+8/+A/+C s16` normal (x, y, z over 32767), `+E f32`
-  plane distance (`n·p == -dist`). The stored normal is the face normal.
+- Polygon, stride 20: `+0 u16` surface type index, `+2 vA`, `+4 vB`, `+6 vC` (u16, index in the
+  low 13 bits, flags in the top 3 of vA and vB), `+8 u16` zero, `+A/+C/+E s16` normal (x, y, z
+  over 32767), `+0x10 f32` plane distance (`n·p == -dist`). The normal is the face normal and
+  points the way `(vB - vA) x (vC - vA)` does. With this frame all 1222 of Kakariko's polygons
+  satisfy the plane equation at vA; small polygons store a normal a few degrees off the one
+  their integer vertices give.
 - Floor and wall are told apart by the normal (floors have `ny > 0.5`), not by the surface type.
+- The lists can live anywhere: z3d-mods writes longer vertex and polygon lists after the end of
+  the file and points the header at them.
 
 ## Room mesh `<scene>_<R>_info.zsi`
 - Each room file holds exactly one embedded CMB (find its `cmb ` magic; its offset varies by room)
@@ -51,7 +64,8 @@ both right. Surface types, camera data and water boxes are not decoded yet (like
   two sets of 20094 indices draws in Kakariko.
 
 ## Dead ends
-- Reading vertices at the plain `vertexList` offset gives garbage; the polygon's last u16 is the
-  next polygon's first field unless the array is framed at `polygonList - 2`.
+- The zelda3d notes framed the header at the command's plain offset (0x10 too early) and so
+  read the lists as "vertexList + 0x10" and "polygonList - 2" with the type after the vertices.
+  Framed from 0x10 nothing needs a shift.
 - noclip names command 0x03 but never parses it. Its room mesh-header chain is right once read
   from 0x10, as its `parseRooms` does; at plain file offsets it does not resolve.

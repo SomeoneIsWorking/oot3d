@@ -102,3 +102,13 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 - where: docs/item_buttons.md, include/z3D.hpp, include/z3Dsave.hpp
 - gap: ItemMenu_ApplyLayout is not decompiled and its callers are unread; gHud's other fields and the meaning of its state beyond 0 and 2 are unknown; the map screen's word was not seen up; unused_6C is called unused from the files read and one play session, not from every writer of the save
 - notes: 
+
+## save
+
+### save.write — Sram_WriteSave and the file's layout
+- status: re-partial
+- deps: 
+- evidence: a write watch on the checksum during the pause screen's Save lands in Sram_WriteSave (0x2FDD00, 0x2FDD24; run oot-as1); disassembly 0x2FDAC8-0x2FDE08 and its three call sites; save00.bin from a save is 0x14DC bytes equal to gSaveContext, unused_6C included (oot-sv1)
+- where: docs/save.md
+- gap: the callers at 0x41CACC and 0x43E120 are not identified; the queue and the second file slot are unread
+- notes: 

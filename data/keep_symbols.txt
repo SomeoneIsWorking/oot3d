@@ -5414,7 +5414,7 @@
 --keep=FUN_002fda08
 --keep=FUN_002fda7c
 --keep=FUN_002fdaa4
---keep=FUN_002fdac8
+--keep=Sram_WriteSave
 --keep=FUN_002fde08
 --keep=FUN_002fde54
 --keep=FUN_002fde64

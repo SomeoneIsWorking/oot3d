@@ -722,7 +722,7 @@ GLOBAL_ASM("asm/FUN_002fda7c.s")
 
 GLOBAL_ASM("asm/FUN_002fdaa4.s")
 
-GLOBAL_ASM("asm/FUN_002fdac8.s")
+GLOBAL_ASM("asm/Sram_WriteSave.s")
 
 GLOBAL_ASM("asm/FUN_002fde08.s")
 
