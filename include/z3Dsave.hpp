@@ -60,6 +60,14 @@ typedef struct {
 } FaroresWindData; // size = 0x28
 
 // Save Context (ram start: 0x00587958)
+// itemMenuChild/itemMenuAdult: the item screen's 24 nodes, each an inventory slot or SLOT_NONE.
+// Four are the item buttons; ItemMenu_ApplyLayout derives equips from them.
+#define ITEM_MENU_NODES 24
+#define ITEM_MENU_NODE_I 5
+#define ITEM_MENU_NODE_X 11
+#define ITEM_MENU_NODE_Y 17
+#define ITEM_MENU_NODE_II 23
+
 #define LINK_AGE_ADULT 0
 #define LINK_AGE_CHILD 1
 #define SAVE_UNUSED_6C_SIZE 0x12

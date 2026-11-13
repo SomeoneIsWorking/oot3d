@@ -10,10 +10,23 @@ set and trade places with `equips` when Link's age changes.
 
 Writing `equips` alone changes what a button uses but not what the HUD draws.
 
-## Assignment in the item menu
-`FUN_0033c25c` handles a press on an item: it stores the item and slot at 0x33C5F8 and clears the
-button that held it before at 0x33C6A4, then calls `Hud_SetItemButton`. Its panel nodes map to
-equips as 11 → `buttonItems[2]`, 17 → `[1]`, 5 → `[3]`, 23 → `[4]`.
+## The item screen's layout owns the buttons
+`SaveContext.itemMenuChild` and `itemMenuAdult` (24 bytes each) are the item screen's nodes for
+each age: 20 grid cells and the four item buttons (`ITEM_MENU_NODE_I` 5, `_X` 11, `_Y` 17, `_II`
+23), each an inventory slot or `SLOT_NONE`. Assigning an item moves its slot from a grid node to a
+button node.
+
+`ItemMenu_ApplyLayout` (0x33C25C) runs when the item screen opens and after an assignment:
+- For each inventory slot whose item differs from `itemSlotDataRecords[slot]`: a record of 0xFF
+  (an item just obtained) puts the slot in the first empty grid node; any other record is only
+  updated.
+- For each node of the current age's layout (`linkAge == 0` reads `itemMenuAdult`) it draws the
+  slot's item, and for a button node writes `equips` (the item is `inventory.items[slot]`; stores
+  from 0x33C5F8, clears from 0x33C6A4) and calls `Hud_SetItemButton`: node 11 → `buttonItems[2]` and
+  `buttonSlots[1]`, 17 → `[1]`/`[0]`, 5 → `[3]`/`[2]`, 23 → `[4]`/`[3]`.
+
+So `equips` written behind the layout's back is overwritten the next time the item screen opens
+(seen live: run oot-ch5, a write watch on `equips` while the screen opens).
 
 ## HUD
 `Hud_SetItemButton(button, item)` (0x2EFEA0) redraws one button's icon on `gHud.itemButtons`

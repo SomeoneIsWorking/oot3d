@@ -680,7 +680,7 @@ GLOBAL_ASM("asm/FUN_0033c1b8.s")
 
 GLOBAL_ASM("asm/FUN_0033c20c.s")
 
-GLOBAL_ASM("asm/FUN_0033c25c.s")
+GLOBAL_ASM("asm/ItemMenu_ApplyLayout.s")
 
 GLOBAL_ASM("asm/FUN_0033c764.s")
 

@@ -6469,7 +6469,7 @@
 --keep=FUN_0033c11c
 --keep=FUN_0033c1b8
 --keep=FUN_0033c20c
---keep=FUN_0033c25c
+--keep=ItemMenu_ApplyLayout
 --keep=Inventory_ChangeUpgrade
 --keep=FUN_0033c764
 --keep=FUN_0033c7a4

@@ -26208,9 +26208,9 @@ text 0x00100000
 	{
 		* (i.FUN_0033c20c)
 	}
-	FUN_0033c25c 0x0033c25c
+	ItemMenu_ApplyLayout 0x0033c25c
 	{
-		* (i.FUN_0033c25c)
+		* (i.ItemMenu_ApplyLayout)
 	}
 	Inventory_ChangeUpgrade 0x0033c730
 	{
