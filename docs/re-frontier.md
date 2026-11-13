@@ -66,3 +66,13 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 - where: docs/message.md
 - gap: 
 - notes: 
+
+## camera
+
+### camera.fields — Camera fields the free camera reads and writes
+- status: re-partial
+- deps: 
+- evidence: live read of play+0x364 in Kokiri Forest: play (+0xD4) is the play state, |at-eye| matches dist (+0x124), playerPosRot (+0xDC) follows Link, camDir/inputDir (+0x182/+0x17C) turn as he walks, status 7, setting 1; Camera_Update (0x2D84C4) loads +0xD4 and checks +0x188
+- where: include/z3Dcamera.hpp
+- gap: mode, camDataIdx and prevSetting only read at rest; animState, behaviorFlags, stateFlags and the distortion fields not yet checked; Camera_BGCheckInfo, Quake_Update and Camera_GetCamDataId unchecked
+- notes: the OoT3D Randomizer's layout (no licence) was the starting guess; only fields seen live are named
