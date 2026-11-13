@@ -24820,9 +24820,9 @@ text 0x00100000
 	{
 		* (i.FUN_00321bd8)
 	}
-	FUN_00321f50 0x00321f50
+	CutsceneHandler_RunScript 0x00321f50
 	{
-		* (i.FUN_00321f50)
+		* (i.CutsceneHandler_RunScript)
 	}
 	SurfaceType_GetData 0x00322088
 	{
@@ -30296,9 +30296,9 @@ text 0x00100000
 	{
 		* (i.GiveItem)
 	}
-	FUN_003725e0 0x003725e0
+	Message_CloseTextbox 0x003725e0
 	{
-		* (i.FUN_003725e0)
+		* (i.Message_CloseTextbox)
 	}
 	FUN_00372650 0x00372650
 	{

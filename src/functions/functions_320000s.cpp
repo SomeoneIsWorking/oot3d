@@ -39,7 +39,7 @@ GLOBAL_ASM("asm/FUN_00321bc8.s")
 
 GLOBAL_ASM("asm/FUN_00321bd8.s")
 
-GLOBAL_ASM("asm/FUN_00321f50.s")
+GLOBAL_ASM("asm/CutsceneHandler_RunScript.s")
 
 GLOBAL_ASM("asm/SurfaceType_GetData.s")
 

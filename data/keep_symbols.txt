@@ -6125,7 +6125,7 @@
 --keep=CollisionCheck_SpawnRedBlood
 --keep=FUN_00321bc8
 --keep=FUN_00321bd8
---keep=FUN_00321f50
+--keep=CutsceneHandler_RunScript
 --keep=SurfaceType_GetData
 --keep=FUN_003220f4
 --keep=FUN_003222dc
@@ -7465,7 +7465,7 @@
 --keep=FUN_00372448
 --keep=OLib_Vec3fDiffToVecSphGeo
 --keep=GiveItem
---keep=FUN_003725e0
+--keep=Message_CloseTextbox
 --keep=FUN_00372650
 --keep=FUN_0037266c
 --keep=__hardfp_cosf

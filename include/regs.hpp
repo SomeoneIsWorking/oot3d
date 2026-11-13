@@ -38,4 +38,6 @@
 #define kREG(r) BASE_REG(27, r)
 #define bREG(r) BASE_REG(28, r)
 
+#define R_UPDATE_RATE SREG(30) // frame-rate divisor
+
 #endif

@@ -104,7 +104,7 @@ GLOBAL_ASM("asm/OLib_Vec3fDiffToVecSphGeo.s")
 
 GLOBAL_ASM("asm/GiveItem.s")
 
-GLOBAL_ASM("asm/FUN_003725e0.s")
+GLOBAL_ASM("asm/Message_CloseTextbox.s")
 
 GLOBAL_ASM("asm/FUN_00372650.s")
 

@@ -104,7 +104,7 @@ typedef struct CutsceneContext {
     /* 0x08 */ u8    state;
     /* 0x09 */ char  unk_09[0x0B];
     /* 0x14 */ s32   unk_14;
-    /* 0x18 */ s32   unk_18;
+    /* 0x18 */ s32   endFrame; // copied from the script's end frame each frame
     /* 0x1C */ f32   unk_1C;
     /* 0x20 */ u16   frames;
     /* 0x22 */ u16   unk_22;
@@ -215,7 +215,9 @@ typedef struct GameState {
     /* 0x008 */ GameStateFunc destroy; // "cleanup"
     /* 0x00C */ GameStateFunc init;
     /* 0x010 */ u32 size;
-    /* 0x014 */ char unk_14[0xC0];
+    /* 0x014 */ char unk_14[0x4];
+    /* 0x018 */ u32 buttonsPressed; // pressed this frame; bit 3 is Start
+    /* 0x01C */ char unk_1C[0xB8];
     /* 0x0D4 */ TwoHeadArena tha;
     /* 0x0E4 */ GameAlloc alloc;
     /* 0x0F8 */ u32 frames;
@@ -303,6 +305,8 @@ typedef struct PlayState {
     void SetCutsceneState(u8 csState);
 } PlayState; // size = 0x5F14 TODO
 
+extern PlayState* gPlayState; //0x0050AF34
+
 typedef struct StaticContext {
     /* 0x0000 */ char unk_0[0x0E72];
     /* 0x0E72 */ u16 collisionDisplay;
@@ -357,7 +361,7 @@ typedef struct {
     /* 0x14 */ s16  data[REG_GROUPS * REG_PER_GROUP]; // 0xAE0 entries
 } GameInfo; // size = 0x15D4
 
-extern GameInfo* gGameInfo;
+extern GameInfo* gGameInfo; //0x0051B2F4
 
 typedef enum {
     /*  0 */ TEXT_STATE_NONE,
