@@ -45,6 +45,10 @@ both right. Surface types, camera data and water boxes are not decoded yet (like
 - A primitive's index count (`prm +0x14`, u16) is sign-extended into the draw's vertex count: a
   count of 38907 drew 0xFFFF97FB vertices and Azahar faulted reading the index buffer. A primitive
   holds at most 32767 indices.
+- A sepd draws each of its primitive sets (`sepd +0x08`, u16 count) in turn: after the eight
+  attributes at `+0x104` come a bone-dimension word and one u16 `prms` offset per set (from the
+  sepd), padded to 4, then the `prms` chunks. Actor models use up to five; a room shape split into
+  two sets of 20094 indices draws in Kakariko.
 
 ## Dead ends
 - Reading vertices at the plain `vertexList` offset gives garbage; the polygon's last u16 is the
