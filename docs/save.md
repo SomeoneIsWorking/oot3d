@@ -22,3 +22,6 @@ sleep so the whole takes at least a second). 0x2FDAA4 returns 1 once nothing is 
 
 `save00.bin` is those 0x14DC bytes as they are: `gSaveContext` from its start, checksum last. A
 file saved with bytes in `unused_6C` keeps them (read back from the file: z3d-mods run oot-sv1).
+
+Called from play with `fileSelect` 0, outside the pause screen, it writes a file that loads after
+a restart (z3d-mods' autosave: runs oot-as2, oot-as3).
