@@ -21228,9 +21228,9 @@ text 0x00100000
 	{
 		* (i.FUN_002efd88)
 	}
-	FUN_002efea0 0x002efea0
+	Hud_SetItemButton 0x002efea0
 	{
-		* (i.FUN_002efea0)
+		* (i.Hud_SetItemButton)
 	}
 	FUN_002efff8 0x002efff8
 	{

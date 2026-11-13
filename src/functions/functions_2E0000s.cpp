@@ -354,7 +354,7 @@ GLOBAL_ASM("asm/FUN_002ef9b4.s")
 
 GLOBAL_ASM("asm/FUN_002efd88.s")
 
-GLOBAL_ASM("asm/FUN_002efea0.s")
+GLOBAL_ASM("asm/Hud_SetItemButton.s")
 
 GLOBAL_ASM("asm/FUN_002efff8.s")
 

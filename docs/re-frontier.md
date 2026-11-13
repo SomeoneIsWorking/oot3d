@@ -92,3 +92,13 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 - where: docs/camera.md, include/z3Dcamera.hpp
 - gap: settings are numbered, not named: only 0x01-0x06, 0x19, 0x1A and 0x1E are matched to their N64 names by function and scene; the horse (0x06) and the crawlspace (0x1E) are read from the table, not seen live; each mode's values are not decoded
 - notes: 
+
+## items
+
+### items.buttons — equips, the item menu's assignment, Hud_SetItemButton and gHud.state
+- status: re-partial
+- deps: 
+- evidence: live: an item assigned in the item menu writes equips at 0x33C5F8/0x33C6A4 (write watch) and the button then uses it; Hud_SetItemButton's five-way switch at 0x2EFEDC; gHud.state and the three screens' state words peeked in play and under each screen; pad bit 12 seen in GameState.buttonsHeld (runs oot-ch2, oot-ch3)
+- where: docs/item_buttons.md, include/z3D.hpp, include/z3Dsave.hpp
+- gap: FUN_0033c25c is not named or decompiled; gHud's other fields and the meaning of its state beyond 0 and 2 are unknown; the map screen's word was not seen up; unused_6C is called unused from the files read and one play session, not from every writer of the save
+- notes: 

@@ -5228,7 +5228,7 @@
 --keep=FUN_002ef684
 --keep=FUN_002ef9b4
 --keep=FUN_002efd88
---keep=FUN_002efea0
+--keep=Hud_SetItemButton
 --keep=FUN_002efff8
 --keep=FUN_002f008c
 --keep=FUN_002f009c

@@ -29,6 +29,8 @@ extern u8 gItemSlots[56];
 
 extern CameraSetting sCameraSettings[78]; //0x00516ff0
 
+extern Hud gHud; //0x0050af34
+
 extern GameInfo* gGameInfo;
 
 #endif

@@ -205,6 +205,20 @@ typedef struct {
     /* 0x10 */ GameAllocEntry* head;
 } GameAlloc; // size = 0x14
 
+// GameState.buttonsHeld bit 12: no button of the console; Azahar's Debug button sets it.
+#define PAD_DEBUG (1 << 12)
+
+// The gameplay HUD (gHud).
+typedef struct Hud {
+    /* 0x00 */ char unk_00[0x14];
+    /* 0x14 */ void* itemButtons; // the layout Hud_SetItemButton draws an item's icon into
+    /* 0x18 */ char unk_18[0x1C];
+    /* 0x34 */ u32 state; // HUD_STATE_*
+} Hud;
+
+#define HUD_STATE_COVERED 0 // the items, gear, map or system screen is up
+#define HUD_STATE_GAMEPLAY 2
+
 struct GameState;
 
 typedef void (*GameStateFunc)(struct GameState* gameState);
@@ -215,8 +229,8 @@ typedef struct GameState {
     /* 0x008 */ GameStateFunc destroy; // "cleanup"
     /* 0x00C */ GameStateFunc init;
     /* 0x010 */ u32 size;
-    /* 0x014 */ char unk_14[0x4];
-    /* 0x018 */ u32 buttonsPressed; // pressed this frame; bit 3 is Start
+    /* 0x014 */ u32 buttonsHeld; // the HID pad word: bit 3 is Start, bits 12 and 13 no button of the console
+    /* 0x018 */ u32 buttonsPressed; // pressed this frame
     /* 0x01C */ char unk_1C[0xB8];
     /* 0x0D4 */ TwoHeadArena tha;
     /* 0x0E4 */ GameAlloc alloc;

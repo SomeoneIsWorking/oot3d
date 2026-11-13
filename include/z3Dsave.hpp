@@ -60,9 +60,13 @@ typedef struct {
 } FaroresWindData; // size = 0x28
 
 // Save Context (ram start: 0x00587958)
+#define LINK_AGE_ADULT 0
+#define LINK_AGE_CHILD 1
+#define SAVE_UNUSED_6C_SIZE 0x12
+
 typedef struct {
     /* 0x0000 */ s32          entranceIndex;
-    /* 0x0004 */ s32          linkAge; // 0: Adult; 1: Child
+    /* 0x0004 */ s32          linkAge; // LINK_AGE_*
     /* 0x0008 */ s32          cutsceneIndex;
     /* 0x000C */ u16          dayTime; // "zelda_time"
     /* 0x000E */ u8           masterQuestFlag;
@@ -91,7 +95,7 @@ typedef struct {
     /* 0x0052 */ s8           bgsFlag;
     /* 0x0054 */ ItemEquips   childEquips;
     /* 0x0060 */ ItemEquips   adultEquips;
-    /* 0x006C */ char         unk_6C[0x0012];
+    /* 0x006C */ char         unused_6C[SAVE_UNUSED_6C_SIZE]; // zero in a file; no write seen in play
     /* 0x007E */ u16          sceneIndex;
     /* 0x0080 */ ItemEquips   equips;
     /* 0x008C */ Inventory    inventory;
