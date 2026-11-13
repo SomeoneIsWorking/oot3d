@@ -37,9 +37,17 @@ both right. Surface types, camera data and water boxes are not decoded yet (like
 - Opaque and translucent parts are separate materials of that one CMB, not separate meshes.
 - Its vertices are already in world space at N64 scale: draw with an identity model matrix.
 - Texture formats seen across every room: ETC1, ETC1A4, A8, L8, LA8, L4, RGBA5551, RGB565.
+- Room header offsets count from file offset 0x10 (the end of the `ZSI\x01` name header): the
+  command list, the 0x18 alternate-setup table, actor and object lists, and the 0x0A mesh header.
+  The mesh header (type 2, one entry) points at an entry whose `+0x08`/`+0x0C` are the opaque and
+  translucent CMB offsets (0 when absent). The CMB sits before the mesh header and the lists, so
+  growing it moves them and every offset at or past its end.
+- A primitive's index count (`prm +0x14`, u16) is sign-extended into the draw's vertex count: a
+  count of 38907 drew 0xFFFF97FB vertices and Azahar faulted reading the index buffer. A primitive
+  holds at most 32767 indices.
 
 ## Dead ends
 - Reading vertices at the plain `vertexList` offset gives garbage; the polygon's last u16 is the
   next polygon's first field unless the array is framed at `polygonList - 2`.
-- noclip names command 0x03 but never parses it, and its mesh-header pointer chain does not
-  resolve at plain file offsets on this ROM.
+- noclip names command 0x03 but never parses it. Its room mesh-header chain is right once read
+  from 0x10, as its `parseRooms` does; at plain file offsets it does not resolve.
