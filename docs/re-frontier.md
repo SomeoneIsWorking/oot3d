@@ -98,9 +98,9 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 ### items.buttons — equips, the item screen's layout, ItemMenu_ApplyLayout, Hud_SetItemButton and gHud.state
 - status: re-partial
 - deps: 
-- evidence: live: an item assigned in the item menu writes equips at 0x33C5F8/0x33C6A4 (write watch) and the button then uses it; Hud_SetItemButton's five-way switch at 0x2EFEDC; gHud.state and the three screens' state words peeked in play and under each screen; pad bit 12 seen in GameState.buttonsHeld (runs oot-ch2, oot-ch3); ItemMenu_ApplyLayout read from the disassembly (0x33C25C-0x33C72C) and seen rewriting equips from the layout when the screen opens (oot-ch5)
-- where: docs/item_buttons.md, include/z3D.hpp, include/z3Dsave.hpp
-- gap: ItemMenu_ApplyLayout is not decompiled and its callers are unread; gHud's other fields and the meaning of its state beyond 0 and 2 are unknown; the map screen's word was not seen up; unused_6C is called unused from the files read and one play session, not from every writer of the save
+- evidence: live: an item assigned in the item menu writes equips at 0x33C5F8/0x33C6A4 (write watch) and the button then uses it; Hud_SetItemButton's five-way switch at 0x2EFEDC; gHud.state and the three screens' state words peeked in play and under each screen; pad bit 12 seen in GameState.buttonsHeld (runs oot-ch2, oot-ch3); ItemMenu_ApplyLayout read from the disassembly (0x33C25C-0x33C72C) and seen rewriting equips from the layout when the screen opens (oot-ch5); Player's in-hand fields at +0x1A8 to +0x1AC watched live through items taken out and put away (ctl-held1, ctl-song11)
+- where: docs/item_buttons.md, include/z3D.hpp, include/z3Dsave.hpp, include/z3Dactor.hpp
+- gap: ItemMenu_ApplyLayout is not decompiled and its callers are unread; gHud's other fields and the meaning of its state beyond 0 and 2 are unknown; the map screen's word was not seen up; the function that puts the in-hand item away and drops the press is not found; itemAction's other values are unnamed; unused_6C is called unused from the files read and one play session, not from every writer of the save
 - notes: 
 
 ### items.ocarina — the ocarina screen's state and song list, the pad's note mapping and the song table

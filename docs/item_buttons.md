@@ -69,6 +69,17 @@ same way. The item stays in hand while its `buttonItems` byte stays.
 
 With the item screen up, the circle pad moves its cursor and Start closes it (ctl-slots4).
 
+## The item in hand
+`Player.heldItemButton` (+0x1A8) is the index in `buttonItems` of the item in hand,
+`heldItemId` (+0x1AA) its item (0xFF with none), `itemAction` (+0x1A9) and `heldItemAction`
+(+0x1AC) what it is doing, 0 (`PLAYER_IA_NONE`) with empty hands (z3d-mods run ctl-held1: watched
+through taking out and putting away Bombs, the Slingshot and the ocarina).
+
+When the item in hand leaves its last `buttonItems` byte the game puts it away, and an item
+button pressed before `itemAction` is back at 0 is dropped: a press in the same frame, the next
+frame, or once `heldItemId` alone reads 0xFF does nothing (ctl-song6 to ctl-song8); pressed once
+`heldItemId` is 0xFF and `itemAction` is 0 the new item comes out (ctl-song11).
+
 ## The pause screen's Save
 Start in play opens "Save your progress?" with the cursor on Save; A saves, and "Quit" on the
 prompt after it returns to the title screen (z3d-mods runs ctl-save2, ctl-save3).
