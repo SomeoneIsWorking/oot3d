@@ -494,6 +494,8 @@ typedef struct MotionState {
 #define GYRO_READER_ZERO_DRIFT_ON 0x855 // u8
 #define GYRO_READER_REVISE_ON 0x856 // u8: the accelerometer pulls the direction toward gravity
 #define GYRO_READER_ZERO_PLAY 0x858 // f32
+#define GYRO_READER_DRIFT_RADIUS 0x85C // f32: samples this near the newest are averaged with it; negative, none is
+#define GYRO_READER_SCALE 0x888 // f64[3]: the HID sample times this, rounded, is the reader's raw unit
 #define GYRO_READER_DRIFT_BIAS 0x8A0 // f32[3], raw units
 
 #define gStaticContext (*(StaticContext*)0x08080010)

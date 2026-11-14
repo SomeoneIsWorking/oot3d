@@ -11,9 +11,13 @@ struct Actor;
 struct PlayState;
 struct LightMapper;
 
-typedef struct {
-    Vec3f pos;
-    Vec3s rot;
+// Player.lookFlags
+#define PLAYER_LOOK_GYRO 0x1 // the gyroscope sets focus.rot; stays set after the look ends
+#define PLAYER_LOOK_FIRST_PERSON 0x2 // set each frame the view is first person
+
+typedef struct PosRot {
+    /* 0x00 */ Vec3f pos;
+    /* 0x0C */ Vec3s rot;
 } PosRot; // size = 0x14
 
 typedef struct {
@@ -223,7 +227,7 @@ typedef struct {
     /* 0x22A2 */ char   unk_22A2[0x064E];
     /* 0x28F0 */ s16    lookBase[3]; // focus.rot at the last motion reset (Player_UpdateLook)
     /* 0x28F6 */ char   unk_28F6[0x00C2];
-    /* 0x29B8 */ u32    lookFlags; // bit 0: the gyroscope sets focus.rot
+    /* 0x29B8 */ u32    lookFlags; // PLAYER_LOOK_*
     /* 0x29BC */ char   unk_29BC[0x000C];
     /* 0x29C8 */ void*  pad; // the pad state the player reads
     /* 0x29CC */ char   unk_29CC[0x0080];

@@ -50,6 +50,19 @@ range 0.4). The three flag bytes read 01 01 01 live. So, as in MM3D: a rate unde
 second is dropped; a rate that holds within 3.6 degrees a second for a second is learnt as bias
 and removed; and with an accelerometer that never changes, pitch decays back to level.
 
+The mean of like samples runs whatever +0x855 says, and a negative radius (+0x85C) switches it
+off; a HID sample is multiplied by the calibration's scale (+0x888, 13455/13400 on Azahar) and
+rounded to the reader's unit; the direction turns to first order per sample. Majora's Mask 3D's
+doc has the arithmetic; the offsets and the numbers below are the same here.
+
+## The look's flags
+
+`Player.lookFlags`: `PLAYER_LOOK_GYRO` (bit 0) stays set once the look has ended;
+`PLAYER_LOOK_FIRST_PERSON` (bit 1) is set each frame the view is first person. Both are set in
+the first-person view (the low byte reads 3) and while the Slingshot is aimed (0x43). A room
+with a fixed camera (Link's house) has no first-person view. `focus.rot` is the base plus the
+angle times the scale in 65536ths of a turn, cut to whole units, held at +-14000 units of pitch.
+
 ## Seen in the running game
 
 Kokiri Forest, first person, the app's harness (the emulator scales the fed rate by the host's
@@ -64,8 +77,15 @@ frame time, so the degrees are read back from the reader and `gMotionState`):
   34.27 long and leaves the pitch within 0.3 degrees.
 - `gyro-oot3`: `motionOff` written 1, the input that had turned the view leaves it still.
 
+- `aim-oot3` (inside the Deku Tree; the reader with its three switches off, the radius at -1,
+  the bias 0 and the scale 1; samples of whole units, 6 degrees at most): 9.5230 degrees of yaw
+  asked of the 3DS read 9.5230 in `gMotionState` and turn `focus.rot.y` 19.990 degrees; 10.2721
+  of pitch turn `focus.rot.x` 14.996; 14.2857 of yaw at 10.27 degrees of pitch, either way up,
+  turn the view 29.98 and leave the pitch within 0.005. The same with the Slingshot aimed (the
+  game's X held, flags 0x43), and after the circle pad has moved the look and taken a new base.
+
 ## Not known
 
-- The aimed items (slingshot, bow, hookshot, boomerang) were not run.
-- Zero play and zero drift were read in the code and switched live only in MM3D.
+- The bow, hookshot and boomerang were not run.
+- Zero play and zero drift were switched live one at a time only in MM3D.
 - What sets bit 1 of `lookFlags`.
