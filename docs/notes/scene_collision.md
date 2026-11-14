@@ -35,7 +35,9 @@ next begins.
 - Vertex: `Vec3s` (s16 x, y, z), stride 6, world space in N64 units, the same frame as the room
   mesh (collision floors sit within about 0.1 unit of the drawn floor in spot01).
 - Polygon, stride 20: `+0 u16` surface type index, `+2 vA`, `+4 vB`, `+6 vC` (u16, index in the
-  low 13 bits, flags in the top 3 of vA and vB), `+8 u16` zero, `+A/+C/+E s16` normal (x, y, z
+  low 13 bits, flags in the top 3 of vA and vB), `+8 u16` one value for the whole scene (0 in
+  spot01 and ganontika, 0xBC80 in ydan, 0xC52F in spot07; meaning unknown, z3d-mods copies it),
+  `+A/+C/+E s16` normal (x, y, z
   over 32767), `+0x10 f32` plane distance (`n·p == -dist`). The normal is the face normal and
   points the way `(vB - vA) x (vC - vA)` does. With this frame all 1222 of Kakariko's polygons
   satisfy the plane equation at vA; small polygons store a normal a few degrees off the one
