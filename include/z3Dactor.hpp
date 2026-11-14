@@ -14,6 +14,10 @@ struct LightMapper;
 // Player.itemAction and heldItemAction with empty hands.
 #define PLAYER_IA_NONE 0
 
+// Player.stateFlags1
+#define PLAYER_STATE1_ITEM_AIMED 0x8 // an item is aimed (the Slingshot); clear in the plain look
+#define PLAYER_STATE1_FIRST_PERSON 0x100000 // first person, aimed or not
+
 // Player.lookFlags
 #define PLAYER_LOOK_GYRO 0x1 // the gyroscope sets focus.rot; stays set after the look ends
 #define PLAYER_LOOK_FIRST_PERSON 0x2 // set each frame the view is first person

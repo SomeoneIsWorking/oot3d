@@ -84,6 +84,10 @@ frame time, so the degrees are read back from the reader and `gMotionState`):
   turn the view 29.98 and leave the pitch within 0.005. The same with the Slingshot aimed (the
   game's X held, flags 0x43), and after the circle pad has moved the look and taken a new base.
 
+`stateFlags1` tells an aimed item from the plain look: 0x100000 in the plain look and 0x100008
+with the Slingshot aimed (z3d-mods run `pol-flags-oot`, Kokiri Forest;
+`PLAYER_STATE1_ITEM_AIMED`). The Slingshot fires on its button; R does not fire it.
+
 ## Not known
 
 - The bow, hookshot and boomerang were not run.
