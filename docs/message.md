@@ -104,7 +104,7 @@ copy in the cell to the right.
 | Icon | Is | Cell (x, y) |
 |---|---|---|
 | 0x00 | Circle Pad (seen) | 128, 0 |
-| 0x01, 0x04 | the +Control Pad, any direction and held (the map's display; not seen drawn) | |
+| 0x01 to 0x05 | the +Control Pad, then its Up, Right, Down and Left (seen); the text uses 0x01 and 0x04 (the map's display), no message in any language 0x02, 0x03 or 0x05 | 128 to 192, 16 |
 | 0x06 to 0x0B | A (seen), B (seen), X (seen), Y (seen), L (seen), R (seen) | 128 to 208, 32 |
 | 0x0C | START (seen; no English message uses it) | 224, 32 |
 | 0x0F, 0x11 | Circle Pad up and down | |
@@ -113,8 +113,13 @@ copy in the cell to the right.
 | 0x18 to 0x1B | the touch screen's View (seen), Gear, Items and Map (seen) icons | 128, 160, 192 and 224, 64 |
 | 0x1C, 0x1D | the I and II item buttons (seen) | 192, 48 and 224, 48 |
 | 0x1E, 0x1F | the X and Y item buttons (seen) | 128, 80 and 160, 80 |
-| 0x21 | the target arrow | |
+| 0x0E | a 3DS with its touch screen lit (seen; no message uses it) | 208, 0 |
+| 0x10, 0x12, 0x13 | the Circle Pad's right, left and up cells (seen; no message uses them) | |
+| 0x21 | the target arrow (seen) | 240, 0 |
 | 0x22 | the map's marker | |
+
+0x0D, 0x15, 0x20 and 0x23 to 0x31 draw nothing (z3d-mods runs `gap-ic1`, `gap-ic2`: the codes
+put into a message).
 
 A message can be shown on demand by writing its number to a sign's `Actor.textId` (+0x116)
 before reading it: Kokiri Forest's sign at (49, -80, 966), by Link's house, read from the
