@@ -43,6 +43,16 @@ next begins.
   satisfy the plane equation at vA; small polygons store a normal a few degrees off the one
   their integer vertices give.
 - Floor and wall are told apart by the normal (floors have `ny > 0.5`), not by the surface type.
+- The play state's static collision context is at `PlayState +0xA98`, laid out as on the N64:
+  header pointer, bounds (6 f32), subdivisions (3 s32; 32, 8, 32 in Kakariko), cell size and its
+  inverse, the cell table at +0x40, then the node list: u16 length at +0x44, u16 used at +0x46.
+  Every triangle takes a node in every cell it touches. The length shrinks by one for every
+  four triangles (39017 in Kakariko with 1222 triangles, 36097 with 12901), and the game writes
+  past it: a scene needing 54760 nodes dropped Link through late triangles and stopped the
+  game on a second visit (z3d-mods runs oot-bg1, oot-as10). Ganon's Castle uses 14563 of 23568.
+- Corner flag 0x4000 on vA lets actors through a triangle (shown in MM3D, decomp/mm3d
+  `docs/formats/scene_files.md`; in OoT3D Link walks Kakariko's flagged risers, run
+  oot-st17-spot01, and stopped at an unflagged one, oot-st16-spot01).
 - The lists can live anywhere: z3d-mods writes longer vertex and polygon lists after the end of
   the file and points the header at them.
 
