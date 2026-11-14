@@ -220,7 +220,13 @@ typedef struct {
     /* 0x2228 */ char   unk_2228[0x0074];
     /* 0x229C */ f32    pushedSpeed; // Pushing player, examples include water currents, floor conveyors, climbing sloped surfaces
     /* 0x22A0 */ s16    pushedYaw; // Yaw direction of player being pushed
-    /* 0x22A2 */ char   unk_22A2[0x07AA];
+    /* 0x22A2 */ char   unk_22A2[0x064E];
+    /* 0x28F0 */ s16    lookBase[3]; // focus.rot at the last motion reset (Player_UpdateLook)
+    /* 0x28F6 */ char   unk_28F6[0x00C2];
+    /* 0x29B8 */ u32    lookFlags; // bit 0: the gyroscope sets focus.rot
+    /* 0x29BC */ char   unk_29BC[0x000C];
+    /* 0x29C8 */ void*  pad; // the pad state the player reads
+    /* 0x29CC */ char   unk_29CC[0x0080];
 } Player; //total size (from init vars): 2A4C
 
 struct EnItem00;

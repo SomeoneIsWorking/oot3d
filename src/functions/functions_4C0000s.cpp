@@ -8,7 +8,7 @@ GLOBAL_ASM("asm/FUN_004c02e8.s")
 
 GLOBAL_ASM("asm/FUN_004c055c.s")
 
-GLOBAL_ASM("asm/FUN_004c0588.s")
+GLOBAL_ASM("asm/Motion_GetLook.s")
 
 GLOBAL_ASM("asm/FUN_004c05c0.s")
 

@@ -83,7 +83,7 @@ typedef struct {
     /* 0x0008 */ s32          cutsceneIndex;
     /* 0x000C */ u16          dayTime; // "zelda_time"
     /* 0x000E */ u8           masterQuestFlag;
-    /* 0x000F */ char         unk_F[0x0001];
+    /* 0x000F */ u8           motionOff; // the Motion Controls option: 0 is on (docs/motion.md)
     /* 0x0010 */ s32          nightFlag;
     /* 0x0014 */ s32          unk_14;
     /* 0x0018 */ s32          unk_18;

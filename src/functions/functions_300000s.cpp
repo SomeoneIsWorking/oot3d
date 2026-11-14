@@ -70,7 +70,7 @@ GLOBAL_ASM("asm/GetDeviceMemoryAddress.s")
 
 GLOBAL_ASM("asm/nnosAddressSpaceManagerInitialize.s")
 
-GLOBAL_ASM("asm/FUN_00301a30.s")
+GLOBAL_ASM("asm/Motion_Update.s")
 
 GLOBAL_ASM("asm/nnosMemoryBlockAllocate.s")
 
@@ -324,7 +324,7 @@ GLOBAL_ASM("asm/FUN_00306e2c.s")
 
 GLOBAL_ASM("asm/FUN_00306e40.s")
 
-GLOBAL_ASM("asm/FUN_00306f04.s")
+GLOBAL_ASM("asm/Motion_Get.s")
 
 GLOBAL_ASM("asm/FUN_00306f68.s")
 

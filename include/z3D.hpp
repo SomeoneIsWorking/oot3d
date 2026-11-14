@@ -469,6 +469,33 @@ typedef enum {
     /* 10 */ TEXT_STATE_AWAITING_NEXT
 } TextState;
 
+// The game's view of the gyroscope (docs/motion.md). Angles are degrees since the last reset.
+typedef struct MotionState {
+    /* 0x00 */ void* reader; // the SDK's GyroscopeReader, GYRO_READER_*
+    /* 0x04 */ f32 pitch;
+    /* 0x08 */ f32 yaw;
+    /* 0x0C */ f32 roll; // always 0
+    /* 0x10 */ f32 direction[3]; // pitch, yaw, roll of the reader's direction matrix
+    /* 0x1C */ f32 unwrapped[3];
+    /* 0x28 */ f32 previous[3];
+    /* 0x34 */ f32 reference[3];
+    /* 0x40 */ f32 yawScale; // 2.1: view degrees per degree of the 3DS
+    /* 0x44 */ f32 pitchScale; // 1.46
+    /* 0x48 */ u8 reset; // asks Motion_Update for a new reference
+    /* 0x49 */ u8 resetDone; // for the frame the reference was taken
+    /* 0x4A */ u8 valid;
+} MotionState; // size = 0x4C
+
+// MotionState.reader. Speeds are in units of 360 degrees a second.
+#define GYRO_READER_SPEED 0x7E0 // f32[3]
+#define GYRO_READER_ANGLE 0x7EC // f32[3], turns
+#define GYRO_READER_DIRECTION 0x7F8 // f32[9], rows are the 3DS's axes
+#define GYRO_READER_ZERO_PLAY_ON 0x854 // u8
+#define GYRO_READER_ZERO_DRIFT_ON 0x855 // u8
+#define GYRO_READER_REVISE_ON 0x856 // u8: the accelerometer pulls the direction toward gravity
+#define GYRO_READER_ZERO_PLAY 0x858 // f32
+#define GYRO_READER_DRIFT_BIAS 0x8A0 // f32[3], raw units
+
 #define gStaticContext (*(StaticContext*)0x08080010)
 #define gObjectTable ((ObjectFile*)0x53CCF4)
 #define gEntranceTable ((EntranceInfo*)0x543BB8)

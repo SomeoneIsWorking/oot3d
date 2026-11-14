@@ -4,6 +4,7 @@
 #include "z3D.hpp"
 
 extern SaveContext gSaveContext; //0x00587958
+extern MotionState gMotionState; //0x0055B240
 
 extern f32 FLOAT_0054ac20;
 

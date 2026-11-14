@@ -148,3 +148,13 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 - where: docs/notes/scene_collision.md, include/z3Dbgcheck.hpp
 - gap: the triangle and cell test is not decompiled: z3d-mods counts the pairs that touch, 0.2% under the game's count in three scenes; the fixed-camera branch was not seen run; the moving collision's lists are unread
 - notes: 
+
+## motion
+
+### motion.look — what the first-person look reads of the gyroscope
+- status: re-partial
+- deps: 
+- evidence: Motion_Update, Player_UpdateLook and the SDK reader decompiled; in first person in Kokiri Forest gMotionState and focus.rot read live against a fed rate: 2.10 view degrees a degree of yaw, 1.46 of pitch; the accelerometer revise and motionOff each switched live (z3d-mods runs gyro-oot1 to gyro-oot3)
+- where: docs/motion.md, include/z3D.hpp, include/z3Dactor.hpp, include/z3Dsave.hpp
+- gap: aimed items not run; zero play and zero drift read in the code and seen only in MM3D's same reader; what sets bit 1 of lookFlags
+- notes: 

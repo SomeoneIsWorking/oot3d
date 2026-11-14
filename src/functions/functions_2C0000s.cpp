@@ -10,9 +10,9 @@ GLOBAL_ASM("asm/SetState_002c0198.s")
 
 GLOBAL_ASM("asm/FreeVoice.s")
 
-GLOBAL_ASM("asm/FUN_002c036c.s")
+GLOBAL_ASM("asm/Player_UpdateLook.s")
 
-GLOBAL_ASM("asm/FUN_002c0804.s")
+GLOBAL_ASM("asm/Motion_Reset.s")
 
 GLOBAL_ASM("asm/DynaPoly_IsBgIdBgActor.s")
 
