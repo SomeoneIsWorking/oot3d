@@ -209,7 +209,7 @@ typedef struct {
 #define PAD_DEBUG (1 << 12)
 
 // The A button's label (InterfaceContext.doAction): the N64's numbers, the word cells of hud_all00.ctxb
-// in column order. CHECK and NONE were seen live.
+// in column order (docs/hud.md). CHECK, RETURN, DROP, SPEAK, NEXT and NONE were seen live.
 typedef enum {
     /* 0x00 */ DO_ACTION_ATTACK,
     /* 0x01 */ DO_ACTION_CHECK,
@@ -233,6 +233,8 @@ typedef enum {
     /* 0x13 */ DO_ACTION_PUTAWAY,
     /* 0x14 */ DO_ACTION_REEL
 } DoAction;
+// The sheet's word cells: Swap and Equip follow Reel.
+#define DO_ACTION_WORDS 23
 
 typedef struct InterfaceContext {
     /* 0x000 */ char unk_000[0x226];

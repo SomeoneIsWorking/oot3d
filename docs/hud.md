@@ -19,7 +19,7 @@ File 1 as a child; a frame was read for every "frame" below.
 | Item on a button | `SaveContext.equips.buttonItems[0..4]` (0x5879D8): B, Y, X, I, II; `ITEM_NONE` empty | live: five items written, The One Screen draws them at once (ootre-save1, items); the touch screen follows after a scene load when the item menu's layout agrees (ootre-state, kokiri; `docs/item_buttons.md`) |
 | Ammo count | `SaveContext.inventory.ammo[slot]` (0x5879FE + slot, s8): sticks 0, nuts 1, bombs 2, bow 3, slingshot 6, bombchus 8, beans 14; the bow's count also for the three arrows | live for sticks 5, nuts 7, bombs 9, slingshot 17 on both screens (ootre-state, kokiri); the others follow the N64's slots |
 | Button enabled or dim | `SaveContext.buttonStatus[0..4]` (+0x156F, 0x588EC7): B, Y, X, I, II; `BTN_ENABLED` 0, `BTN_DISABLED` 0xFF. The game writes it every frame | live: all 0xFF in Link's house with the items dim (ootre-save1, status: a write of 0 is 0xFF again on the next read); all 0 in Kokiri Forest with the same items at full brightness on both screens (ootre-state, kokiri) |
-| A button's label | `gTopHud.doAction` (0x4FC694, s32): a `DO_ACTION_*`, -1 with no label. `TopHud_Update` copies it from `PlayState.interfaceCtx.doAction` (play +0x2DCA, u16), where no label is `DO_ACTION_NONE` | live: 1 beside the bed with "Check" on the button, -1 (interface 10) in Kokiri Forest with no label (ootre-state, house and kokiri); the other values are the N64's numbers in the order of `hud_all00.ctxb`'s word cells, not run |
+| A button's label | `gTopHud.doAction` (0x4FC694, s32): a `DO_ACTION_*`, -1 with no label. `TopHud_Update` copies it from `PlayState.interfaceCtx.doAction` (play +0x2DCA, u16), where no label is `DO_ACTION_NONE` | live: 1 beside the bed with "Check" on the button, -1 (interface 10) in Kokiri Forest with no label (ootre-state, house and kokiri); 3, 12, 15 and 16 in play (hud-ootlive3); the number is the word's cell in `hud_all00.ctxb` ("Item icons" below) |
 | Minimap on | `gTopHud.minimapOn` (0x4FC6B0, s32), the player's switch (`TopHud_ToggleMinimap` 0x2F009C flips it and plays a sound; its one caller is 0x42E654, not identified), and `gMinimap.layout` (0x4FDA84) not NULL: the scene has a map | live: 0 written, the map and its arrow are gone on the next frame; 1, back (ootre-mm-flag). `layout` is NULL in Link's house and set in Kokiri Forest (ootre-state) |
 
 Not found: a field for the small-key count's visibility and the mounted carrots; The One Screen
@@ -38,7 +38,11 @@ alone, seen in z3d-mods runs:
 - is gone after z3d-mods' chord trade, which writes `equips` from the layout's nodes
   (hud-ootlook3: X and Y empty after the chord's release).
 To put an item on a button from outside, write its inventory slot into the age's layout node
-(`itemMenuChild` or `itemMenuAdult`) and let the game apply it.
+(`itemMenuChild` or `itemMenuAdult`) and let the game apply it, or assign it in the item screen:
+Select opens the map screen, a touch on its Items tab (226, 228) the item screen with the cursor
+on the first item, and the 3DS's X or Y puts the item under the cursor on a button
+(hud-ootlive3). Under The One Screen the 3DS's X assigns `buttonItems[1]`, the Y lane, and its Y
+`buttonItems[2]`: the mod trades the two buttons in the menu as it does in play.
 
 ## When the play HUD shows
 All of:
@@ -65,7 +69,14 @@ and `ITEM_NONE` empties the button. The decoded sheet's first rows are the item 
 (stick, nut, bomb, bow, fire arrow, Din's Fire, slingshot, the two ocarinas, bombchu, hookshot,
 longshot; then ice arrow on). Henriko's pack replaces the sheet whole (4096x4096, found by hash).
 
-The A button's words are `hud_all00.ctxb` (256x256, slot 1).
+The A button's words are `hud_all00.ctxb` (256x256, slot 1): cells of 64x18 pixels from (0, 93),
+nine to a column, and a `DO_ACTION_*` is its word's cell counted down each column. The cells: 0
+Attack, Check, Enter, Return, Open, Jump, Decide, Dive, Faster; 9 Throw, Navi, Climb, Drop, Down,
+Save, Talk, Next, Grab; 18 Quit, Put Away, Reel, Swap, Equip (`DO_ACTION_WORDS` 23); the digits 1
+to 8 fill the fourth column, cells 27 to 34. Seen with the number read and the action in the
+frame (z3d-mods hud-ootlive3): 3 with the Slingshot aimed (Return), 12 with a bomb held (Drop),
+15 at the shop's counter (Talk), 16 in the shop's text (Next). Swap, Equip and the digits were
+not seen.
 
 ## The touch screen HUD's art
 `menu_top_parts00.ctxb` (512x256, slot 2 of `gMenuTextures`: the third name in the table at
