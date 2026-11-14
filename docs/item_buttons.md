@@ -34,6 +34,15 @@ button node.
 So `equips` written behind the layout's back is overwritten the next time the item screen opens
 (seen live: run oot-ch5, a write watch on `equips` while the screen opens).
 
+## The item screen's cursor
+`gItemMenuCursorNode` (0x506760, s32; the item screen's state word at 0x50672C + 0x34) is the
+layout node the cursor is on, six to a row: the row's last is its button node. Live (z3d-mods
+hud-oot-cur1, hud-oot-cur2): 0 when the screen opens on the first cell, 1 and 2 after moves
+right, 8 after a move down from 2. The two words after it change with it (0 then 1, 2 then 6)
+and the two after 0x50676C are the cursor's column and row. The item under the cursor is
+`inventory.items[layout[node]]`. Not seen: the value on a button node, and after the screen
+closes.
+
 ## HUD
 `Hud_SetItemButton(button, item)` (0x2EFEA0) redraws one button's icon on `gHud.itemButtons`
 (`ITEM_NONE` empties it). `button`: 0 the Ocarina button, 1 I, 2 II, 3 the X lane

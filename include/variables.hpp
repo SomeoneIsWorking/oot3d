@@ -31,6 +31,7 @@ extern u8 gItemSlots[56];
 extern CameraSetting sCameraSettings[78]; //0x00516ff0
 
 extern Hud gHud; //0x0050af34
+extern s32 gItemMenuCursorNode; //0x00506760
 extern TopHud gTopHud; //0x004fc648
 extern Minimap gMinimap; //0x004fda6c
 extern void* gMenuTextures[26]; //0x0055b490
