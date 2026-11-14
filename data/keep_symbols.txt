@@ -10036,7 +10036,7 @@
 --keep=FUN_0041a67c
 --keep=FUN_0041a6bc
 --keep=GameState_Destroy
---keep=FUN_0041a874
+--keep=PadMgr_RequestPadData
 --keep=FUN_0041ac34
 --keep=FUN_0041ac64
 --keep=FUN_0041ac88

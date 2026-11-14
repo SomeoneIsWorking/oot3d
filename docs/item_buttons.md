@@ -59,6 +59,20 @@ the same words in its source.
 Debug button is held; bit 13 (Azahar's GPIO14) does not. ZL and ZR are not in this word: the game
 never reads `ir:rst`.
 
+## Using any item through the X and Y buttons
+An item written into `equips.buttonItems[2]` with its inventory slot in `buttonSlots[1]`, and
+`PAD_X` set in `GameState.buttonsHeld` and `buttonsPressed` before `Play_Update` in the same
+frame, is used as if it sat on X; `buttonItems[1]`, `buttonSlots[0]` and `PAD_Y` do the same for
+Y. Live (z3d-mods runs ctl-slots3, ctl-slots4): Bombs and the Slingshot used this way with the
+layout's own button nodes empty, the ammo counted down; the ocarina (run ctl-song3) comes out the
+same way. The item stays in hand while its `buttonItems` byte stays.
+
+With the item screen up, the circle pad moves its cursor and Start closes it (ctl-slots4).
+
+## The pause screen's Save
+Start in play opens "Save your progress?" with the cursor on Save; A saves, and "Quit" on the
+prompt after it returns to the title screen (z3d-mods runs ctl-save2, ctl-save3).
+
 ## Unused save bytes
-`SaveContext.unused_6C` (0x12 bytes at +0x6C) is zero in the files read. z3d-mods' chord items keep
-their second item page there.
+`SaveContext.unused_6C` (0x12 bytes at +0x6C) is zero in the files read. z3d-mods keeps its item
+slots there; a file saved with them loads and plays without the patch (run ctl-save3).

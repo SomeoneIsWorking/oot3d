@@ -31,7 +31,25 @@ extern u8 gItemSlots[56];
 extern CameraSetting sCameraSettings[78]; //0x00516ff0
 
 extern Hud gHud; //0x0050af34
+// The items and gear screens' state words: MENU_SCREEN_CLOSED, or MENU_SCREEN_UP while theirs is up.
+extern s32 gItemMenuState; //0x0050672c
 extern s32 gItemMenuCursorNode; //0x00506760
+extern s32 gGearMenuState; //0x00504484
+#define MENU_SCREEN_CLOSED 0
+#define MENU_SCREEN_UP 2
+// The ocarina screen (docs/ocarina.md): its state, and the entry of its song list on show, -1 for none.
+extern s32 gOcarinaScreenState; //0x005093f8
+#define OCARINA_SCREEN_CLOSED 0
+#define OCARINA_SCREEN_SONG_LIST 4
+#define OCARINA_SCREEN_PLAY 12
+extern s32 gOcarinaSongListShown; //0x00509404
+// The song list's entries in grid order, four to a row: each an ITEM_SONG_*.
+extern u32 gOcarinaSongListItems[12]; //0x0050a3b0
+// A song's notes: a count, then that many of the five notes' numbers, low to high.
+extern u8 gOcarinaSongButtons[14][9]; //0x0054c222
+#define OCARINA_SONG_BUTTONS_SIZE 9
+// 1 while the audio's ocarina takes notes.
+extern u8 gAudioOcarinaInputEnabled; //0x0054ac5c
 extern TopHud gTopHud; //0x004fc648
 extern Minimap gMinimap; //0x004fda6c
 extern void* gMenuTextures[26]; //0x0055b490

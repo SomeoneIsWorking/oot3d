@@ -103,6 +103,14 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 - gap: ItemMenu_ApplyLayout is not decompiled and its callers are unread; gHud's other fields and the meaning of its state beyond 0 and 2 are unknown; the map screen's word was not seen up; unused_6C is called unused from the files read and one play session, not from every writer of the save
 - notes: 
 
+### items.ocarina — the ocarina screen's state and song list, the pad's note mapping and the song table
+- status: re-partial
+- deps: items.buttons
+- evidence: live: the screen's state on the play page and the song list, the list's cursor and entry on show, its item table and the song table dumped, and the Song of Storms recognised from notes ORed into the pad word at PadMgr_RequestPadData + 0x98 (z3d-mods runs ctl-oca1, ctl-song2, ctl-song3); the mapping and its gate read from the disassembly (0x41A8EC-0x41A970)
+- where: docs/ocarina.md, include/variables.hpp, include/z3D.hpp
+- gap: the screen's object is named at four words only; the audio's matcher and its timing are read, not decompiled; warp songs and the scarecrow's song not played; the list's entry on show over a song not learned not seen
+- notes: the hook site sits behind The One Screen's own hook at 0x41A904
+
 ## hud
 
 ### hud.state — what the HUD's elements read and when it shows

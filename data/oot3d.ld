@@ -40688,9 +40688,9 @@ text 0x00100000
 	{
 		* (i.GameState_Destroy)
 	}
-	FUN_0041a874 0x0041a874
+	PadMgr_RequestPadData 0x0041a874
 	{
-		* (i.FUN_0041a874)
+		* (i.PadMgr_RequestPadData)
 	}
 	FUN_0041ac34 0x0041ac34
 	{

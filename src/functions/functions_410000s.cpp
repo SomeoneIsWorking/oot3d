@@ -735,7 +735,7 @@ GLOBAL_ASM("asm/FUN_0041a6bc.s")
 
 GLOBAL_ASM("asm/GameState_Destroy.s")
 
-GLOBAL_ASM("asm/FUN_0041a874.s")
+GLOBAL_ASM("asm/PadMgr_RequestPadData.s")
 
 GLOBAL_ASM("asm/FUN_0041ac34.s")
 

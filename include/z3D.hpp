@@ -207,6 +207,13 @@ typedef struct {
 
 // GameState.buttonsHeld bit 12: no button of the console; Azahar's Debug button sets it.
 #define PAD_DEBUG (1 << 12)
+// The item buttons the pad has: X uses equips.buttonItems[2], Y buttonItems[1].
+#define PAD_X (1 << 10)
+#define PAD_Y (1 << 11)
+// With X and Y, the ocarina's five notes from low to high: L, R, Y, X, A (docs/ocarina.md).
+#define PAD_A (1 << 0)
+#define PAD_R (1 << 8)
+#define PAD_L (1 << 9)
 
 // The A button's label (InterfaceContext.doAction): the N64's numbers, the word cells of hud_all00.ctxb
 // in column order (docs/hud.md). CHECK, RETURN, DROP, SPEAK, NEXT and NONE were seen live.
