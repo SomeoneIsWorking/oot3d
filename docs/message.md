@@ -97,18 +97,25 @@ z3d-mods' `tools/z3dmods/qm.py`:
   before a choice of two and of three; 0x24 draws a prompt icon.
 
 Prompt icons (0x24), by the words around them in the English text and, for those marked,
-seen drawn (z3d-mods run `txt-oot-r4`):
+seen drawn (z3d-mods runs `txt-oot-r4`, `txt-oot-w1`). Each is a 16 by 16 cell of
+`romfs:/message/parts.ctxb` (256 by 128); a button the game can show unavailable has its dim
+copy in the cell to the right.
 
-| Icon | Is |
-|---|---|
-| 0x00 | Circle Pad |
-| 0x01, 0x04 | the +Control Pad, any direction and held (the map's display; not seen drawn) |
-| 0x06 to 0x0B | A (seen), B (seen), X (seen), Y (seen), L, R |
-| 0x0C | START (seen; no English message uses it) |
-| 0x0F, 0x11 | Circle Pad up and down |
-| 0x14 | Circle Pad left and right |
-| 0x16 to 0x1B | the touch screen's Ocarina, Navi, View, Gear, Items and Map icons |
-| 0x1C, 0x1D | the I and II item buttons (seen) |
-| 0x1E, 0x1F | the X and Y item buttons (seen) |
-| 0x21 | the target arrow |
-| 0x22 | the map's marker |
+| Icon | Is | Cell (x, y) |
+|---|---|---|
+| 0x00 | Circle Pad (seen) | 128, 0 |
+| 0x01, 0x04 | the +Control Pad, any direction and held (the map's display; not seen drawn) | |
+| 0x06 to 0x0B | A (seen), B (seen), X (seen), Y (seen), L (seen), R (seen) | 128 to 208, 32 |
+| 0x0C | START (seen; no English message uses it) | 224, 32 |
+| 0x0F, 0x11 | Circle Pad up and down | |
+| 0x14 | Circle Pad left and right | |
+| 0x16, 0x17 | the touch screen's Ocarina and Navi icons (seen) | 128, 48 and 160, 48 |
+| 0x18 to 0x1B | the touch screen's View (seen), Gear, Items and Map (seen) icons | 128, 160, 192 and 224, 64 |
+| 0x1C, 0x1D | the I and II item buttons (seen) | 192, 48 and 224, 48 |
+| 0x1E, 0x1F | the X and Y item buttons (seen) | 128, 80 and 160, 80 |
+| 0x21 | the target arrow | |
+| 0x22 | the map's marker | |
+
+A message can be shown on demand by writing its number to a sign's `Actor.textId` (+0x116)
+before reading it: Kokiri Forest's sign at (49, -80, 966), by Link's house, read from the
+south (`txt-oot-k23`).
