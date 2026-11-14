@@ -14,7 +14,7 @@ GLOBAL_ASM("asm/FUN_002e112c.s")
 
 GLOBAL_ASM("asm/FUN_002e11a4.s")
 
-GLOBAL_ASM("asm/FUN_002e11d0.s")
+GLOBAL_ASM("asm/MenuTexture_Get.s")
 
 GLOBAL_ASM("asm/FUN_002e11e0.s")
 
@@ -352,7 +352,7 @@ GLOBAL_ASM("asm/FUN_002ef684.s")
 
 GLOBAL_ASM("asm/FUN_002ef9b4.s")
 
-GLOBAL_ASM("asm/FUN_002efd88.s")
+GLOBAL_ASM("asm/Hud_UpdateRupeeColor.s")
 
 GLOBAL_ASM("asm/Hud_SetItemButton.s")
 
@@ -360,7 +360,7 @@ GLOBAL_ASM("asm/FUN_002efff8.s")
 
 GLOBAL_ASM("asm/FUN_002f008c.s")
 
-GLOBAL_ASM("asm/FUN_002f009c.s")
+GLOBAL_ASM("asm/TopHud_ToggleMinimap.s")
 
 GLOBAL_ASM("asm/FUN_002f00f4.s")
 
@@ -538,7 +538,7 @@ GLOBAL_ASM("asm/FUN_002f8ce0.s")
 
 GLOBAL_ASM("asm/FUN_002f8d40.s")
 
-GLOBAL_ASM("asm/FUN_002f8d74.s")
+GLOBAL_ASM("asm/HudItemButtons_SetIcon.s")
 
 GLOBAL_ASM("asm/FUN_002f8ee4.s")
 

@@ -232,11 +232,11 @@ GLOBAL_ASM("asm/FUN_0042b58c.s")
 
 GLOBAL_ASM("asm/FUN_0042b848.s")
 
-GLOBAL_ASM("asm/FUN_0042b9d0.s")
+GLOBAL_ASM("asm/TopHud_Draw.s")
 
 GLOBAL_ASM("asm/FUN_0042bf00.s")
 
-GLOBAL_ASM("asm/FUN_0042c0a4.s")
+GLOBAL_ASM("asm/Minimap_Update.s")
 
 GLOBAL_ASM("asm/FUN_0042c674.s")
 

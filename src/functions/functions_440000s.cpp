@@ -20,7 +20,7 @@ GLOBAL_ASM("asm/FUN_00441634.s")
 
 GLOBAL_ASM("asm/FUN_00441638.s")
 
-GLOBAL_ASM("asm/FUN_00441658.s")
+GLOBAL_ASM("asm/TopHud_IsMinimapOn.s")
 
 GLOBAL_ASM("asm/FUN_00441668.s")
 

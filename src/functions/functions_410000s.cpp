@@ -609,7 +609,7 @@ GLOBAL_ASM("asm/FUN_00417034.s")
 
 GLOBAL_ASM("asm/FUN_0041706c.s")
 
-GLOBAL_ASM("asm/FUN_00417188.s")
+GLOBAL_ASM("asm/Motion_Init.s")
 
 GLOBAL_ASM("asm/FUN_0041721c.s")
 
@@ -771,13 +771,13 @@ GLOBAL_ASM("asm/GetGyroscope.s")
 
 GLOBAL_ASM("asm/GetTouchPanel.s")
 
-GLOBAL_ASM("asm/FUN_0041b6c0.s")
+GLOBAL_ASM("asm/GyroscopeReader_Read.s")
 
-GLOBAL_ASM("asm/FUN_0041b7d8.s")
+GLOBAL_ASM("asm/GyroscopeReader_EnableZeroPlay.s")
 
-GLOBAL_ASM("asm/FUN_0041b7e4.s")
+GLOBAL_ASM("asm/GyroscopeReader_EnableZeroDrift.s")
 
-GLOBAL_ASM("asm/FUN_0041b7f0.s")
+GLOBAL_ASM("asm/GyroscopeReader_SetZeroDriftMode.s")
 
 GLOBAL_ASM("asm/GyroscopeReader.s")
 
@@ -827,13 +827,13 @@ GLOBAL_ASM("asm/FUN_0041d3c4.s")
 
 GLOBAL_ASM("asm/FUN_0041d3f8.s")
 
-GLOBAL_ASM("asm/FUN_0041decc.s")
+GLOBAL_ASM("asm/TopHud_Update.s")
 
 GLOBAL_ASM("asm/FUN_0041e2ac.s")
 
 GLOBAL_ASM("asm/FUN_0041e61c.s")
 
-GLOBAL_ASM("asm/FUN_0041e944.s")
+GLOBAL_ASM("asm/Hud_Update.s")
 
 GLOBAL_ASM("asm/FUN_0041ec2c.s")
 

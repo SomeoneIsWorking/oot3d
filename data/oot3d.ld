@@ -18808,13 +18808,13 @@ text 0x00100000
 	{
 		* (i.FreeVoice)
 	}
-	FUN_002c036c 0x002c036c
+	Player_UpdateLook 0x002c036c
 	{
-		* (i.FUN_002c036c)
+		* (i.Player_UpdateLook)
 	}
-	FUN_002c0804 0x002c0804
+	Motion_Reset 0x002c0804
 	{
-		* (i.FUN_002c0804)
+		* (i.Motion_Reset)
 	}
 	DynaPoly_IsBgIdBgActor 0x002c0920
 	{
@@ -20520,9 +20520,9 @@ text 0x00100000
 	{
 		* (i.FUN_002e11a4)
 	}
-	FUN_002e11d0 0x002e11d0
+	MenuTexture_Get 0x002e11d0
 	{
-		* (i.FUN_002e11d0)
+		* (i.MenuTexture_Get)
 	}
 	FUN_002e11e0 0x002e11e0
 	{
@@ -21224,9 +21224,9 @@ text 0x00100000
 	{
 		* (i.FUN_002ef9b4)
 	}
-	FUN_002efd88 0x002efd88
+	Hud_UpdateRupeeColor 0x002efd88
 	{
-		* (i.FUN_002efd88)
+		* (i.Hud_UpdateRupeeColor)
 	}
 	Hud_SetItemButton 0x002efea0
 	{
@@ -21240,9 +21240,9 @@ text 0x00100000
 	{
 		* (i.FUN_002f008c)
 	}
-	FUN_002f009c 0x002f009c
+	TopHud_ToggleMinimap 0x002f009c
 	{
-		* (i.FUN_002f009c)
+		* (i.TopHud_ToggleMinimap)
 	}
 	FUN_002f00f4 0x002f00f4
 	{
@@ -21596,9 +21596,9 @@ text 0x00100000
 	{
 		* (i.FUN_002f8d40)
 	}
-	FUN_002f8d74 0x002f8d74
+	HudItemButtons_SetIcon 0x002f8d74
 	{
-		* (i.FUN_002f8d74)
+		* (i.HudItemButtons_SetIcon)
 	}
 	FUN_002f8ee4 0x002f8ee4
 	{
@@ -22252,9 +22252,9 @@ text 0x00100000
 	{
 		* (i._ZN2nn3svc13ControlMemoryEPjjjjjj)
 	}
-	FUN_00301a30 0x00301a30
+	Motion_Update 0x00301a30
 	{
-		* (i.FUN_00301a30)
+		* (i.Motion_Update)
 	}
 	nnosMemoryBlockAllocate 0x00301ec8
 	{
@@ -22768,9 +22768,9 @@ text 0x00100000
 	{
 		* (i.FUN_00306e40)
 	}
-	FUN_00306f04 0x00306f04
+	Motion_Get 0x00306f04
 	{
-		* (i.FUN_00306f04)
+		* (i.Motion_Get)
 	}
 	FUN_00306f68 0x00306f68
 	{
@@ -40428,9 +40428,9 @@ text 0x00100000
 	{
 		* (i.FUN_0041706c)
 	}
-	FUN_00417188 0x00417188
+	Motion_Init 0x00417188
 	{
-		* (i.FUN_00417188)
+		* (i.Motion_Init)
 	}
 	FUN_0041721c 0x0041721c
 	{
@@ -40764,21 +40764,21 @@ text 0x00100000
 	{
 		* (i.GetTouchPanel)
 	}
-	FUN_0041b6c0 0x0041b6c0
+	GyroscopeReader_Read 0x0041b6c0
 	{
-		* (i.FUN_0041b6c0)
+		* (i.GyroscopeReader_Read)
 	}
-	FUN_0041b7d8 0x0041b7d8
+	GyroscopeReader_EnableZeroPlay 0x0041b7d8
 	{
-		* (i.FUN_0041b7d8)
+		* (i.GyroscopeReader_EnableZeroPlay)
 	}
-	FUN_0041b7e4 0x0041b7e4
+	GyroscopeReader_EnableZeroDrift 0x0041b7e4
 	{
-		* (i.FUN_0041b7e4)
+		* (i.GyroscopeReader_EnableZeroDrift)
 	}
-	FUN_0041b7f0 0x0041b7f0
+	GyroscopeReader_SetZeroDriftMode 0x0041b7f0
 	{
-		* (i.FUN_0041b7f0)
+		* (i.GyroscopeReader_SetZeroDriftMode)
 	}
 	GyroscopeReader 0x0041b868
 	{
@@ -40876,9 +40876,9 @@ text 0x00100000
 	{
 		* (i.FUN_0041d3f8)
 	}
-	FUN_0041decc 0x0041decc
+	TopHud_Update 0x0041decc
 	{
-		* (i.FUN_0041decc)
+		* (i.TopHud_Update)
 	}
 	FUN_0041e2ac 0x0041e2ac
 	{
@@ -40888,9 +40888,9 @@ text 0x00100000
 	{
 		* (i.FUN_0041e61c)
 	}
-	FUN_0041e944 0x0041e944
+	Hud_Update 0x0041e944
 	{
-		* (i.FUN_0041e944)
+		* (i.Hud_Update)
 	}
 	FUN_0041ec2c 0x0041ec2c
 	{
@@ -41408,17 +41408,17 @@ text 0x00100000
 	{
 		* (i.FUN_0042b848)
 	}
-	FUN_0042b9d0 0x0042b9d0
+	TopHud_Draw 0x0042b9d0
 	{
-		* (i.FUN_0042b9d0)
+		* (i.TopHud_Draw)
 	}
 	FUN_0042bf00 0x0042bf00
 	{
 		* (i.FUN_0042bf00)
 	}
-	FUN_0042c0a4 0x0042c0a4
+	Minimap_Update 0x0042c0a4
 	{
-		* (i.FUN_0042c0a4)
+		* (i.Minimap_Update)
 	}
 	FUN_0042c674 0x0042c674
 	{
@@ -42028,9 +42028,9 @@ text 0x00100000
 	{
 		* (i.FUN_00441638)
 	}
-	FUN_00441658 0x00441658
+	TopHud_IsMinimapOn 0x00441658
 	{
-		* (i.FUN_00441658)
+		* (i.TopHud_IsMinimapOn)
 	}
 	FUN_00441668 0x00441668
 	{
@@ -47432,9 +47432,9 @@ text 0x00100000
 	{
 		* (i.FUN_004c055c)
 	}
-	FUN_004c0588 0x004c0588
+	Motion_GetLook 0x004c0588
 	{
-		* (i.FUN_004c0588)
+		* (i.Motion_GetLook)
 	}
 	FUN_004c05c0 0x004c05c0
 	{

@@ -4632,8 +4632,8 @@
 --keep=SetState
 --keep=SetState_002c0198
 --keep=FreeVoice
---keep=FUN_002c036c
---keep=FUN_002c0804
+--keep=Player_UpdateLook
+--keep=Motion_Reset
 --keep=DynaPoly_IsBgIdBgActor
 --keep=FUN_002c0930
 --keep=FUN_002c0948
@@ -5058,7 +5058,7 @@
 --keep=FUN_002e0f90
 --keep=FUN_002e112c
 --keep=FUN_002e11a4
---keep=FUN_002e11d0
+--keep=MenuTexture_Get
 --keep=FUN_002e11e0
 --keep=FUN_002e12d8
 --keep=FUN_002e1478
@@ -5227,11 +5227,11 @@
 --keep=FUN_002ef2c0
 --keep=FUN_002ef684
 --keep=FUN_002ef9b4
---keep=FUN_002efd88
+--keep=Hud_UpdateRupeeColor
 --keep=Hud_SetItemButton
 --keep=FUN_002efff8
 --keep=FUN_002f008c
---keep=FUN_002f009c
+--keep=TopHud_ToggleMinimap
 --keep=FUN_002f00f4
 --keep=FUN_002f010c
 --keep=FUN_002f011c
@@ -5320,7 +5320,7 @@
 --keep=FUN_002f8b80
 --keep=FUN_002f8ce0
 --keep=FUN_002f8d40
---keep=FUN_002f8d74
+--keep=HudItemButtons_SetIcon
 --keep=FUN_002f8ee4
 --keep=FUN_002f9430
 --keep=FUN_002f9484
@@ -5483,7 +5483,7 @@
 --keep=GetDeviceMemoryAddress
 --keep=nnosAddressSpaceManagerInitialize
 --keep=_ZN2nn3svc13ControlMemoryEPjjjjjj
---keep=FUN_00301a30
+--keep=Motion_Update
 --keep=nnosMemoryBlockAllocate
 --keep=__rt_locale
 --keep=CloseApplication
@@ -5612,7 +5612,7 @@
 --keep=FUN_00306dac
 --keep=FUN_00306e2c
 --keep=FUN_00306e40
---keep=FUN_00306f04
+--keep=Motion_Get
 --keep=FUN_00306f68
 --keep=FUN_00306f90
 --keep=FUN_003071d0
@@ -9971,7 +9971,7 @@
 --keep=GameState_Update
 --keep=FUN_00417034
 --keep=FUN_0041706c
---keep=FUN_00417188
+--keep=Motion_Init
 --keep=FUN_0041721c
 --keep=_ZN3z3D12Class_4EBE1812FUN_00417240EPvj
 --keep=FUN_0041724c
@@ -10055,10 +10055,10 @@
 --keep=Initialize_0041b514
 --keep=GetGyroscope
 --keep=GetTouchPanel
---keep=FUN_0041b6c0
---keep=FUN_0041b7d8
---keep=FUN_0041b7e4
---keep=FUN_0041b7f0
+--keep=GyroscopeReader_Read
+--keep=GyroscopeReader_EnableZeroPlay
+--keep=GyroscopeReader_EnableZeroDrift
+--keep=GyroscopeReader_SetZeroDriftMode
 --keep=GyroscopeReader
 --keep=FUN_0041ba94
 --keep=FUN_0041baa0
@@ -10083,10 +10083,10 @@
 --keep=FUN_0041d184
 --keep=FUN_0041d3c4
 --keep=FUN_0041d3f8
---keep=FUN_0041decc
+--keep=TopHud_Update
 --keep=FUN_0041e2ac
 --keep=FUN_0041e61c
---keep=FUN_0041e944
+--keep=Hud_Update
 --keep=FUN_0041ec2c
 --keep=FUN_0041ef10
 --keep=FUN_0041ef38
@@ -10215,9 +10215,9 @@
 --keep=FUN_0042b194
 --keep=FUN_0042b58c
 --keep=FUN_0042b848
---keep=FUN_0042b9d0
+--keep=TopHud_Draw
 --keep=FUN_0042bf00
---keep=FUN_0042c0a4
+--keep=Minimap_Update
 --keep=FUN_0042c674
 --keep=FUN_0042c964
 --keep=FUN_0042cb30
@@ -10368,7 +10368,7 @@
 --keep=FUN_004414bc
 --keep=FUN_00441634
 --keep=FUN_00441638
---keep=FUN_00441658
+--keep=TopHud_IsMinimapOn
 --keep=FUN_00441668
 --keep=FUN_004416c4
 --keep=FUN_00441a88
@@ -11714,7 +11714,7 @@
 --keep=FUN_004c0178
 --keep=FUN_004c02e8
 --keep=FUN_004c055c
---keep=FUN_004c0588
+--keep=Motion_GetLook
 --keep=FUN_004c05c0
 --keep=FUN_004c05dc
 --keep=FUN_004c0618

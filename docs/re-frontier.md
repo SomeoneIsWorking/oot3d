@@ -103,6 +103,24 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 - gap: ItemMenu_ApplyLayout is not decompiled and its callers are unread; gHud's other fields and the meaning of its state beyond 0 and 2 are unknown; the map screen's word was not seen up; unused_6C is called unused from the files read and one play session, not from every writer of the save
 - notes: 
 
+## hud
+
+### hud.state — what the HUD's elements read and when it shows
+- status: re-partial
+- deps: items.buttons
+- evidence: live writes seen on both screens' HUD for health, capacity, magic, rupees, wallet, button items, ammo and the minimap switch; buttonStatus, hudVisibilityMode and doAction read in play, a text box and a cutscene (z3d-mods runs ootre-save1, ootre-state, ootre-mm-flag); Interface_ChangeAlpha, TopHud_Update, TopHud_Draw and HudItemButtons_SetIcon read from the disassembly
+- where: docs/hud.md, include/z3D.hpp, include/z3Dsave.hpp
+- gap: the doubled magic meter, the 500 wallet and every doAction but CHECK and NONE are not run; InterfaceContext is named at four fields only; hudVisibilityMode's other values and writers are unread; gHud.state was not re-checked under each menu
+- notes: 
+
+### hud.owners — who draws the top screen's HUD under The One Screen, and the switches
+- status: re-verified
+- deps: hud.state
+- evidence: each switch written before the code first ran and the piece gone in the frame, text boxes still drawn (runs ootre-off-hearts, ootre-off-scenes, ootre-off-labels, ootre-off-action, ootre-off-all, ootre-off-minimap2, ootre-off-everything)
+- where: docs/hud.md
+- gap: 
+- notes: the payload addresses hold for The One Screen 891b60e only
+
 ## save
 
 ### save.write — Sram_WriteSave and the file's layout

@@ -68,6 +68,11 @@ typedef struct {
 #define ITEM_MENU_NODE_Y 17
 #define ITEM_MENU_NODE_II 23
 
+// SaveContext.hudVisibilityMode, the N64's numbers: what Interface_ChangeAlpha was last asked for.
+#define HUD_VISIBILITY_NOTHING_ALT 2 // a cutscene
+#define HUD_VISIBILITY_A_HEARTS_MAGIC_FORCE 5 // a text box
+#define HUD_VISIBILITY_ALL 50 // play
+
 #define LINK_AGE_ADULT 0
 #define LINK_AGE_CHILD 1
 #define SAVE_UNUSED_6C_SIZE 0x12
@@ -159,8 +164,12 @@ typedef struct {
     /* 0x156A */ s16          timerY[2]; //changing these doesn't seem to actually move the timer?
     /* 0x156E */ u8           nightSeqIndex;
     /* 0x156F */ u8           buttonStatus[5];
-    /* 0x1574 */ char         unk_1574[0x000F];
-    /* 0x1584 */ u16          magicMeterSize;
+    /* 0x1574 */ char         unk_1574[0x0004];
+    /* 0x1578 */ u16          unk_1578; // Interface_ChangeAlpha writes the new mode here too
+    /* 0x157A */ u16          hudVisibilityMode; // HUD_VISIBILITY_*
+    /* 0x157C */ u16          hudVisibilityTimer; // Interface_ChangeAlpha sets 1
+    /* 0x157E */ char         unk_157E[0x0006];
+    /* 0x1584 */ u16          magicMeterSize; // the meter's capacity: 0x30 once magic is acquired
     /* 0x1586 */ char         unk_1586[0x0004];
     /* 0x158A */ u16          eventInf[4];
     /* 0x1592 */ u16          mapIndex;

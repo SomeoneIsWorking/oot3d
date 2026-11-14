@@ -208,9 +208,85 @@ typedef struct {
 // GameState.buttonsHeld bit 12: no button of the console; Azahar's Debug button sets it.
 #define PAD_DEBUG (1 << 12)
 
+// The A button's label (InterfaceContext.doAction): the N64's numbers, the word cells of hud_all00.ctxb
+// in column order. CHECK and NONE were seen live.
+typedef enum {
+    /* 0x00 */ DO_ACTION_ATTACK,
+    /* 0x01 */ DO_ACTION_CHECK,
+    /* 0x02 */ DO_ACTION_ENTER,
+    /* 0x03 */ DO_ACTION_RETURN,
+    /* 0x04 */ DO_ACTION_OPEN,
+    /* 0x05 */ DO_ACTION_JUMP,
+    /* 0x06 */ DO_ACTION_DECIDE,
+    /* 0x07 */ DO_ACTION_DIVE,
+    /* 0x08 */ DO_ACTION_FASTER,
+    /* 0x09 */ DO_ACTION_THROW,
+    /* 0x0A */ DO_ACTION_NONE, // no label; the sheet's cell is "Navi"
+    /* 0x0B */ DO_ACTION_CLIMB,
+    /* 0x0C */ DO_ACTION_DROP,
+    /* 0x0D */ DO_ACTION_DOWN,
+    /* 0x0E */ DO_ACTION_SAVE,
+    /* 0x0F */ DO_ACTION_SPEAK,
+    /* 0x10 */ DO_ACTION_NEXT,
+    /* 0x11 */ DO_ACTION_GRAB,
+    /* 0x12 */ DO_ACTION_STOP,
+    /* 0x13 */ DO_ACTION_PUTAWAY,
+    /* 0x14 */ DO_ACTION_REEL
+} DoAction;
+
+typedef struct InterfaceContext {
+    /* 0x000 */ char unk_000[0x226];
+    /* 0x226 */ u16 doAction; // DO_ACTION_*: TopHud_Update shows its label on the A button
+    /* 0x228 */ u16 unk_228; // equal to doAction when read
+    /* 0x22A */ char unk_22A[0x5A];
+    /* 0x284 */ u16 buttonAlphas[4]; // 0xFF with the item buttons enabled, 0x46 disabled, 0 in a text box or cutscene
+    /* 0x28C */ u16 topHudAlpha; // TopHud_Update hides the top screen's HUD at 0: 0xFF in play and text, 0 in a cutscene
+    /* 0x28E */ char unk_28E[0x04];
+} InterfaceContext; // size = 0x292
+
+// A menu texture's slot in gMenuTextures (the order of the name table at 0x4D4010).
+#define MENU_TEXTURE_HUD 1 // hud_all00.ctxb
+#define MENU_TEXTURE_TOP_PARTS 2 // menu_top_parts00.ctxb
+#define MENU_TEXTURE_ITEM_ICONS 10 // icon_item_menu00.ctxb
+// icon_item_menu00.ctxb: item id n is the cell at column n % 12, row n / 12 (HudItemButtons_SetIcon).
+#define ITEM_ICON_SIZE 42
+#define ITEM_ICON_COLUMNS 12
+
+// The top screen's HUD (gTopHud): the A button's label, the map markers and the minimap.
+typedef struct TopHud {
+    /* 0x00 */ u8 drawNode78; // TopHud_Draw draws node78 while not 0
+    /* 0x01 */ char unk_01[0x17];
+    /* 0x18 */ void* quads; // the label's two quads, then the map's player and entrance markers
+    /* 0x1C */ char unk_1C[0x30];
+    /* 0x4C */ s32 doAction; // the label shown: InterfaceContext.doAction, -1 once DO_ACTION_NONE has gone
+    /* 0x50 */ s32 prevDoAction;
+    /* 0x54 */ char unk_54[0x04];
+    /* 0x58 */ s32 hidden; // TopHud_Draw draws nothing while not 0
+    /* 0x5C */ char unk_5C[0x0C];
+    /* 0x68 */ s32 minimapOn; // the player's switch (TopHud_ToggleMinimap); the map and its markers draw while 1
+    /* 0x6C */ char unk_6C[0x0C];
+    /* 0x78 */ void* node78;
+} TopHud;
+
+// The minimap (gMinimap).
+typedef struct Minimap {
+    /* 0x00 */ char unk_00[0x18];
+    /* 0x18 */ void* layout; // NULL in a scene without a map
+    /* 0x1C */ char unk_1C[0x14];
+    /* 0x30 */ s32 sceneNum;
+} Minimap;
+
+// The message manager (gMessageManager), the object Message_GetState reads.
+typedef struct MessageManager {
+    /* 0x000 */ char unk_000[0xF38];
+    /* 0xF38 */ u8 boxMode; // 0 with no text box up
+} MessageManager;
+
 // The gameplay HUD (gHud).
 typedef struct Hud {
-    /* 0x00 */ char unk_00[0x14];
+    /* 0x00 */ struct PlayState* play;
+    /* 0x04 */ void* layout; // the touch screen HUD's quads: 59 to 62 the magic meter, 63 on the hearts
+    /* 0x08 */ char unk_08[0x0C];
     /* 0x14 */ void* itemButtons; // the layout Hud_SetItemButton draws an item's icon into
     /* 0x18 */ char unk_18[0x1C];
     /* 0x34 */ u32 state; // HUD_STATE_*
@@ -283,7 +359,9 @@ typedef struct PlayState {
     /* 0x2298 */ CutsceneContext       csCtx; // "demo_play"
     /* 0x2304 */ char                  unk_2304[0x059C];
     /* 0x28A0 */ MessageContext        msgCtx;
-    /* 0x2B80 */ char                  unk_2B80[0x0A80];
+    /* 0x2B80 */ char                  unk_2B80[0x0024];
+    /* 0x2BA4 */ InterfaceContext      interfaceCtx;
+    /* 0x2E36 */ char                  unk_2E36[0x07CA];
     /* 0x3600 */ f32                   unk_3600;
     /* 0x3604 */ char                  unk_3604[0x0454];
     /* 0x3A58 */ ObjectContext         objectCtx;
