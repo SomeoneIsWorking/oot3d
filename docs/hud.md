@@ -50,7 +50,25 @@ and `ITEM_NONE` empties the button. The decoded sheet's first rows are the item 
 (stick, nut, bomb, bow, fire arrow, Din's Fire, slingshot, the two ocarinas, bombchu, hookshot,
 longshot; then ice arrow on). Henriko's pack replaces the sheet whole (4096x4096, found by hash).
 
-The A button's words and the HUD's small art are `hud_all00.ctxb` (256x256, slot 1).
+The A button's words are `hud_all00.ctxb` (256x256, slot 1).
+
+## The touch screen HUD's art
+`menu_top_parts00.ctxb` (512x256, slot 2 of `gMenuTextures`: the third name in the table at
+0x4D4010) holds the touch screen HUD's small art. Cells in the sheet's pixels, measured on the
+decoded sheet (the layout that names them was not read):
+
+| Art | Cell (x, y, w, h) |
+|---|---|
+| Rupee, green only | 128, 96, 18, 18 |
+| Small key | 153, 96, 16, 18 |
+| Skull token, chest | right of the key, same row |
+| Heart, plain: empty, a quarter, half, three quarters, full | 241, 81 + 16n, 10, 10 for n = 0 to 4 |
+| Heart with a white rim, the same five the other way up | 241, 1 + 16n, 10, 10: empty at the top |
+
+The sheet has one rupee: the wallet does not change the gem. The count's colour does:
+`Hud_UpdateRupeeColor` (above) turns it green at the wallet's capacity, and `num_all00.ctxb`
+(slot 9) holds the digits in white, green, red and yellow. Henriko's pack replaces both sheets
+whole (4096x2048 and 2048x1024, found by hash).
 
 ## Who draws the top screen's HUD
 The game's own top screen HUD is `gTopHud` (0x4FC648): `TopHud_Update` (0x41DECC) and
