@@ -4526,8 +4526,8 @@
 --keep=FUN_002b6b9c
 --keep=FUN_002b6c00
 --keep=MagicDark_Draw
---keep=FUN_002b7234
---keep=FUN_002b7498
+--keep=TextRenderer_AddGlyphQuad
+--keep=TextRenderer_AddCachedGlyph
 --keep=FUN_002b7714
 --keep=FUN_002b7770
 --keep=FUN_002b7cb0
@@ -4548,7 +4548,7 @@
 --keep=FUN_002ba45c
 --keep=FUN_002bae40
 --keep=FUN_002baf18
---keep=FUN_002baf9c
+--keep=TextRenderer_AddGlyph
 --keep=FUN_002bb1cc
 --keep=FUN_002bb34c
 --keep=FUN_002bb43c
@@ -4848,8 +4848,8 @@
 --keep=FUN_002d23d4
 --keep=FUN_002d23e0
 --keep=FUN_002d2504
---keep=FUN_002d2664
---keep=FUN_002d2674
+--keep=QbfFont_GetDefaultChar
+--keep=QbfFont_FindGlyph
 --keep=FUN_002d2754
 --keep=FUN_002d2974
 --keep=FUN_002d2b84
@@ -4958,12 +4958,12 @@
 --keep=FUN_002da7b8
 --keep=FUN_002da7c8
 --keep=FUN_002da7d8
---keep=FUN_002da7e8
+--keep=TextRenderer_AllocGlyphTexture
 --keep=FUN_002da940
 --keep=FUN_002da99c
 --keep=FUN_002daaf0
 --keep=FUN_002dabe0
---keep=FUN_002dac68
+--keep=TextRenderer_Init
 --keep=FUN_002dadd8
 --keep=FUN_002dae70
 --keep=FUN_002db010
@@ -5047,7 +5047,7 @@
 --keep=FUN_002df4c4
 --keep=FUN_002df528
 --keep=FUN_002df594
---keep=FUN_002df620
+--keep=QbfFont_Init
 --keep=FUN_002df6ac
 --keep=FUN_002df800
 --keep=FUN_002df850
@@ -5145,7 +5145,7 @@
 --keep=FUN_002e74c0
 --keep=FUN_002e74e4
 --keep=FUN_002e75d0
---keep=FUN_002e76b8
+--keep=TextObject_Init
 --keep=FUN_002e77e8
 --keep=FUN_002e7818
 --keep=FUN_002e78f8
@@ -10863,7 +10863,7 @@
 --keep=FUN_0046a160
 --keep=FUN_0046a2e4
 --keep=FUN_0046a49c
---keep=FUN_0046a738
+--keep=TextRenderer_FillStaticGlyphTexture
 --keep=FUN_0046aa44
 --keep=FUN_0046aa80
 --keep=FUN_0046aabc

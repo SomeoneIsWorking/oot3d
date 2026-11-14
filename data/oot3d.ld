@@ -18384,13 +18384,13 @@ text 0x00100000
 	{
 		* (i.MagicDark_Draw)
 	}
-	FUN_002b7234 0x002b7234
+	TextRenderer_AddGlyphQuad 0x002b7234
 	{
-		* (i.FUN_002b7234)
+		* (i.TextRenderer_AddGlyphQuad)
 	}
-	FUN_002b7498 0x002b7498
+	TextRenderer_AddCachedGlyph 0x002b7498
 	{
-		* (i.FUN_002b7498)
+		* (i.TextRenderer_AddCachedGlyph)
 	}
 	FUN_002b7714 0x002b7714
 	{
@@ -18472,9 +18472,9 @@ text 0x00100000
 	{
 		* (i.FUN_002baf18)
 	}
-	FUN_002baf9c 0x002baf9c
+	TextRenderer_AddGlyph 0x002baf9c
 	{
-		* (i.FUN_002baf9c)
+		* (i.TextRenderer_AddGlyph)
 	}
 	FUN_002bb1cc 0x002bb1cc
 	{
@@ -19680,13 +19680,13 @@ text 0x00100000
 	{
 		* (i.FUN_002d2504)
 	}
-	FUN_002d2664 0x002d2664
+	QbfFont_GetDefaultChar 0x002d2664
 	{
-		* (i.FUN_002d2664)
+		* (i.QbfFont_GetDefaultChar)
 	}
-	FUN_002d2674 0x002d2674
+	QbfFont_FindGlyph 0x002d2674
 	{
-		* (i.FUN_002d2674)
+		* (i.QbfFont_FindGlyph)
 	}
 	FUN_002d2754 0x002d2754
 	{
@@ -20120,9 +20120,9 @@ text 0x00100000
 	{
 		* (i.FUN_002da7d8)
 	}
-	FUN_002da7e8 0x002da7e8
+	TextRenderer_AllocGlyphTexture 0x002da7e8
 	{
-		* (i.FUN_002da7e8)
+		* (i.TextRenderer_AllocGlyphTexture)
 	}
 	FUN_002da940 0x002da940
 	{
@@ -20140,9 +20140,9 @@ text 0x00100000
 	{
 		* (i.FUN_002dabe0)
 	}
-	FUN_002dac68 0x002dac68
+	TextRenderer_Init 0x002dac68
 	{
-		* (i.FUN_002dac68)
+		* (i.TextRenderer_Init)
 	}
 	FUN_002dadd8 0x002dadd8
 	{
@@ -20476,9 +20476,9 @@ text 0x00100000
 	{
 		* (i.FUN_002df594)
 	}
-	FUN_002df620 0x002df620
+	QbfFont_Init 0x002df620
 	{
-		* (i.FUN_002df620)
+		* (i.QbfFont_Init)
 	}
 	FUN_002df6ac 0x002df6ac
 	{
@@ -20892,9 +20892,9 @@ text 0x00100000
 	{
 		* (i.FUN_002e75d0)
 	}
-	FUN_002e76b8 0x002e76b8
+	TextObject_Init 0x002e76b8
 	{
-		* (i.FUN_002e76b8)
+		* (i.TextObject_Init)
 	}
 	FUN_002e77e8 0x002e77e8
 	{
@@ -44024,9 +44024,9 @@ text 0x00100000
 	{
 		* (i.FUN_0046a49c)
 	}
-	FUN_0046a738 0x0046a738
+	TextRenderer_FillStaticGlyphTexture 0x0046a738
 	{
-		* (i.FUN_0046a738)
+		* (i.TextRenderer_FillStaticGlyphTexture)
 	}
 	FUN_0046aa44 0x0046aa44
 	{

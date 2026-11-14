@@ -68,12 +68,20 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 - notes: 
 
 ### message.font — the QBF1 font files and what draws their glyphs
+- status: re-verified
+- deps: 
+- evidence: ltn16.qbf read and written back byte for byte (z3d-mods tools/z3dmods/qbf.py); the static glyph texture built from the file hashes to the texture Azahar dumps with the mode forced to 1 (B89309291EF52669, run txt-atlas1); a font drawn from an outline font prints in the Know-It-All Brothers' dialog with a texture pack's copy of that texture (runs txt-oot-r1, txt-oot-r4)
+- where: docs/message.md, include/z3Dmessage.hpp
+- gap: sys8.qbf's cells; the second font's small text over a word (Japanese) in the static mode
+- notes: 
+
+### message.file — the QM message file, its control codes' arguments and the prompt icons
 - status: re-partial
 - deps: 
-- evidence: ltn16.qbf parsed from the USA RomFS: header, the 8-byte glyph table and 208 cells of 128 bytes add up to the file's size; the cells drawn as nibbles show the letters in code order
+- evidence: us.qm's 2510 messages read and written back byte for byte with the argument table at 0x4D6708 (z3d-mods tools/z3dmods/qm.py); message 0x1036 reworded prints with icons 0x06 to 0x09, 0x0C and 0x1C to 0x1F (run txt-oot-r4)
 - where: docs/message.md
-- gap: the cells' pixel order; sys8.qbf; the loader at the QBF1 literal (0x2DF6A8) and the function that draws a glyph are unread, so how a glyph reaches a texture (and whether a texture pack can replace it) is unknown; us.qm is not decoded
-- notes: z3d-mods wants message text drawn from an outline font (its docs/plans/pc-controls-hud.md)
+- gap: an entry's five header words; what most control codes do; the icons not seen drawn
+- notes: 
 
 ## camera
 

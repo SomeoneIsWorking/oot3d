@@ -188,7 +188,7 @@ GLOBAL_ASM("asm/FUN_002e74e4.s")
 
 GLOBAL_ASM("asm/FUN_002e75d0.s")
 
-GLOBAL_ASM("asm/FUN_002e76b8.s")
+GLOBAL_ASM("asm/TextObject_Init.s")
 
 GLOBAL_ASM("asm/FUN_002e77e8.s")
 

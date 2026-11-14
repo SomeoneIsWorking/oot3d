@@ -442,9 +442,9 @@ GLOBAL_ASM("asm/FUN_002d23e0.s")
 
 GLOBAL_ASM("asm/FUN_002d2504.s")
 
-GLOBAL_ASM("asm/FUN_002d2664.s")
+GLOBAL_ASM("asm/QbfFont_GetDefaultChar.s")
 
-GLOBAL_ASM("asm/FUN_002d2674.s")
+GLOBAL_ASM("asm/QbfFont_FindGlyph.s")
 
 GLOBAL_ASM("asm/FUN_002d2754.s")
 
@@ -662,7 +662,7 @@ GLOBAL_ASM("asm/FUN_002da7c8.s")
 
 GLOBAL_ASM("asm/FUN_002da7d8.s")
 
-GLOBAL_ASM("asm/FUN_002da7e8.s")
+GLOBAL_ASM("asm/TextRenderer_AllocGlyphTexture.s")
 
 GLOBAL_ASM("asm/FUN_002da940.s")
 
@@ -672,7 +672,7 @@ GLOBAL_ASM("asm/FUN_002daaf0.s")
 
 GLOBAL_ASM("asm/FUN_002dabe0.s")
 
-GLOBAL_ASM("asm/FUN_002dac68.s")
+GLOBAL_ASM("asm/TextRenderer_Init.s")
 
 GLOBAL_ASM("asm/FUN_002dadd8.s")
 
@@ -840,7 +840,7 @@ GLOBAL_ASM("asm/FUN_002df528.s")
 
 GLOBAL_ASM("asm/FUN_002df594.s")
 
-GLOBAL_ASM("asm/FUN_002df620.s")
+GLOBAL_ASM("asm/QbfFont_Init.s")
 
 GLOBAL_ASM("asm/FUN_002df6ac.s")
 

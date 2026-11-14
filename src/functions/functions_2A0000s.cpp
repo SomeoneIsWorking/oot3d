@@ -346,9 +346,9 @@ GLOBAL_ASM("asm/FUN_002b6b9c.s")
 
 GLOBAL_ASM("asm/FUN_002b6c00.s")
 
-GLOBAL_ASM("asm/FUN_002b7234.s")
+GLOBAL_ASM("asm/TextRenderer_AddGlyphQuad.s")
 
-GLOBAL_ASM("asm/FUN_002b7498.s")
+GLOBAL_ASM("asm/TextRenderer_AddCachedGlyph.s")
 
 GLOBAL_ASM("asm/FUN_002b7714.s")
 
@@ -390,7 +390,7 @@ GLOBAL_ASM("asm/FUN_002bae40.s")
 
 GLOBAL_ASM("asm/FUN_002baf18.s")
 
-GLOBAL_ASM("asm/FUN_002baf9c.s")
+GLOBAL_ASM("asm/TextRenderer_AddGlyph.s")
 
 GLOBAL_ASM("asm/FUN_002bb1cc.s")
 

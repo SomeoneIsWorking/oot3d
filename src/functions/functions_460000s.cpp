@@ -286,7 +286,7 @@ GLOBAL_ASM("asm/FUN_0046a2e4.s")
 
 GLOBAL_ASM("asm/FUN_0046a49c.s")
 
-GLOBAL_ASM("asm/FUN_0046a738.s")
+GLOBAL_ASM("asm/TextRenderer_FillStaticGlyphTexture.s")
 
 GLOBAL_ASM("asm/FUN_0046aa44.s")
 
