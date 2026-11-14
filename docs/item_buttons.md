@@ -10,6 +10,12 @@ set and trade places with `equips` when Link's age changes.
 
 Writing `equips` alone changes what a button uses but not what the HUD draws.
 
+## Ammo and its capacity
+Using ammo clamps the count to the bag's capacity (live, z3d-mods run `oot-am2`, the Slingshot
+written into `equips`, Kokiri Forest): with `inventory.upgrades` 0 (no Bullet Bag) a count of 30
+reads 0 after one shot; with the Bullet Bag's field at 1 (`upgrades` 0x4000, holds 30) it reads
+29. A Slingshot put into the inventory without its bag therefore empties on the first shot.
+
 ## The item screen's layout owns the buttons
 `SaveContext.itemMenuChild` and `itemMenuAdult` (24 bytes each) are the item screen's nodes for
 each age: 20 grid cells and the four item buttons (`ITEM_MENU_NODE_I` 5, `_X` 11, `_Y` 17, `_II`
