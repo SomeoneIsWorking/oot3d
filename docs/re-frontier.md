@@ -112,3 +112,11 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 - where: docs/save.md
 - gap: the callers at 0x41CACC and 0x43E120 are not identified; the queue and the second file slot are unread
 - notes: 
+
+### save.request — the queued write is the caller's to free
+- status: re-partial
+- deps: save.write
+- evidence: disassembly of 0x2E613C, Sram_IsWriteDone (0x2FDAA4), Sram_FinishWrite (0x2FDA7C) and the pause screen's poll at 0x43A3E0; a save without Sram_FinishWrite leaves a 0x120 block holding the request and its path in the system arena (z3d-mods runs oot-k4, oot-k5); with it the arena is the same on every visit of a scene over 17 saves (oot-k6)
+- where: docs/save.md, docs/notes/arena.md
+- gap: the worker's queue (0x306E40, 0x31B9C0) is unread; the file loader's cache (0x4476B8, 0x447748) is unread
+- notes: 

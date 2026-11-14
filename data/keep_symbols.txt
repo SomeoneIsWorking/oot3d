@@ -5189,7 +5189,7 @@
 --keep=FUN_002ea854
 --keep=nngxFinalize
 --keep=FUN_002ea9e0
---keep=FUN_002eab8c
+--keep=Arena_MallocR
 --keep=_printf_cs_common
 --keep=_printf_char
 --keep=_printf_string
@@ -5250,7 +5250,7 @@
 --keep=FUN_002f1328
 --keep=FUN_002f13d0
 --keep=SystemArena_Malloc
---keep=FUN_002f1434
+--keep=ZeldaArena_MallocR
 --keep=FUN_002f1444
 --keep=FUN_002f1a74
 --keep=FUN_002f1d78
@@ -5412,8 +5412,8 @@
 --keep=FUN_002fd84c
 --keep=FUN_002fd8e8
 --keep=FUN_002fda08
---keep=FUN_002fda7c
---keep=FUN_002fdaa4
+--keep=Sram_FinishWrite
+--keep=Sram_IsWriteDone
 --keep=Sram_WriteSave
 --keep=FUN_002fde08
 --keep=FUN_002fde54

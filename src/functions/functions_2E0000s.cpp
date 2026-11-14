@@ -276,7 +276,7 @@ GLOBAL_ASM("asm/nngxFinalize.s")
 
 GLOBAL_ASM("asm/FUN_002ea9e0.s")
 
-GLOBAL_ASM("asm/FUN_002eab8c.s")
+GLOBAL_ASM("asm/Arena_MallocR.s")
 
 GLOBAL_ASM("asm/_printf_cs_common.s")
 
@@ -398,7 +398,7 @@ GLOBAL_ASM("asm/FUN_002f13d0.s")
 
 GLOBAL_ASM("asm/SystemArena_Malloc.s")
 
-GLOBAL_ASM("asm/FUN_002f1434.s")
+GLOBAL_ASM("asm/ZeldaArena_MallocR.s")
 
 GLOBAL_ASM("asm/FUN_002f1444.s")
 
@@ -718,9 +718,9 @@ GLOBAL_ASM("asm/FUN_002fd8e8.s")
 
 GLOBAL_ASM("asm/FUN_002fda08.s")
 
-GLOBAL_ASM("asm/FUN_002fda7c.s")
+GLOBAL_ASM("asm/Sram_FinishWrite.s")
 
-GLOBAL_ASM("asm/FUN_002fdaa4.s")
+GLOBAL_ASM("asm/Sram_IsWriteDone.s")
 
 GLOBAL_ASM("asm/Sram_WriteSave.s")
 

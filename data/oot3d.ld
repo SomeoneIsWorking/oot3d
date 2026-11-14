@@ -21072,9 +21072,9 @@ text 0x00100000
 	{
 		* (i.FUN_002ea9e0)
 	}
-	FUN_002eab8c 0x002eab8c
+	Arena_MallocR 0x002eab8c
 	{
-		* (i.FUN_002eab8c)
+		* (i.Arena_MallocR)
 	}
 	_printf_cs_common 0x002eacdc
 	{
@@ -21316,9 +21316,9 @@ text 0x00100000
 	{
 		* (i.SystemArena_Malloc)
 	}
-	FUN_002f1434 0x002f1434
+	ZeldaArena_MallocR 0x002f1434
 	{
-		* (i.FUN_002f1434)
+		* (i.ZeldaArena_MallocR)
 	}
 	FUN_002f1444 0x002f1444
 	{
@@ -21968,13 +21968,13 @@ text 0x00100000
 	{
 		* (i.FUN_002fda08)
 	}
-	FUN_002fda7c 0x002fda7c
+	Sram_FinishWrite 0x002fda7c
 	{
-		* (i.FUN_002fda7c)
+		* (i.Sram_FinishWrite)
 	}
-	FUN_002fdaa4 0x002fdaa4
+	Sram_IsWriteDone 0x002fdaa4
 	{
-		* (i.FUN_002fdaa4)
+		* (i.Sram_IsWriteDone)
 	}
 	Sram_WriteSave 0x002fdac8
 	{
