@@ -9,6 +9,11 @@ polygon layout were read again from spot01 with z3d-mods' `tools/z3dmods/zsi.py`
   word, when it is an address, counts from 0x10.
 - Command 0x03 (collision): its second word is the collision header.
 
+- The scene table `gSceneTable` (0x545484) has 111 entries of 0x8C bytes, the scene file's
+  path at +0x00 and its archive's at +0x44; the index is the scene id (82 `spot01`). Its first
+  twelve entries have no paths: `gDungeonSceneTable` (0x4DC400) holds scenes 0 to 13 and
+  `gDungeonSceneTableMq` (0x4DCBA8) their Master Quest files (`ydan_dd`, ...).
+
 ## Collision header
 At `0x10 + word`: like every offset in the file, the command's word and the header's own pointers
 count from 0x10, the end of the `ZSI\x01` name header.
@@ -45,11 +50,42 @@ next begins.
 - Floor and wall are told apart by the normal (floors have `ny > 0.5`), not by the surface type.
 - The play state's static collision context is at `PlayState +0xA98`, laid out as on the N64:
   header pointer, bounds (6 f32), subdivisions (3 s32; 32, 8, 32 in Kakariko), cell size and its
-  inverse, the cell table at +0x40, then the node list: u16 length at +0x44, u16 used at +0x46.
-  Every triangle takes a node in every cell it touches. The length shrinks by one for every
-  four triangles (39017 in Kakariko with 1222 triangles, 36097 with 12901), and the game writes
-  past it: a scene needing 54760 nodes dropped Link through late triangles and stopped the
-  game on a second visit (z3d-mods runs oot-bg1, oot-as10). Ganon's Castle uses 14563 of 23568.
+  inverse, the cell table at +0x40, then the node list: u16 length at +0x44, u16 used at +0x46,
+  the nodes at +0x48.
+
+## The room a scene's collision gets (BgCheck_Allocate, 0x1311D0)
+Scene command 0x03 (`Scene_CommandCollisionHeader`, 0x273070) calls it. It is the N64 routine
+with other numbers; the names are in `include/z3Dbgcheck.hpp`.
+
+| Scene | Memory | Cells x, y, z | Moving collision: nodes, triangles, vertices |
+|---|---|---|---|
+| fixed camera (`R_SCENE_CAM_TYPE` 0x10, 0x20, 0x30, 0x40) | 0xEA60, the stable (54) 0x6E40 | 2, 2, 2 | 500, 256, 256 |
+| `sBgCheckSpotScenes` (0x514430): 81 to 99, the overworld | 0x78000 | 32, 8, 32 | 1000, 512, 512 |
+| every other | 0x60000, or `sBgCheckSceneMem`'s (0x514458) | 16, 4, 16, or `sBgCheckSceneSubdiv`'s (0x514498) | 1000, 600, 600 |
+
+- `sBgCheckSceneMem`: scene 81 94000, 26 61840, 79 57744, 23 88464, 68 57744, 6 186768,
+  4 209296, 25 67984 (81 is a spot scene and never gets there). `sBgCheckSceneSubdiv`: scene 7
+  23, 7, 14 and scene 3 38, 1, 38, both with a list length of -1 (none of its own).
+- `R_SCENE_CAM_TYPE` (`gGameInfo->data` +0x4B2) is the second byte of scene command 0x19
+  (`Scene_CommandMiscSettings`, 0x256CA8).
+- The node list gets what the rest leaves:
+  `(memory - cells * 6 - triangles - nodes * 4 - triangles' * 20 - vertices' * 6 - 0x15F4) / 4`,
+  the primed counts the moving collision's. That many nodes are taken from the play state's
+  arena, but the length at +0x44 is stored as a u16: Kakariko's 104553 reads 39017, Ganon's
+  Castle's 89104 reads 23568.
+- A cell is `(extent / cells) + 1` long, at least 150. `BgCheck_InitializeStaticLookup`
+  (0x14DA40) walks each triangle's range of cells, widened by one where a corner is within 50
+  of the cell's edge, tests the triangle against the cell grown by 50 on every side, and
+  `StaticLookup_AddPolyToSSList` (0x3562C0) takes one node per pair. It does not look at the
+  length: the used count at +0x46 is a u16 and a node's link is a u16 with 0xFFFF for none, so
+  a scene has at most 65535 nodes; a node names its triangle in an s16, so at most 32768
+  triangles.
+- Seen in game (z3d-mods run oot-n1): a Kakariko with 9333 triangles reads a length of 36989
+  and 42355 nodes used, past that length; Link lands on its last triangles, the steps by the
+  well, on three visits. Counting the pairs whose triangle touches the grown cell gives
+  42288; the game's own test lets a few more through (14563 for 14536 in Ganon's Castle,
+  28584 for 28515 in z3d-mods' stepped Kakariko). Every scene of the ROM fits by this count:
+  the fullest is `ganon_final`, 4858 of 7431.
 - Corner flag 0x4000 on vA lets actors through a triangle (shown in MM3D, decomp/mm3d
   `docs/formats/scene_files.md`; in OoT3D Link walks Kakariko's flagged risers, run
   oot-st17-spot01, and stopped at an unflagged one, oot-st16-spot01).

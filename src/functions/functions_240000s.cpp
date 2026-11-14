@@ -194,7 +194,7 @@ GLOBAL_ASM("asm/FUN_00256bd8.s")
 
 GLOBAL_ASM("asm/FUN_00256c7c.s")
 
-GLOBAL_ASM("asm/FUN_00256ca8.s")
+GLOBAL_ASM("asm/Scene_CommandMiscSettings.s")
 
 GLOBAL_ASM("asm/FUN_00256d48.s")
 
@@ -532,7 +532,7 @@ GLOBAL_ASM("asm/FUN_00272930.s")
 
 
 
-GLOBAL_ASM("asm/FUN_00273070.s")
+GLOBAL_ASM("asm/Scene_CommandCollisionHeader.s")
 
 GLOBAL_ASM("asm/FUN_00273108.s")
 

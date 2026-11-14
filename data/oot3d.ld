@@ -2104,9 +2104,9 @@ text 0x00100000
 	{
 		* (i.FUN_001311c8)
 	}
-	FUN_001311d0 0x001311d0
+	BgCheck_Allocate 0x001311d0
 	{
-		* (i.FUN_001311d0)
+		* (i.BgCheck_Allocate)
 	}
 	FUN_00131770 0x00131770
 	{
@@ -2928,9 +2928,9 @@ text 0x00100000
 	{
 		* (i.FUN_0014d9e0)
 	}
-	FUN_0014da40 0x0014da40
+	BgCheck_InitializeStaticLookup 0x0014da40
 	{
-		* (i.FUN_0014da40)
+		* (i.BgCheck_InitializeStaticLookup)
 	}
 	FUN_0014e65c 0x0014e65c
 	{
@@ -13468,9 +13468,9 @@ text 0x00100000
 	{
 		* (i.FUN_00256c7c)
 	}
-	FUN_00256ca8 0x00256ca8
+	Scene_CommandMiscSettings 0x00256ca8
 	{
-		* (i.FUN_00256ca8)
+		* (i.Scene_CommandMiscSettings)
 	}
 	FUN_00256d48 0x00256d48
 	{
@@ -14692,9 +14692,9 @@ text 0x00100000
 	{
 		* (i.EnCrow_PostLimbDraw)
 	}
-	FUN_00273070 0x00273070
+	Scene_CommandCollisionHeader 0x00273070
 	{
-		* (i.FUN_00273070)
+		* (i.Scene_CommandCollisionHeader)
 	}
 	FUN_00273108 0x00273108
 	{
@@ -28092,9 +28092,9 @@ text 0x00100000
 	{
 		* (i.FUN_0035619c)
 	}
-	FUN_003562c0 0x003562c0
+	StaticLookup_AddPolyToSSList 0x003562c0
 	{
-		* (i.FUN_003562c0)
+		* (i.StaticLookup_AddPolyToSSList)
 	}
 	Math3D_LineVsCube 0x003564a4
 	{

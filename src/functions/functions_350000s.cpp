@@ -209,7 +209,7 @@ GLOBAL_ASM("asm/FUN_003560d8.s")
 
 GLOBAL_ASM("asm/FUN_0035619c.s")
 
-GLOBAL_ASM("asm/FUN_003562c0.s")
+GLOBAL_ASM("asm/StaticLookup_AddPolyToSSList.s")
 
 GLOBAL_ASM("asm/Math3D_LineVsCube.s")
 

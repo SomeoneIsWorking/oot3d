@@ -324,7 +324,7 @@ GLOBAL_ASM("asm/FUN_00131184.s")
 
 GLOBAL_ASM("asm/FUN_001311c8.s")
 
-GLOBAL_ASM("asm/FUN_001311d0.s")
+GLOBAL_ASM("asm/BgCheck_Allocate.s")
 
 GLOBAL_ASM("asm/FUN_00131770.s")
 

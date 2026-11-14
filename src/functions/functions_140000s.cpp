@@ -169,7 +169,7 @@ GLOBAL_ASM("asm/FUN_0014d978.s")
 
 GLOBAL_ASM("asm/FUN_0014d9e0.s")
 
-GLOBAL_ASM("asm/FUN_0014da40.s")
+GLOBAL_ASM("asm/BgCheck_InitializeStaticLookup.s")
 
 GLOBAL_ASM("asm/FUN_0014e65c.s")
 

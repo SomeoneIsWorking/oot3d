@@ -120,3 +120,13 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 - where: docs/save.md, docs/notes/arena.md
 - gap: the worker's queue (0x306E40, 0x31B9C0) is unread; the file loader's cache (0x4476B8, 0x447748) is unread
 - notes: 
+
+## collision
+
+### collision.budget — what BgCheck_Allocate gives a scene
+- status: re-partial
+- deps: none
+- evidence: disassembly of BgCheck_Allocate (0x1311D0), BgCheck_InitializeStaticLookup (0x14DA40) and StaticLookup_AddPolyToSSList (0x3562C0); the truncated list length the formula gives is the one read live (39017 in Kakariko, 23568 in Ganon's Castle, 36989 with 9333 triangles); 42355 nodes used past that length with Link standing on the last triangles over three visits (z3d-mods run oot-n1); every ROM scene's triangle and cell pairs fit its list (z3d-mods `bgcheck.py`)
+- where: docs/notes/scene_collision.md, include/z3Dbgcheck.hpp
+- gap: the triangle and cell test is not decompiled: z3d-mods counts the pairs that touch, 0.2% under the game's count in three scenes; the fixed-camera branch was not seen run; the moving collision's lists are unread
+- notes: 

@@ -522,7 +522,7 @@
 --keep=FUN_00131120
 --keep=FUN_00131184
 --keep=FUN_001311c8
---keep=FUN_001311d0
+--keep=BgCheck_Allocate
 --keep=FUN_00131770
 --keep=FUN_001317dc
 --keep=EnBubble_Pop
@@ -727,7 +727,7 @@
 --keep=FUN_0014d924
 --keep=FUN_0014d978
 --keep=FUN_0014d9e0
---keep=FUN_0014da40
+--keep=BgCheck_InitializeStaticLookup
 --keep=FUN_0014e65c
 --keep=EnMs_Sell
 --keep=EnMs_Talk
@@ -3314,7 +3314,7 @@
 --keep=FUN_00256b28
 --keep=FUN_00256bd8
 --keep=FUN_00256c7c
---keep=FUN_00256ca8
+--keep=Scene_CommandMiscSettings
 --keep=FUN_00256d48
 --keep=FUN_00256d50
 --keep=FUN_00256dd0
@@ -3617,7 +3617,7 @@
 --keep=FUN_00272930
 --keep=EnCrow_OverrideLimbDraw
 --keep=EnCrow_PostLimbDraw
---keep=FUN_00273070
+--keep=Scene_CommandCollisionHeader
 --keep=FUN_00273108
 --keep=FUN_0027313c
 --keep=EnSkj_WaitForOcarina
@@ -6930,7 +6930,7 @@
 --keep=FUN_00356058
 --keep=FUN_003560d8
 --keep=FUN_0035619c
---keep=FUN_003562c0
+--keep=StaticLookup_AddPolyToSSList
 --keep=Math3D_LineVsCube
 --keep=FUN_00356cc8
 --keep=FUN_00356dc4
