@@ -67,6 +67,14 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 - gap: 
 - notes: 
 
+### message.font — the QBF1 font files and what draws their glyphs
+- status: re-partial
+- deps: 
+- evidence: ltn16.qbf parsed from the USA RomFS: header, the 8-byte glyph table and 208 cells of 128 bytes add up to the file's size; the cells drawn as nibbles show the letters in code order
+- where: docs/message.md
+- gap: the cells' pixel order; sys8.qbf; the loader at the QBF1 literal (0x2DF6A8) and the function that draws a glyph are unread, so how a glyph reaches a texture (and whether a texture pack can replace it) is unknown; us.qm is not decoded
+- notes: z3d-mods wants message text drawn from an outline font (its docs/plans/pc-controls-hud.md)
+
 ## camera
 
 ### camera.fields — Camera fields the free camera reads and writes
