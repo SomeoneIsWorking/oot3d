@@ -19,6 +19,9 @@ typedef enum {
     /* 0x07 */ UPG_NUTS
 } UpgradeType;
 
+// The levels of each upgrade, gUpgradeCapacities' second index.
+#define UPGRADE_LEVELS 4
+
 typedef enum {
     /* 0x00 */ QUEST_MEDALLION_FOREST,
     /* 0x01 */ QUEST_MEDALLION_FIRE,
