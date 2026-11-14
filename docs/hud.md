@@ -25,6 +25,21 @@ File 1 as a child; a frame was read for every "frame" below.
 Not found: a field for the small-key count's visibility and the mounted carrots; The One Screen
 reads `inventory.dungeonKeys[mapIndex]` (0x587A2C + `SaveContext.mapIndex`) in scenes 3 to 16.
 
+## Writing a button's item by hand
+`equips.buttonItems` is what a button uses and what a HUD should read, but it is not where an
+item is put: the item screen's layout owns it (`docs/item_buttons.md`). A byte written there
+alone, seen in z3d-mods runs:
+- stays while nothing applies the layout (hud-rebased2: Y and X written, read back a second
+  later and drawn);
+- is gone once the layout is applied. Written right after new items were written into
+  `inventory.items`, the buttons were empty a second later (hud-rebased, the frame only; the
+  bytes were not read back): `ItemMenu_ApplyLayout` places an item it has no record of and
+  rewrites `equips` from the layout's button nodes;
+- is gone after z3d-mods' chord trade, which writes `equips` from the layout's nodes
+  (hud-ootlook3: X and Y empty after the chord's release).
+To put an item on a button from outside, write its inventory slot into the age's layout node
+(`itemMenuChild` or `itemMenuAdult`) and let the game apply it.
+
 ## When the play HUD shows
 All of:
 - `SaveContext.gameMode` (0x588E3C) is 0: a loaded file, not the title or file select.
