@@ -267,7 +267,7 @@ typedef struct InterfaceContext {
 typedef struct TopHud {
     /* 0x00 */ u8 drawNode78; // TopHud_Draw draws node78 while not 0
     /* 0x01 */ char unk_01[0x17];
-    /* 0x18 */ void* quads; // the label's two quads, then the map's player and entrance markers
+    /* 0x18 */ void* quads; // eight quads: 1 the label, 2 and 3 the map's player and entrance markers, 7 the B button's ring (TopHud_UpdateButtons)
     /* 0x1C */ char unk_1C[0x24];
     /* 0x40 */ void* bButton; // the B button's item and count (the bow while mounted, a minigame's item); HudItemButtons_Draw draws it
     /* 0x44 */ char unk_44[0x04];

@@ -226,7 +226,7 @@ GLOBAL_ASM("asm/FUN_0042a7a0.s")
 
 GLOBAL_ASM("asm/FUN_0042a7b0.s")
 
-GLOBAL_ASM("asm/FUN_0042b194.s")
+GLOBAL_ASM("asm/TopHud_UpdateButtons.s")
 
 GLOBAL_ASM("asm/FUN_0042b58c.s")
 

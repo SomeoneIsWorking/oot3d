@@ -10212,7 +10212,7 @@
 --keep=FUN_0042a540
 --keep=FUN_0042a7a0
 --keep=FUN_0042a7b0
---keep=FUN_0042b194
+--keep=TopHud_UpdateButtons
 --keep=FUN_0042b58c
 --keep=FUN_0042b848
 --keep=TopHud_Draw

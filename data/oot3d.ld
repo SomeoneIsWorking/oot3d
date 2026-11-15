@@ -41396,9 +41396,9 @@ text 0x00100000
 	{
 		* (i.FUN_0042a7b0)
 	}
-	FUN_0042b194 0x0042b194
+	TopHud_UpdateButtons 0x0042b194
 	{
-		* (i.FUN_0042b194)
+		* (i.TopHud_UpdateButtons)
 	}
 	FUN_0042b58c 0x0042b58c
 	{

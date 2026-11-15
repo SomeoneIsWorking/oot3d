@@ -46,12 +46,20 @@ ends by itself):
   (play +0x5C74 at least 2), 2 for bowling (scene 75 with switch 0x38), 3 for play +0x2E40 not 0,
   4 for the u16 at 0x588EEC being 1, 5 when mounted, 0 otherwise. Modes 1 to 4 set
   `statusLayout` to `HUD_STATUS_MINIGAME`.
-- The top screen then shows a ring with the B glyph and, with a bow, its icon and the arrows left:
-  the icon and count are `gTopHud.bButton`, drawn by `HudItemButtons_Draw` (0x2F780C) from
-  `TopHud_Draw` at 0x42BE28 (that call as a `nop`: the icon and count are gone, the ring and
-  glyph stay, car7). The ring and glyph were not found: mode 0 written for 5 at 0x444628 removes
-  them and the minimap's markers with them (car10), and so does a `nop` of the draw at 0x42BC30
-  (car9-42BC30).
+- The top screen then shows a ring with the B glyph and, with a bow, its icon and the arrows left.
+  The ring with its glyph is quad 7 of `gTopHud.quads` (48x47 at 312, 192; ring1 to ring3: the
+  batch's positions and per-quad offsets read on foot and mounted). `TopHud_UpdateButtons`
+  (0x42B194, called by `TopHud_Update` at 0x41DF70) gives it the offset (0, 0) while
+  `gTopHud.bButtonMode` is not 0 and FUN_002fcdd4 returns 0, and (420, 240), off the screen,
+  otherwise: the `beq` at 0x42B1D4 as a plain branch keeps it off the screen in every mode.
+  The icon and count are `gTopHud.bButton`, drawn by `HudItemButtons_Draw` (0x2F780C) from
+  `TopHud_Draw` at 0x42BE28; that call as a `nop` leaves the ring alone (car7). With both, the
+  ring, glyph, icon and count are gone and the minimap's markers stay (z3d-mods hud-mounted).
+- The batch's other quads: 0 (38x38) and 1 (the 64x18 word), which The One Screen keeps off the
+  screen; 2 and 3, the minimap's player and entrance markers; 4 a second word; 5 and 6 at the
+  bottom middle, not identified. The batch is drawn by the object at `gTopHud` +0x20 (0x42BC30),
+  so a `nop` there takes the markers too, and so does mode 0 for 5 at 0x444628
+  (car9-42BC30, car10).
 
 ## Writing a button's item by hand
 `equips.buttonItems` is what a button uses and what a HUD should read, but it is not where an
