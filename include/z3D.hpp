@@ -247,7 +247,9 @@ typedef struct InterfaceContext {
     /* 0x000 */ char unk_000[0x226];
     /* 0x226 */ u16 doAction; // DO_ACTION_*: TopHud_Update shows its label on the A button
     /* 0x228 */ u16 unk_228; // equal to doAction when read
-    /* 0x22A */ char unk_22A[0x5A];
+    /* 0x22A */ char unk_22A[0x4A];
+    /* 0x274 */ u8 numHorseBoosts; // the carrots left: EnHorse_Update copies the ridden horse's count (0x14AFBC)
+    /* 0x275 */ char unk_275[0x0F];
     /* 0x284 */ u16 buttonAlphas[4]; // 0xFF with the item buttons enabled, 0x46 disabled, 0 in a text box or cutscene
     /* 0x28C */ u16 topHudAlpha; // TopHud_Update hides the top screen's HUD at 0: 0xFF in play and text, 0 in a cutscene
     /* 0x28E */ char unk_28E[0x04];
@@ -266,7 +268,10 @@ typedef struct TopHud {
     /* 0x00 */ u8 drawNode78; // TopHud_Draw draws node78 while not 0
     /* 0x01 */ char unk_01[0x17];
     /* 0x18 */ void* quads; // the label's two quads, then the map's player and entrance markers
-    /* 0x1C */ char unk_1C[0x30];
+    /* 0x1C */ char unk_1C[0x24];
+    /* 0x40 */ void* bButton; // the B button's item and count (the bow while mounted, a minigame's item); HudItemButtons_Draw draws it
+    /* 0x44 */ char unk_44[0x04];
+    /* 0x48 */ s32 bButtonMode; // TopHud_SetBButtonMode: 0 none, 1 to 4 the minigames, 5 mounted
     /* 0x4C */ s32 doAction; // the label shown: InterfaceContext.doAction, -1 once DO_ACTION_NONE has gone
     /* 0x50 */ s32 prevDoAction;
     /* 0x54 */ char unk_54[0x04];
@@ -299,10 +304,17 @@ typedef struct Hud {
     /* 0x14 */ void* itemButtons; // the layout Hud_SetItemButton draws an item's icon into
     /* 0x18 */ char unk_18[0x1C];
     /* 0x34 */ u32 state; // HUD_STATE_*
+    /* 0x38 */ char unk_38[0x2C];
+    /* 0x64 */ u32 statusLayout; // HUD_STATUS_*: what Hud_UpdateStatusLayout last laid out
 } Hud;
 
 #define HUD_STATE_COVERED 0 // the items, gear, map or system screen is up
 #define HUD_STATE_GAMEPLAY 2
+
+#define HUD_STATUS_PLAY 0 // hearts and the magic meter
+#define HUD_STATUS_MINIGAME 1 // a shooting gallery, bowling or a timed minigame
+#define HUD_STATUS_MOUNTED 2 // the six carrots where the hearts and the magic meter were
+#define HORSE_BOOSTS 6
 
 struct GameState;
 

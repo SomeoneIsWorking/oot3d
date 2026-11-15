@@ -74,7 +74,7 @@ GLOBAL_ASM("asm/FUN_004439a4.s")
 
 GLOBAL_ASM("asm/FUN_0044423c.s")
 
-GLOBAL_ASM("asm/FUN_00444544.s")
+GLOBAL_ASM("asm/Hud_UpdateStatusLayout.s")
 
 GLOBAL_ASM("asm/FUN_0044481c.s")
 

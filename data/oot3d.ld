@@ -20808,9 +20808,9 @@ text 0x00100000
 	{
 		* (i.FUN_002e64bc)
 	}
-	FUN_002e64fc 0x002e64fc
+	TopHud_SetBButtonMode 0x002e64fc
 	{
-		* (i.FUN_002e64fc)
+		* (i.TopHud_SetBButtonMode)
 	}
 	FUN_002e666c 0x002e666c
 	{
@@ -21536,9 +21536,9 @@ text 0x00100000
 	{
 		* (i.FUN_002f7684)
 	}
-	FUN_002f780c 0x002f780c
+	HudItemButtons_Draw 0x002f780c
 	{
-		* (i.FUN_002f780c)
+		* (i.HudItemButtons_Draw)
 	}
 	FUN_002f78a0 0x002f78a0
 	{
@@ -21560,9 +21560,9 @@ text 0x00100000
 	{
 		* (i.FUN_002f7b44)
 	}
-	FUN_002f8160 0x002f8160
+	HudItemButtons_UpdateAmmo 0x002f8160
 	{
-		* (i.FUN_002f8160)
+		* (i.HudItemButtons_UpdateAmmo)
 	}
 	FUN_002f8708 0x002f8708
 	{
@@ -42136,9 +42136,9 @@ text 0x00100000
 	{
 		* (i.FUN_0044423c)
 	}
-	FUN_00444544 0x00444544
+	Hud_UpdateStatusLayout 0x00444544
 	{
-		* (i.FUN_00444544)
+		* (i.Hud_UpdateStatusLayout)
 	}
 	FUN_0044481c 0x0044481c
 	{

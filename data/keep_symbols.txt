@@ -5124,7 +5124,7 @@
 --keep=FUN_002e63f8
 --keep=FUN_002e6454
 --keep=FUN_002e64bc
---keep=FUN_002e64fc
+--keep=TopHud_SetBButtonMode
 --keep=FUN_002e666c
 --keep=FUN_002e667c
 --keep=FUN_002e68ac
@@ -5305,13 +5305,13 @@
 --keep=FUN_002f748c
 --keep=FUN_002f74a4
 --keep=FUN_002f7684
---keep=FUN_002f780c
+--keep=HudItemButtons_Draw
 --keep=FUN_002f78a0
 --keep=FUN_002f78c0
 --keep=FUN_002f79b4
 --keep=FUN_002f7af4
 --keep=FUN_002f7b44
---keep=FUN_002f8160
+--keep=HudItemButtons_UpdateAmmo
 --keep=FUN_002f8708
 --keep=FUN_002f87ec
 --keep=FUN_002f88e0
@@ -10395,7 +10395,7 @@
 --keep=FUN_00443590
 --keep=FUN_004439a4
 --keep=FUN_0044423c
---keep=FUN_00444544
+--keep=Hud_UpdateStatusLayout
 --keep=FUN_0044481c
 --keep=FUN_00444a90
 --keep=FUN_00444c9c

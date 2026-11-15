@@ -17,13 +17,41 @@ File 1 as a child; a frame was read for every "frame" below.
 | Rupees | `SaveContext.rupees` (+0x48, 0x5879A0, s16) | live: 123 written, both counters read 123 (ootre-save1, rupees) |
 | Wallet size | `(inventory.upgrades & gUpgradeMasks[UPG_WALLET]) >> gUpgradeShifts[UPG_WALLET]` (upgrades 0x587A10; mask 0x3000, shift 12) indexes `gUpgradeCapacities[UPG_WALLET]` (0x53CC04): 99, 200, 500, 500 | live: `rupeeAccumulator` 300 stops the counter at 99, and at 200 with the field at 1 (ootre-save1, wallet0 and wallet1); `Hud_UpdateRupeeColor` (0x2EFD88) compares `rupees` with this capacity; 500 read from the table only |
 | Item on a button | `SaveContext.equips.buttonItems[0..4]` (0x5879D8): B, Y, X, I, II; `ITEM_NONE` empty | live: five items written, The One Screen draws them at once (ootre-save1, items); the touch screen follows after a scene load when the item menu's layout agrees (ootre-state, kokiri; `docs/item_buttons.md`) |
-| Ammo count | `SaveContext.inventory.ammo[slot]` (0x5879FE + slot, s8): sticks 0, nuts 1, bombs 2, bow 3, slingshot 6, bombchus 8, beans 14; the bow's count also for the three arrows | live for sticks 5, nuts 7, bombs 9, slingshot 17 on both screens (ootre-state, kokiri); the others follow the N64's slots |
+| Ammo count | `SaveContext.inventory.ammo[slot]` (0x5879FE + slot, s8): sticks 0, nuts 1, bombs 2, bow 3, slingshot 6, bombchus 8, beans 14; the bow's count also for the three arrows | live for sticks 5, nuts 7, bombs 9, slingshot 17 on both screens (ootre-state, kokiri), and for the bow 30 and 29, bombchus 17 and 50, beans 7 and 15 (car6) |
+| Count at its most | `HudItemButtons_UpdateAmmo` (0x2F8160) flags a button's count when it equals `CUR_CAPACITY` of the item's upgrade (sticks, nuts, bombs, the bow and its three arrow combinations 0x38 to 0x3A, slingshot), 50 for `ITEM_BOMBCHU` (0x2F83E0) and 15 for `ITEM_BEAN` (0x2F83F0), and hands the flag to the count's draw (0x2FCB04) | read from the code; z3d-mods draws the same rule (car7: bow 30 in a 30 quiver and 15 beans green, 17 bombchus white) |
+| Carrots | `PlayState.interfaceCtx.numHorseBoosts` (play +0x2E18, u8): the boosts left, 6 (`HORSE_BOOSTS`) when rested. `EnHorse_Update` copies the horse's own count (EnHorse +0xE9C, u8) there at 0x14AFBC while the horse is ridden (EnHorse +0xE70 is 1). `Hud_UpdateStatusLayout` (0x444544) lights carrot n of six (quads 86 to 91) while the count is at least n, none at 0 | live: 6 at rest, 5 and 4 after one and two boosts with A, 6 again 20 seconds later (car4, car5: a write watch on the byte) |
+| Carrots shown | `gHud.statusLayout` (0x50AF98, u32) is `HUD_STATUS_MOUNTED` (2). `Hud_UpdateStatusLayout` sets it when `Player.stateFlags1` has 0x800000 (mounted) and no minigame is on, moves the magic meter and hearts (quads 59 to 82) 400 pixels right, off the touch screen, and brings the carrots to their place; it puts them back when the value leaves 2 | live: 2 on Epona, 0 after dismounting (car6) |
 | Button enabled or dim | `SaveContext.buttonStatus[0..4]` (+0x156F, 0x588EC7): B, Y, X, I, II; `BTN_ENABLED` 0, `BTN_DISABLED` 0xFF. The game writes it every frame | live: all 0xFF in Link's house with the items dim (ootre-save1, status: a write of 0 is 0xFF again on the next read); all 0 in Kokiri Forest with the same items at full brightness on both screens (ootre-state, kokiri) |
 | A button's label | `gTopHud.doAction` (0x4FC694, s32): a `DO_ACTION_*`, -1 with no label. `TopHud_Update` copies it from `PlayState.interfaceCtx.doAction` (play +0x2DCA, u16), where no label is `DO_ACTION_NONE` | live: 1 beside the bed with "Check" on the button, -1 (interface 10) in Kokiri Forest with no label (ootre-state, house and kokiri); 3, 12, 15 and 16 in play (hud-ootlive3); the number is the word's cell in `hud_all00.ctxb` ("Item icons" below) |
 | Minimap on | `gTopHud.minimapOn` (0x4FC6B0, s32), the player's switch (`TopHud_ToggleMinimap` 0x2F009C flips it and plays a sound; its one caller is 0x42E654, not identified), and `gMinimap.layout` (0x4FDA84) not NULL: the scene has a map | live: 0 written, the map and its arrow are gone on the next frame; 1, back (ootre-mm-flag). `layout` is NULL in Link's house and set in Kokiri Forest (ootre-state) |
 
-Not found: a field for the small-key count's visibility and the mounted carrots; The One Screen
-reads `inventory.dungeonKeys[mapIndex]` (0x587A2C + `SaveContext.mapIndex`) in scenes 3 to 16.
+Not found: a field for the small-key count's visibility; The One Screen reads
+`inventory.dungeonKeys[mapIndex]` (0x587A2C + `SaveContext.mapIndex`) in scenes 3 to 16.
+
+## Mounted
+Seen on Epona in Hyrule Field (z3d-mods car4 to car7: an adult file with `eventChkInf[1]` bit 8
+set, entrance 0x028A, which starts Link on her over Lon Lon Ranch's fence; the landing cutscene
+ends by itself):
+- `Player.stateFlags1` (+0x1710) has 0x800000 and `Player.rideActor` (+0x12B8) is the horse.
+- `SaveContext.hudVisibilityMode` is `HUD_VISIBILITY_A_B_MINIMAP` (12), not 50. The interface's
+  alphas (InterfaceContext +0x280 on) read 0xFF for A and B, 0 for the four item buttons
+  (`buttonAlphas`) and 0xFF for `topHudAlpha`.
+- `equips.buttonItems[0]` (B) is `ITEM_BOW` with a bow owned, and `buttonStatus[0]` keeps the item
+  that was there (0x3C, the Master Sword's, read back); both return on dismounting.
+  `buttonStatus[1..4]` are 0xFF.
+- `InterfaceContext.doAction` is `DO_ACTION_FASTER` (8) while moving and `DO_ACTION_DOWN` (13)
+  standing.
+- `Hud_UpdateStatusLayout` chooses the touch screen's status layout and the top screen's B button
+  together: `TopHud_SetBButtonMode` (0x2E64FC) with 1 for a shooting gallery
+  (play +0x5C74 at least 2), 2 for bowling (scene 75 with switch 0x38), 3 for play +0x2E40 not 0,
+  4 for the u16 at 0x588EEC being 1, 5 when mounted, 0 otherwise. Modes 1 to 4 set
+  `statusLayout` to `HUD_STATUS_MINIGAME`.
+- The top screen then shows a ring with the B glyph and, with a bow, its icon and the arrows left:
+  the icon and count are `gTopHud.bButton`, drawn by `HudItemButtons_Draw` (0x2F780C) from
+  `TopHud_Draw` at 0x42BE28 (that call as a `nop`: the icon and count are gone, the ring and
+  glyph stay, car7). The ring and glyph were not found: mode 0 written for 5 at 0x444628 removes
+  them and the minimap's markers with them (car10), and so does a `nop` of the draw at 0x42BC30
+  (car9-42BC30).
 
 ## Writing a button's item by hand
 `equips.buttonItems` is what a button uses and what a HUD should read, but it is not where an
@@ -47,7 +75,8 @@ on the first item, and the 3DS's X or Y puts the item under the cursor on a butt
 ## When the play HUD shows
 All of:
 - `SaveContext.gameMode` (0x588E3C) is 0: a loaded file, not the title or file select.
-- `SaveContext.hudVisibilityMode` (+0x157A, 0x588ED2, u16) is `HUD_VISIBILITY_ALL` (50).
+- `SaveContext.hudVisibilityMode` (+0x157A, 0x588ED2, u16) is `HUD_VISIBILITY_ALL` (50), or
+  `HUD_VISIBILITY_A_B_MINIMAP` (12) while mounted ("Mounted" above).
   `Interface_ChangeAlpha` (0x34BE04) is its only writer read so far. Live: 50 in play, 5 with a
   text box up, 2 in a cutscene (ootre-state: house, dialog, cutscene). The game's own top HUD and
   The One Screen's are gone in the dialog and cutscene frames.
@@ -87,6 +116,8 @@ decoded sheet (the layout that names them was not read):
 |---|---|
 | Rupee, green only | 128, 96, 18, 18 |
 | Small key | 153, 96, 16, 18 |
+| Carrot, whole | 488, 0, 24, 24 |
+| Carrot, spent (grey) | 488, 24, 24, 24 |
 | Skull token, chest | right of the key, same row |
 | Heart, plain: empty, a quarter, half, three quarters, full | 241, 81 + 16n, 10, 10 for n = 0 to 4 |
 | Heart with a white rim, the same five the other way up | 241, 1 + 16n, 10, 10: empty at the top |

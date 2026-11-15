@@ -146,7 +146,7 @@ GLOBAL_ASM("asm/FUN_002e6454.s")
 
 GLOBAL_ASM("asm/FUN_002e64bc.s")
 
-GLOBAL_ASM("asm/FUN_002e64fc.s")
+GLOBAL_ASM("asm/TopHud_SetBButtonMode.s")
 
 GLOBAL_ASM("asm/FUN_002e666c.s")
 
@@ -508,7 +508,7 @@ GLOBAL_ASM("asm/FUN_002f74a4.s")
 
 GLOBAL_ASM("asm/FUN_002f7684.s")
 
-GLOBAL_ASM("asm/FUN_002f780c.s")
+GLOBAL_ASM("asm/HudItemButtons_Draw.s")
 
 GLOBAL_ASM("asm/FUN_002f78a0.s")
 
@@ -520,7 +520,7 @@ GLOBAL_ASM("asm/FUN_002f7af4.s")
 
 GLOBAL_ASM("asm/FUN_002f7b44.s")
 
-GLOBAL_ASM("asm/FUN_002f8160.s")
+GLOBAL_ASM("asm/HudItemButtons_UpdateAmmo.s")
 
 GLOBAL_ASM("asm/FUN_002f8708.s")
 

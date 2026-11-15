@@ -71,6 +71,7 @@ typedef struct {
 // SaveContext.hudVisibilityMode, the N64's numbers: what Interface_ChangeAlpha was last asked for.
 #define HUD_VISIBILITY_NOTHING_ALT 2 // a cutscene
 #define HUD_VISIBILITY_A_HEARTS_MAGIC_FORCE 5 // a text box
+#define HUD_VISIBILITY_A_B_MINIMAP 12 // mounted: the item buttons are gone, B is the bow
 #define HUD_VISIBILITY_ALL 50 // play
 
 #define LINK_AGE_ADULT 0
