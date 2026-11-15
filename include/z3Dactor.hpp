@@ -19,6 +19,7 @@ struct LightMapper;
 #define PLAYER_STATE1_FIRST_PERSON 0x100000 // first person, aimed or not
 
 // Player.lookFlags
+#define PLAYER_VIEW_FIRST_PERSON 1 // Player.viewMode in the first-person look: the view icon reads BACK
 #define PLAYER_LOOK_GYRO 0x1 // the gyroscope sets focus.rot; stays set after the look ends
 #define PLAYER_LOOK_FIRST_PERSON 0x2 // set each frame the view is first person
 
@@ -230,7 +231,9 @@ typedef struct {
     /* 0x1714 */ u32    stateFlags2;
     /* 0x1718 */ char   unk_1718[0x0013];
     /* 0x172B */ s8     exchangeItemId;
-    /* 0x172C */ char   unk_172C[0xAF0];
+    /* 0x172C */ char   unk_172C[0x001D];
+    /* 0x1749 */ u8     viewMode; // PLAYER_VIEW_*
+    /* 0x174A */ char   unk_174A[0x0AD2];
     /* 0x221C */ float  xzSpeed; //probably
     /* 0x2220 */ char   unk_2220[0x0007];
     /* 0x2227 */ u8     isg;

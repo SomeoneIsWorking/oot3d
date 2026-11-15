@@ -5321,7 +5321,7 @@
 --keep=FUN_002f8ce0
 --keep=FUN_002f8d40
 --keep=HudItemButtons_SetIcon
---keep=FUN_002f8ee4
+--keep=HudItemButtons_Init
 --keep=FUN_002f9430
 --keep=FUN_002f9484
 --keep=FUN_002f94a8
@@ -10232,7 +10232,7 @@
 --keep=FUN_0042dab0
 --keep=FUN_0042dac8
 --keep=FUN_0042dd84
---keep=FUN_0042df18
+--keep=Hud_UpdateGameplay
 --keep=FUN_0042f584
 --keep=FUN_0042f794
 --keep=FUN_0042f96c
@@ -10397,7 +10397,7 @@
 --keep=FUN_0044423c
 --keep=Hud_UpdateStatusLayout
 --keep=FUN_0044481c
---keep=FUN_00444a90
+--keep=Hud_UpdateDimming
 --keep=FUN_00444c9c
 --keep=FUN_00444cb8
 --keep=FUN_00444ce0

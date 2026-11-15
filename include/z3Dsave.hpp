@@ -174,7 +174,8 @@ typedef struct {
     /* 0x1586 */ char         unk_1586[0x0004];
     /* 0x158A */ u16          eventInf[4];
     /* 0x1592 */ u16          mapIndex;
-    /* 0x1594 */ char         unk_1594[0x000C];
+    /* 0x1594 */ u16          minigameState; // 1 in horseback archery: Hud_UpdateStatusLayout sets B_BUTTON_HORSEBACK_ARCHERY
+    /* 0x1596 */ char         unk_1596[0x000A];
     /* 0x15A0 */ u16          nextCutsceneIndex;
     /* 0x15A2 */ u8           cutsceneTrigger;
     /* 0x15A3 */ char         unk_15A3[0x000F];

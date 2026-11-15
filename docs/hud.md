@@ -61,6 +61,43 @@ ends by itself):
   so a `nop` there takes the markers too, and so does mode 0 for 5 at 0x444628
   (car9-42BC30, car10).
 
+## The B button in a minigame
+`TopHud.bButtonMode` (`B_BUTTON_*`) says what the top screen's B button holds; `buttonItems[0]`
+stays as it was in the minigames (0xFF read in the shooting gallery on a file with no sword).
+`TopHud_SetBButtonMode` builds `gTopHud.bButton` with `HudItemButtons_Init` (0x2F8EE4), whose
+kind (mode + 1, at +0x428) picks the icon, and `TopHud_Update` (0x41E1C8) writes the count (+0x42C)
+each frame:
+
+| Mode | Set when (`Hud_UpdateStatusLayout`) | Icon | Count |
+|---|---|---|---|
+| `B_BUTTON_SHOOTING_GALLERY` | `PlayState.shootingGalleryStatus` at least 2 | `ITEM_SLINGSHOT` as a child, `ITEM_BOW` as an adult | `shootingGalleryStatus` - 1 |
+| `B_BUTTON_BOWLING` | scene 75 with switch 0x38 | `ITEM_BOMBCHU` | `PlayState.bombchuBowlingStatus` |
+| `B_BUTTON_FISHING` | `PlayState.fishingPoleOut` not 0 | `ITEM_FISHING_POLE` | none |
+| `B_BUTTON_HORSEBACK_ARCHERY` | `SaveContext.minigameState` is 1 | `ITEM_BOW` | `InterfaceContext.hbaAmmo` |
+| `B_BUTTON_MOUNTED` | `stateFlags1` mounted, a bow owned | `ITEM_BOW` | the save's arrows, green at the quiver's capacity |
+
+The minigames' counts are never drawn green. Seen live in the Market's shooting gallery as a
+child (entrance 0x016D, the owner paid): mode 1, `shootingGalleryStatus` 16 with 15 shots, 14
+after two (z3d-mods hud-gallery). The other three minigames are read from the code only.
+
+## The view icon
+Quad 28 of the touch screen's layout. `Hud_UpdateGameplay` (0x42DF18) picks its cell of
+`menu_top_parts00.ctxb` at 0x42F400, the first that holds:
+
+| Cell | When |
+|---|---|
+| Navi (176, 0) | `InterfaceContext.naviCalling` not 0 |
+| The camera, "BACK" (176, 48) | `Player.viewMode` is `PLAYER_VIEW_FIRST_PERSON` |
+| The camera, "VIEW" (128, 48) | `R_SCENE_CAM_TYPE` is `SCENE_CAM_TYPE_FIXED_TOGGLE_VIEWPOINT` |
+| The eye, "VIEW" (128, 0) | otherwise |
+
+It sets `HUD_FLAG_VIEW_DIM` in `gHud.flags` at 0x42E180 while the icon takes no press, and
+`Hud_UpdateDimming` (0x444A90) draws the quad at 0.3 then (and dims the item buttons by
+`buttonStatus`). Seen (z3d-mods view1 to view3, hud-view): the camera in Link's house (cam type
+0x20, View changes the camera); the eye in Kokiri Forest, `viewMode` 1 in the first-person look
+and 0 after; `naviCalling` 1 once `SaveContext.naviTimer` passed 600 there; the flag set on Epona
+and in the bowling alley, clear in Kokiri Forest, Hyrule Field and Link's house.
+
 ## Writing a button's item by hand
 `equips.buttonItems` is what a button uses and what a HUD should read, but it is not where an
 item is put: the item screen's layout owns it (`docs/item_buttons.md`). A byte written there
@@ -156,6 +193,7 @@ those:
 | LB/RB/X/Y/A/B letters, ITEMS and GEAR, rupee, key and ammo digits, the A label | its `labels` scene | 0x614674: `EB000C57` to `E320F000`. Frame: ootre-off-labels |
 | The A label alone | a copy of the game's label quad in `labels`; the game's own quads are moved off screen by its hook at 0x41E250 | 0x613604: `1A00003A` to `EA00003A`. Frame: ootre-off-action ("Check" gone, the A stays) |
 | All of the above | `visible` in `Hud_Submit` | 0x612C84: `C3A00001` to `E3A00000`. Frames: ootre-off-all (play, then the bed's text box drawn as before) |
+| The minimap raised while mounted | `Minimap_Project` (`source/hud/minimap.c`): `dy` centres the map on row 156 while `Retail_Mounted` | 0x6148C8: `0A000092` (`beq`, mounted) to `E320F000`. Frames: z3d-mods hud-minimap, riding and on-foot, the map in one place |
 | Minimap and its markers | the game: `TopHud_Draw` and the marker update at 0x42A908, both reading `minimapOn`; The One Screen only moves it (`tos_minimap` at 0x41EB04) | 0x42BB64: `E5970068` to `E3A00000`, and 0x42A908: `E59A0068` to `E3A00000` (`mov r0, #0` for the load); the player's switch stays readable. Frame: ootre-off-minimap2 |
 
 Everything off, with Kokiri Forest in play and the Deku Tree's cutscene text still drawn:

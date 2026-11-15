@@ -247,9 +247,13 @@ typedef struct InterfaceContext {
     /* 0x000 */ char unk_000[0x226];
     /* 0x226 */ u16 doAction; // DO_ACTION_*: TopHud_Update shows its label on the A button
     /* 0x228 */ u16 unk_228; // equal to doAction when read
-    /* 0x22A */ char unk_22A[0x4A];
+    /* 0x22A */ char unk_22A[0x06];
+    /* 0x230 */ s16 naviCalling; // not 0 while Navi has something to say: the view icon is Navi
+    /* 0x232 */ char unk_232[0x42];
     /* 0x274 */ u8 numHorseBoosts; // the carrots left: EnHorse_Update copies the ridden horse's count (0x14AFBC)
-    /* 0x275 */ char unk_275[0x0F];
+    /* 0x275 */ char unk_275[0x03];
+    /* 0x278 */ u16 hbaAmmo; // the arrows left in horseback archery: the B button's count in B_BUTTON_HORSEBACK_ARCHERY
+    /* 0x27A */ char unk_27A[0x0A];
     /* 0x284 */ u16 buttonAlphas[4]; // 0xFF with the item buttons enabled, 0x46 disabled, 0 in a text box or cutscene
     /* 0x28C */ u16 topHudAlpha; // TopHud_Update hides the top screen's HUD at 0: 0xFF in play and text, 0 in a cutscene
     /* 0x28E */ char unk_28E[0x04];
@@ -271,7 +275,7 @@ typedef struct TopHud {
     /* 0x1C */ char unk_1C[0x24];
     /* 0x40 */ void* bButton; // the B button's item and count (the bow while mounted, a minigame's item); HudItemButtons_Draw draws it
     /* 0x44 */ char unk_44[0x04];
-    /* 0x48 */ s32 bButtonMode; // TopHud_SetBButtonMode: 0 none, 1 to 4 the minigames, 5 mounted
+    /* 0x48 */ s32 bButtonMode; // B_BUTTON_* (TopHud_SetBButtonMode)
     /* 0x4C */ s32 doAction; // the label shown: InterfaceContext.doAction, -1 once DO_ACTION_NONE has gone
     /* 0x50 */ s32 prevDoAction;
     /* 0x54 */ char unk_54[0x04];
@@ -281,6 +285,15 @@ typedef struct TopHud {
     /* 0x6C */ char unk_6C[0x0C];
     /* 0x78 */ void* node78;
 } TopHud;
+
+// TopHud.bButtonMode: what the top screen's B button holds. HudItemButtons_Init picks the item,
+// TopHud_Update the count.
+#define B_BUTTON_NONE 0
+#define B_BUTTON_SHOOTING_GALLERY 1 // the slingshot (child) or the bow, with shootingGalleryStatus - 1
+#define B_BUTTON_BOWLING 2 // ITEM_BOMBCHU with bombchuBowlingStatus
+#define B_BUTTON_FISHING 3 // ITEM_FISHING_POLE, no count
+#define B_BUTTON_HORSEBACK_ARCHERY 4 // the bow with InterfaceContext.hbaAmmo
+#define B_BUTTON_MOUNTED 5 // the bow with the save's arrows; nothing without a bow
 
 // The minimap (gMinimap).
 typedef struct Minimap {
@@ -306,7 +319,10 @@ typedef struct Hud {
     /* 0x34 */ u32 state; // HUD_STATE_*
     /* 0x38 */ char unk_38[0x2C];
     /* 0x64 */ u32 statusLayout; // HUD_STATUS_*: what Hud_UpdateStatusLayout last laid out
+    /* 0x68 */ u32 flags; // HUD_FLAG_*
 } Hud;
+
+#define HUD_FLAG_VIEW_DIM 0x10000000 // Hud_UpdateGameplay: the view icon takes no press; Hud_UpdateDimming draws it at 0.3
 
 #define HUD_STATE_COVERED 0 // the items, gear, map or system screen is up
 #define HUD_STATE_GAMEPLAY 2
@@ -382,7 +398,9 @@ typedef struct PlayState {
     /* 0x28A0 */ MessageContext        msgCtx;
     /* 0x2B80 */ char                  unk_2B80[0x0024];
     /* 0x2BA4 */ InterfaceContext      interfaceCtx;
-    /* 0x2E36 */ char                  unk_2E36[0x07CA];
+    /* 0x2E36 */ char                  unk_2E36[0x000A];
+    /* 0x2E40 */ u8                    fishingPoleOut; // not 0: Hud_UpdateStatusLayout sets B_BUTTON_FISHING
+    /* 0x2E41 */ char                  unk_2E41[0x07BF];
     /* 0x3600 */ f32                   unk_3600;
     /* 0x3604 */ char                  unk_3604[0x0454];
     /* 0x3A58 */ ObjectContext         objectCtx;
@@ -396,7 +414,9 @@ typedef struct PlayState {
     /* 0x5C2D */ s8                    sceneLoadFlag; // "fade_direction"
     /* 0x5C2E */ char                  unk_5C2E[0x0004];
     /* 0x5C32 */ s16                   nextEntranceIndex;
-    /* 0x5C34 */ char                  unk_5C34[0x0042];
+    /* 0x5C34 */ char                  unk_5C34[0x0040];
+    /* 0x5C74 */ s8                    shootingGalleryStatus; // 0 outside a game; in one, the shots left plus 1
+    /* 0x5C75 */ s8                    bombchuBowlingStatus; // the bombchus left in a game of bowling
     /* 0x5C76 */ u8                    fadeOutTransition;
     /* 0x5C78 */ CollisionCheckContext colChkCtx;
     /* 0x5F14 */ char                  unk_5F14[0x0084];

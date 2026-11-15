@@ -266,7 +266,7 @@ GLOBAL_ASM("asm/FUN_0042dac8.s")
 
 GLOBAL_ASM("asm/FUN_0042dd84.s")
 
-GLOBAL_ASM("asm/FUN_0042df18.s")
+GLOBAL_ASM("asm/Hud_UpdateGameplay.s")
 
 GLOBAL_ASM("asm/FUN_0042f584.s")
 

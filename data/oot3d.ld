@@ -21600,9 +21600,9 @@ text 0x00100000
 	{
 		* (i.HudItemButtons_SetIcon)
 	}
-	FUN_002f8ee4 0x002f8ee4
+	HudItemButtons_Init 0x002f8ee4
 	{
-		* (i.FUN_002f8ee4)
+		* (i.HudItemButtons_Init)
 	}
 	FUN_002f9430 0x002f9430
 	{
@@ -41476,9 +41476,9 @@ text 0x00100000
 	{
 		* (i.FUN_0042dd84)
 	}
-	FUN_0042df18 0x0042df18
+	Hud_UpdateGameplay 0x0042df18
 	{
-		* (i.FUN_0042df18)
+		* (i.Hud_UpdateGameplay)
 	}
 	FUN_0042f584 0x0042f584
 	{
@@ -42144,9 +42144,9 @@ text 0x00100000
 	{
 		* (i.FUN_0044481c)
 	}
-	FUN_00444a90 0x00444a90
+	Hud_UpdateDimming 0x00444a90
 	{
-		* (i.FUN_00444a90)
+		* (i.Hud_UpdateDimming)
 	}
 	FUN_00444c9c 0x00444c9c
 	{

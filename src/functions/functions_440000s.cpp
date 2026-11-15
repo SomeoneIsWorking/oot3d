@@ -78,7 +78,7 @@ GLOBAL_ASM("asm/Hud_UpdateStatusLayout.s")
 
 GLOBAL_ASM("asm/FUN_0044481c.s")
 
-GLOBAL_ASM("asm/FUN_00444a90.s")
+GLOBAL_ASM("asm/Hud_UpdateDimming.s")
 
 GLOBAL_ASM("asm/FUN_00444c9c.s")
 

@@ -39,5 +39,8 @@
 #define bREG(r) BASE_REG(28, r)
 
 #define R_UPDATE_RATE SREG(30) // frame-rate divisor
+#define R_SCENE_CAM_TYPE YREG(15) // SCENE_CAM_TYPE_*
+#define R_SCENE_CAM_TYPE_OFFSET (0x14 + 2 * (6 * REG_PER_GROUP + 15)) // its offset in GameInfo
+#define SCENE_CAM_TYPE_FIXED_TOGGLE_VIEWPOINT 0x20 // the view icon changes between two fixed cameras (Link's house)
 
 #endif
