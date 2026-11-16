@@ -31,6 +31,7 @@ extern u8 gItemSlots[56];
 extern CameraSetting sCameraSettings[78]; //0x00516ff0
 
 extern Hud gHud; //0x0050af34
+extern FileChoose gFileChoose; //0x00504fa0
 // The items and gear screens' state words: MENU_SCREEN_CLOSED, or MENU_SCREEN_UP while theirs is up.
 extern s32 gItemMenuState; //0x0050672c
 extern s32 gItemMenuCursorNode; //0x00506760

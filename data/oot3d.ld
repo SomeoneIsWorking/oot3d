@@ -24936,17 +24936,17 @@ text 0x00100000
 	{
 		* (i.FUN_00324190)
 	}
-	FUN_003243a8 0x003243a8
+	TouchScreen2D_Begin 0x003243a8
 	{
-		* (i.FUN_003243a8)
+		* (i.TouchScreen2D_Begin)
 	}
 	FUN_003246bc 0x003246bc
 	{
 		* (i.FUN_003246bc)
 	}
-	FUN_003246ec 0x003246ec
+	Camera2D_SetMatrices 0x003246ec
 	{
-		* (i.FUN_003246ec)
+		* (i.Camera2D_SetMatrices)
 	}
 	FUN_0032471c 0x0032471c
 	{
@@ -40724,9 +40724,9 @@ text 0x00100000
 	{
 		* (i.FUN_0041af08)
 	}
-	FUN_0041af88 0x0041af88
+	TouchScreen2D_BeginLayer3 0x0041af88
 	{
-		* (i.FUN_0041af88)
+		* (i.TouchScreen2D_BeginLayer3)
 	}
 	FUN_0041b1b4 0x0041b1b4
 	{
@@ -40848,9 +40848,9 @@ text 0x00100000
 	{
 		* (i.FUN_0041c3c8)
 	}
-	FUN_0041c4dc 0x0041c4dc
+	TouchScreen2D_BeginLayer2 0x0041c4dc
 	{
-		* (i.FUN_0041c4dc)
+		* (i.TouchScreen2D_BeginLayer2)
 	}
 	FUN_0041c778 0x0041c778
 	{
@@ -40864,9 +40864,9 @@ text 0x00100000
 	{
 		* (i.FUN_0041d0e4)
 	}
-	FUN_0041d184 0x0041d184
+	TouchScreen2D_BeginLayer1 0x0041d184
 	{
-		* (i.FUN_0041d184)
+		* (i.TouchScreen2D_BeginLayer1)
 	}
 	FUN_0041d3c4 0x0041d3c4
 	{
@@ -40892,9 +40892,9 @@ text 0x00100000
 	{
 		* (i.Hud_Update)
 	}
-	FUN_0041ec2c 0x0041ec2c
+	TouchScreen2D_BeginLayer0 0x0041ec2c
 	{
-		* (i.FUN_0041ec2c)
+		* (i.TouchScreen2D_BeginLayer0)
 	}
 	FUN_0041ef10 0x0041ef10
 	{

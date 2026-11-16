@@ -309,6 +309,21 @@ typedef struct MessageManager {
     /* 0xF38 */ u8 boxMode; // 0 with no text box up
 } MessageManager;
 
+// File select (gFileChoose, docs/file_select.md). Its quads are made once when the screen opens:
+// quad i is quadSizes[i] at quadPositions[i], in the touch screen's pixels from the top left.
+typedef struct FileChoose {
+    /* 0x00 */ char unk_00[0x10];
+    /* 0x10 */ u32 active; // not 0 while file select is up (with SaveContext.gameMode 2)
+    /* 0x14 */ char unk_14[0x1C];
+    /* 0x30 */ void* quads; // FILE_CHOOSE_QUADS of them
+    /* 0x34 */ char unk_34[0x24];
+    /* 0x58 */ f32 quadPositions[184][2];
+} FileChoose;
+
+#define FILE_CHOOSE_QUADS 184
+#define FILE_CHOOSE_QUAD_BACK_LIT 118 // to 120: the BACK button lit
+#define FILE_CHOOSE_QUAD_BACK 173 // and 174: the BACK button
+
 // The gameplay HUD (gHud).
 typedef struct Hud {
     /* 0x00 */ struct PlayState* play;

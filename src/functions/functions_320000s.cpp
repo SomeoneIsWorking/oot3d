@@ -93,11 +93,11 @@ GLOBAL_ASM("asm/FUN_00324154.s")
 
 GLOBAL_ASM("asm/FUN_00324190.s")
 
-GLOBAL_ASM("asm/FUN_003243a8.s")
+GLOBAL_ASM("asm/TouchScreen2D_Begin.s")
 
 GLOBAL_ASM("asm/FUN_003246bc.s")
 
-GLOBAL_ASM("asm/FUN_003246ec.s")
+GLOBAL_ASM("asm/Camera2D_SetMatrices.s")
 
 GLOBAL_ASM("asm/FUN_0032471c.s")
 

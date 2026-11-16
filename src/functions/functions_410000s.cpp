@@ -751,7 +751,7 @@ GLOBAL_ASM("asm/FUN_0041aec8.s")
 
 GLOBAL_ASM("asm/FUN_0041af08.s")
 
-GLOBAL_ASM("asm/FUN_0041af88.s")
+GLOBAL_ASM("asm/TouchScreen2D_BeginLayer3.s")
 
 GLOBAL_ASM("asm/FUN_0041b1b4.s")
 
@@ -813,7 +813,7 @@ GLOBAL_ASM("asm/GetLockHandle.s")
 
 GLOBAL_ASM("asm/FUN_0041c3c8.s")
 
-GLOBAL_ASM("asm/FUN_0041c4dc.s")
+GLOBAL_ASM("asm/TouchScreen2D_BeginLayer2.s")
 
 GLOBAL_ASM("asm/FUN_0041c778.s")
 
@@ -821,7 +821,7 @@ GLOBAL_ASM("asm/FUN_0041ce68.s")
 
 GLOBAL_ASM("asm/FUN_0041d0e4.s")
 
-GLOBAL_ASM("asm/FUN_0041d184.s")
+GLOBAL_ASM("asm/TouchScreen2D_BeginLayer1.s")
 
 GLOBAL_ASM("asm/FUN_0041d3c4.s")
 
@@ -835,7 +835,7 @@ GLOBAL_ASM("asm/FUN_0041e61c.s")
 
 GLOBAL_ASM("asm/Hud_Update.s")
 
-GLOBAL_ASM("asm/FUN_0041ec2c.s")
+GLOBAL_ASM("asm/TouchScreen2D_BeginLayer0.s")
 
 GLOBAL_ASM("asm/FUN_0041ef10.s")
 
