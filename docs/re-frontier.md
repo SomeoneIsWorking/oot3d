@@ -182,3 +182,13 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 - where: docs/motion.md, include/z3D.hpp, include/z3Dactor.hpp, include/z3Dsave.hpp
 - gap: aimed items not run; zero play and zero drift read in the code and seen only in MM3D's same reader; what sets bit 1 of lookFlags
 - notes: 
+
+## frame
+
+### frame.loop — one tick: logic, draw, list run
+- status: re-partial
+- deps: 
+- evidence: Gameplay_Update (0x45238C), the frame end (0x3FD27C) and its list run (0x40C678) decompiled in Ghidra; the nngx names are the SDK's in data/oot3d.ld
+- where: docs/frame.md
+- gap: Gameplay_Draw's writes and device calls not censused; not seen live
+- notes: the draw section for z3d-mods' replay interpolation
