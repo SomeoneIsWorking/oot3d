@@ -188,7 +188,7 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 ### frame.loop — one tick: logic, draw, list run
 - status: re-partial
 - deps: 
-- evidence: Gameplay_Update (0x45238C), the frame end (0x3FD27C) and its list run (0x40C678) decompiled in Ghidra; the nngx names are the SDK's in data/oot3d.ld
+- evidence: Gameplay_Update (0x45238C), the frame end (0x3FD27C) and its list run (0x40C678) decompiled in Ghidra; the nngx names are the SDK's in data/oot3d.ld; Gameplay_Draw and the list build (0x418B88) censused live with z3d-mods' store journal: their pages, SVCs and GSP requests, and the list buffer's writers by watchpoint
 - where: docs/frame.md
-- gap: Gameplay_Draw's writes and device calls not censused; not seen live
+- gap: the touch screen's share of the list; the 0x5BE20C pointer that differs between two runs of the draw in 2 of 180 ticks
 - notes: the draw section for z3d-mods' replay interpolation

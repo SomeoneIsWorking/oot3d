@@ -455,6 +455,9 @@ typedef struct PlayState {
 
 extern PlayState* gPlayState; //0x0050AF34
 
+// Gameplay_Update's tail branch to Gameplay_Draw (docs/frame.md), from the function's start.
+#define GAMEPLAY_UPDATE_DRAW_CALL 0xA8
+
 typedef struct StaticContext {
     /* 0x0000 */ char unk_0[0x0E72];
     /* 0x0E72 */ u16 collisionDisplay;
