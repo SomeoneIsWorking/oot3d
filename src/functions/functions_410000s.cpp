@@ -695,7 +695,7 @@ GLOBAL_ASM("asm/FUN_00418a58.s")
 
 GLOBAL_ASM("asm/FUN_00418b10.s")
 
-GLOBAL_ASM("asm/FUN_00418b88.s")
+GLOBAL_ASM("asm/Graph_DrawFrame.s")
 
 GLOBAL_ASM("asm/FUN_004198f0.s")
 

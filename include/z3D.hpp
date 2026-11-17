@@ -457,6 +457,33 @@ extern PlayState* gPlayState; //0x0050AF34
 
 // Gameplay_Update's tail branch to Gameplay_Draw (docs/frame.md), from the function's start.
 #define GAMEPLAY_UPDATE_DRAW_CALL 0xA8
+// Graph_DrawFrame's virtual call of the frame end (0x3FD27C, docs/frame.md), from its start.
+#define GRAPH_DRAW_FRAME_END_CALL 0xD40
+
+// nn::gx's command list (docs/frame.md): a buffer of PICA commands and the requests the frame end
+// hands the GSP in order.
+typedef struct {
+    /* 0x00 */ u32 type; // the GSP GX command id: 1 run a command list, 3 display transfer
+    /* 0x04 */ u32 args[6]; // the GSP GX command's first six parameter words
+} GxRequest; // size = 0x1C
+
+typedef struct {
+    /* 0x00 */ u32 unk_00;
+    /* 0x04 */ u32 buffer;
+    /* 0x08 */ u32 bufferSize;
+    /* 0x0C */ u32 usedBytes;
+    /* 0x10 */ char unk_10[0x8];
+    /* 0x18 */ GxRequest* requests;
+    /* 0x1C */ u32 requestCapacity;
+    /* 0x20 */ u32 requestCount;
+    /* 0x24 */ char unk_24[0x18];
+} GxCmdlist; // size = 0x3C
+
+typedef struct {
+    /* 0x00 */ char unk_00[0x9C];
+    /* 0x9C */ GxCmdlist* boundCmdlist; // the list nngxBindCmdlist bound, which draws append to
+} NngxState;
+extern NngxState gNngxState; //0x005A6F30
 
 typedef struct StaticContext {
     /* 0x0000 */ char unk_0[0x0E72];

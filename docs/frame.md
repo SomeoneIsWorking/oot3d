@@ -3,18 +3,23 @@
 How one 30 Hz tick runs, from the disassembly of the USA build (Ghidra on `code.bin`).
 
 - `Gameplay_Update` (0x45238C) runs `Play_Update` (0x2E2E60), the tick's logic, then
-  `Gameplay_Draw` (0x2E25F0), which records the tick's draws; the list build after it turns them
-  into the PICA command list. The draw also runs the
+  `Gameplay_Draw` (0x2E25F0), which records the tick's draws; `Graph_DrawFrame` after it turns
+  them into the PICA command list. The draw also runs the
   active camera's update once more when `PlayState + 0x361` is set (`camera.md`).
-- The frame end, 0x3FD27C, after the draw: binds the next display buffers (`nngxActiveDisplay`
+- The frame end, 0x3FD27C, is `Graph_DrawFrame`'s last call, virtual (`blx r3` at +0xD40,
+  0x4198C8, `GRAPH_DRAW_FRAME_END_CALL`): binds the next display buffers (`nngxActiveDisplay`
   0x311EE0 and `nngxBindDisplaybuffer` 0x311C70, top screen 0x400 and bottom), waits vsyncs
   (`nngxWaitVSync` 0x3101DC) until the vsync count reaches the tick's target, then 0x40C678 runs
   the bound command list (`nngxRunCmdlist` 0x311954) and binds the other of two
   (`nngxBindCmdlist` 0x3120D4): the command lists are double-buffered, the index at the pair's +0.
 - `Graph_ThreadEntry` (0x416208) is the game thread's loop. Each pass runs the game state
   (`Gameplay_Update` among them, through the state's function pointer), `Motion_Update`
-  (0x416368), then the list build, `bl 0x418B88` at +0x190 (0x416398), and 0x31BEBC, 0x31BD30
+  (0x416368), then `Graph_DrawFrame` (0x418B88) at +0x190 (0x416398), and 0x31BEBC, 0x31BD30
   and 0x31BB84.
+- A tick's frame shows late: its display transfer lands in the back display buffer at the frame
+  end, and the swap that shows it comes after the next tick's draw section. The vsync wait is a
+  LightEvent at 0x5B5118 (wait 0x30B304) that the vblank handler signals until the counters at
+  nngx state +0x154/+0x158 change.
 
 ## What the draw section touches
 
@@ -29,9 +34,16 @@ Measured in z3d-mods with the core's store journal around the call (USA build, K
   commands.
 - Run twice from the same start state, it stores the same bytes: with the first run's stores
   rolled back, a second run left every page it wrote equal to the first in 178 of 180 ticks. The
-  two others differed in the word at 0x5BE20C, a current-object pointer that FUN_00407A9C sets and
-  FUN_00407ACC clears (values 0x15A13AA8 and 0x15A13B74 alternate within a tick).
-- The list build (`bl 0x418B88`) writes the command list: the current list's buffer (0x14193880
+  two others differed in the word at 0x5BE20C.
+- 0x5BE20C is the free-list head of a pool of 0xCC-byte objects (0x15A13xxx in this run).
+  FUN_00407A9C takes one (FUN_00309E5C on the pool at its `this` +8) and FUN_00407ACC gives one
+  back (FUN_00309250). The give-back also runs from FUN_00308F0C (the virtual call at 0x308F68,
+  through FUN_00407840, vtable entry 0x4EC974), which walks 16 slots and returns the finished
+  ones. A replay runs no other thread, so a give-back between the section's start and end
+  (FUN_00308F0C's thread is inferred, not observed) leaves the real run's head different from the
+  replay's; the replay's own output does not change (watch on 0x5BE20C; in a
+  6 s walk the page differed in 22 of 180 replays, every PICA list byte-identical).
+- `Graph_DrawFrame` (0x418B88) writes the command list: the current list's buffer (0x14193880
   in this run, 0x180000 bytes, 0x8E30 used) is stored to by FUN_003FB5EC, FUN_00466E0C and
   nngxSplitDrawCmdlist (0x302A1C, from FUN_00300328) and nothing in `Gameplay_Draw`. It also runs
   the HUD (`Hud_Update` 0x41E944, `TopHud_Update` 0x41DECC). It reaches the device: per tick six
@@ -39,11 +51,14 @@ Measured in z3d-mods with the core's store journal around the call (USA build, K
   after an `ArbitrateAddress` at 0x30E280, and two more `ArbitrateAddress` at 0x30B394. The six
   match the list object's six requests: four command lists and two display transfers (top and
   bottom screen).
-- The nngx command-list object (0x3C bytes, two of them at 0x14000020 and 0x1400006C, the bound
-  one at nngx state 0x5A6F30 +0x9C): +0x4 buffer, +0x8 size, +0xC used bytes, +0x18 request
-  array, +0x1C request capacity, +0x20 request count. A request is 0x1C bytes: type (1 run a
-  command list, 3 display transfer) then its arguments (list address and size; source, target
-  and dimensions).
+- The nngx command-list object (`GxCmdlist` in include/z3D.hpp, two of them at 0x14000020 and
+  0x1400006C, the bound one at `gNngxState.boundCmdlist`) holds the tick's requests (`GxRequest`:
+  the GSP GX command id, 1 run a command list or 3 display transfer, then the GSP command's
+  parameter words). Up to the frame end call they are all in it, four command lists and the two
+  screens' display transfers; the frame end hands them to the GSP. From `Gameplay_Update` +0xA8
+  to that call the section makes no SVC but ArbitrateAddress signals (0x30E280 on 0x5B5098,
+  four a tick), and a run from the same start state leaves the same requests and PICA lists byte
+  for byte.
 - Other writers store while the section runs (the window is preempted): heap pages 0x15325000-
   0x15330000 and 0x15A08000-0x15A39000, DSP memory 0x1FF52000-0x1FF77000 and the shared page
   0x1FF82000. A replay neither needs nor touches them.

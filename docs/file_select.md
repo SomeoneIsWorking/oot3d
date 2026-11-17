@@ -25,7 +25,7 @@ them while the screen opened (0x46B128), and the call at 0x46B144.
 
 ## The touch screen's projection
 
-FUN_00418b88 draws the touch screen in four 2D layers, `TouchScreen2D_BeginLayer0` to `3`
+Graph_DrawFrame draws the touch screen in four 2D layers, `TouchScreen2D_BeginLayer0` to `3`
 (0x41EC2C, 0x41D184, 0x41C4DC, 0x41AF88). Each builds the same projection and hands it to
 `Camera2D_SetMatrices` (0x3246EC; r1 the projection, r2 the view), at +0x1CC, +0x1C4, +0x1F0 and
 +0x1B8. The projection's rows, for the screen turned on its side: clip x = 1 - y / 120 and clip y

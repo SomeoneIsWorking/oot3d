@@ -40604,9 +40604,9 @@ text 0x00100000
 	{
 		* (i.FUN_00418b10)
 	}
-	FUN_00418b88 0x00418b88
+	Graph_DrawFrame 0x00418b88
 	{
-		* (i.FUN_00418b88)
+		* (i.Graph_DrawFrame)
 	}
 	FUN_004198f0 0x004198f0
 	{

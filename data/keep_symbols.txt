@@ -10015,7 +10015,7 @@
 --keep=FUN_00418984
 --keep=FUN_00418a58
 --keep=FUN_00418b10
---keep=FUN_00418b88
+--keep=Graph_DrawFrame
 --keep=FUN_004198f0
 --keep=FUN_00419a0c
 --keep=FUN_00419b9c
