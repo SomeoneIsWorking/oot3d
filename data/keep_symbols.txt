@@ -10700,7 +10700,7 @@
 --keep=FUN_0045c70c
 --keep=FUN_0045c84c
 --keep=BossRush_Update
---keep=FUN_0045cd50
+--keep=TransitionFade_Draw
 --keep=FUN_0045ce8c
 --keep=FUN_0045cea4
 --keep=FUN_0045d018
@@ -10728,7 +10728,7 @@
 --keep=FUN_00460858
 --keep=FUN_00460a70
 --keep=FUN_00460b18
---keep=FUN_00460b1c
+--keep=TransitionFade_Start
 --keep=FUN_00460b68
 --keep=FUN_00460e18
 --keep=FUN_00460e54

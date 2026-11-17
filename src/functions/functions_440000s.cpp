@@ -684,7 +684,7 @@ GLOBAL_ASM("asm/FUN_0045c84c.s")
 
 GLOBAL_ASM("asm/BossRush_Update.s")
 
-GLOBAL_ASM("asm/FUN_0045cd50.s")
+GLOBAL_ASM("asm/TransitionFade_Draw.s")
 
 GLOBAL_ASM("asm/FUN_0045ce8c.s")
 

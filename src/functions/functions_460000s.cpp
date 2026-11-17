@@ -16,7 +16,7 @@ GLOBAL_ASM("asm/FUN_00460a70.s")
 
 GLOBAL_ASM("asm/FUN_00460b18.s")
 
-GLOBAL_ASM("asm/FUN_00460b1c.s")
+GLOBAL_ASM("asm/TransitionFade_Start.s")
 
 GLOBAL_ASM("asm/FUN_00460b68.s")
 

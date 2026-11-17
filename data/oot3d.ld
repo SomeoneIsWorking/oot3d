@@ -43372,9 +43372,9 @@ text 0x00100000
 	{
 		* (i.BossRush_Update)
 	}
-	FUN_0045cd50 0x0045cd50
+	TransitionFade_Draw 0x0045cd50
 	{
-		* (i.FUN_0045cd50)
+		* (i.TransitionFade_Draw)
 	}
 	FUN_0045ce8c 0x0045ce8c
 	{
@@ -43484,9 +43484,9 @@ text 0x00100000
 	{
 		* (i.FUN_00460b18)
 	}
-	FUN_00460b1c 0x00460b1c
+	TransitionFade_Start 0x00460b1c
 	{
-		* (i.FUN_00460b1c)
+		* (i.TransitionFade_Start)
 	}
 	FUN_00460b68 0x00460b68
 	{

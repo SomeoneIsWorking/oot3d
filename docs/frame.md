@@ -84,3 +84,16 @@ Measured in z3d-mods with the core's store journal around the call (USA build, K
   to its parent, rotation rows from the animation's Euler angles and the translation last, as
   FUN_002BD9EC writes them. Link's `SkelAnime` sits at +0x254 in the player actor, 25 limbs, its
   joint table inline after it.
+
+## Fades
+
+- A scene's fade-in is the transition's screen fill, not the scene's lights. `PlayState.transitionCtx`
+  (+0x7D08) holds the transition's instance and its methods; for a fade the instance is a
+  `TransitionFade` and `draw` (+0x1F0) is `TransitionFade_Draw` (0x45CD50), `start` (+0x1F4)
+  `TransitionFade_Start` (0x460B1C). The update steps `timer` by 2 a tick and sets the fill's alpha
+  from it (warp into Link's house: alpha 0xFF down by 0x19 or 0x1A a tick to 0 over ten ticks,
+  `timer` 0 to 20, then `isDone` 1).
+- `Gameplay_Draw` calls `transitionCtx.draw` while `transitionMode` (+0x7F12) is 3 or 0xB, or the
+  transition's type is 0x38 or more, then `TransitionFade_Draw` on `transitionFadeFlash` (+0x7F14)
+  every tick. `TransitionFade_Draw` reads only the fill's colour (alpha at +4, then blue, green,
+  red) and draws nothing at alpha 0.

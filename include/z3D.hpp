@@ -379,6 +379,34 @@ typedef struct {
     /* 0x00 */ char unk_00[0x40];
 } subPlayState_5FCC; // size at least 0x40
 
+// A screen fill faded in or out (docs/frame.md "Fades").
+typedef struct {
+    /* 0x0 */ u8 type;
+    /* 0x1 */ u8 isDone;
+    /* 0x2 */ u8 direction;
+    /* 0x3 */ char unk_3;
+    /* 0x4 */ u8 a; // the fill's colour, alpha first; TransitionFade_Draw skips a fill with alpha 0
+    /* 0x5 */ u8 b;
+    /* 0x6 */ u8 g;
+    /* 0x7 */ u8 r;
+    /* 0x8 */ u16 timer;
+    /* 0xA */ char unk_A[0x2];
+} TransitionFade; // size = 0xC
+
+// The scene transition: its instance (a TransitionFade while `draw` is TransitionFade_Draw) and
+// the instance's methods.
+typedef struct {
+    /* 0x000 */ union {
+        TransitionFade fade;
+        char data[0x1E0];
+    } instanceData;
+    /* 0x1E0 */ s32 type;
+    /* 0x1E4 */ char unk_1E4[0xC];
+    /* 0x1F0 */ void* draw; // void (*)(void* instance, s32)
+    /* 0x1F4 */ void* start; // void (*)(void* instance)
+    /* 0x1F8 */ char unk_1F8[0x10];
+} TransitionContext; // size = 0x208
+
 typedef struct {
     /* 0x000 */ char unk_00[0x7C0];
     /* 0x7C0 */ u16 unk_7C0;
@@ -438,6 +466,11 @@ typedef struct PlayState {
     /* 0x5F98 */ u16                   envFlags[20];
     /* 0x5FC0 */ char                  unk_5FC0[12];
     /* 0x5FCC */ subPlayState_5FCC unk_5FCC;
+    /* 0x600C */ char unk_600C[0x1CFC];
+    /* 0x7D08 */ TransitionContext transitionCtx;
+    /* 0x7F10 */ char unk_7F10[0x2];
+    /* 0x7F12 */ u8 transitionMode; // Gameplay_Draw draws transitionCtx in 3 and 0xB, or when its type is 0x38 or more
+    /* 0x7F14 */ TransitionFade transitionFadeFlash;
     //TODO
 
     ObjectStatus* GetObjectStatus(u8 objBankIdx) {
