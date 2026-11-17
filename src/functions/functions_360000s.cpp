@@ -399,7 +399,7 @@ GLOBAL_ASM("asm/FUN_0036b4d0.s")
 
 GLOBAL_ASM("asm/FUN_0036b4dc.s")
 
-GLOBAL_ASM("asm/FUN_0036b4ec.s")
+GLOBAL_ASM("asm/SkelAnime_Update.s")
 
 GLOBAL_ASM("asm/FUN_0036b940.s")
 

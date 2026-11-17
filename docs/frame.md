@@ -64,3 +64,18 @@ Measured in z3d-mods with the core's store journal around the call (USA build, K
   0x1FF82000. A replay neither needs nor touches them.
 - Not yet traced: the touch screen's share of the list and where the bottom-screen HUD records
   are drawn.
+
+## Actors in the draw
+
+- `Gameplay_Draw` calls `Actor_DrawAll` (0x4618E4) with the play state and its `actorCtx`. It
+  walks the 12 actor lists (`ACTORCAT_MAX`, `Actor.next`), projects each actor's `world.pos`,
+  and calls `Actor_Draw` (0x2D5F68) for those with a draw function and flag 0x40 or 0x20 set.
+- `Actor_Draw` builds `Actor.modelMtx` at draw time (0x3679D0): translation `world.pos`, with
+  `shape.yOffset * scale.y` added to y (and the play state's offset at +0x414 when flag 0x1000
+  is set), rotation `shape.rot`, then `scale`. It then calls the actor's draw function. So an
+  actor's root follows `world.pos` and `shape.rot` as they stand when the draw runs.
+- Skeletons pose in the update, not the draw: `SkelAnime_Update` (0x36B4EC) advances `curFrame`
+  and FUN_002BB34C evaluates the animation into `jointTable` (FUN_002BD9EC) and blends the
+  morph (FUN_002C3814). `SkelAnime_DrawOpa` (0x35E240) only queues the skeleton's model
+  (`SkelAnime` +0x28) in a deferred list (FUN_004C7AB0) with its matrix and limb callbacks.
+  The joint table's format is not traced yet.

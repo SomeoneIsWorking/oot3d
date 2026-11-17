@@ -568,7 +568,7 @@ GLOBAL_ASM("asm/FUN_002d5b2c.s")
 
 GLOBAL_ASM("asm/FUN_002d5f18.s")
 
-GLOBAL_ASM("asm/FUN_002d5f68.s")
+GLOBAL_ASM("asm/Actor_Draw.s")
 
 GLOBAL_ASM("asm/Actor_Destroy.s")
 

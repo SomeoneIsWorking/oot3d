@@ -19932,9 +19932,9 @@ text 0x00100000
 	{
 		* (i.FUN_002d5f18)
 	}
-	FUN_002d5f68 0x002d5f68
+	Actor_Draw 0x002d5f68
 	{
-		* (i.FUN_002d5f68)
+		* (i.Actor_Draw)
 	}
 	Actor_Destroy 0x002d644c
 	{
@@ -29676,9 +29676,9 @@ text 0x00100000
 	{
 		* (i.FUN_0036b4dc)
 	}
-	FUN_0036b4ec 0x0036b4ec
+	SkelAnime_Update 0x0036b4ec
 	{
-		* (i.FUN_0036b4ec)
+		* (i.SkelAnime_Update)
 	}
 	FUN_0036b940 0x0036b940
 	{
@@ -43540,9 +43540,9 @@ text 0x00100000
 	{
 		* (i.Actor_UpdateAll)
 	}
-	FUN_004618e4 0x004618e4
+	Actor_DrawAll 0x004618e4
 	{
-		* (i.FUN_004618e4)
+		* (i.Actor_DrawAll)
 	}
 	FUN_00461ec4 0x00461ec4
 	{

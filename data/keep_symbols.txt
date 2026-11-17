@@ -4911,7 +4911,7 @@
 --keep=FUN_002d5ac4
 --keep=FUN_002d5b2c
 --keep=FUN_002d5f18
---keep=FUN_002d5f68
+--keep=Actor_Draw
 --keep=Actor_Destroy
 --keep=FUN_002d64f4
 --keep=FUN_002d6628
@@ -7319,7 +7319,7 @@
 --keep=FUN_0036b3f4
 --keep=FUN_0036b4d0
 --keep=FUN_0036b4dc
---keep=FUN_0036b4ec
+--keep=SkelAnime_Update
 --keep=FUN_0036b940
 --keep=FUN_0036b96c
 --keep=FUN_0036b9e0
@@ -10742,7 +10742,7 @@
 --keep=FUN_00461018
 --keep=FUN_004611e8
 --keep=Actor_UpdateAll
---keep=FUN_004618e4
+--keep=Actor_DrawAll
 --keep=FUN_00461ec4
 --keep=FUN_004620f8
 --keep=FUN_0046225c
