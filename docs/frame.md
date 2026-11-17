@@ -77,5 +77,10 @@ Measured in z3d-mods with the core's store journal around the call (USA build, K
 - Skeletons pose in the update, not the draw: `SkelAnime_Update` (0x36B4EC) advances `curFrame`
   and FUN_002BB34C evaluates the animation into `jointTable` (FUN_002BD9EC) and blends the
   morph (FUN_002C3814). `SkelAnime_DrawOpa` (0x35E240) only queues the skeleton's model
-  (`SkelAnime` +0x28) in a deferred list (FUN_004C7AB0) with its matrix and limb callbacks.
-  The joint table's format is not traced yet.
+  (`SkelAnime.model`) in a deferred list (FUN_004C7AB0, called at +0x70,
+  `SKELANIME_DRAW_OPA_QUEUE_CALL`, with the `SkelAnime` in r1) with its matrix and limb
+  callbacks; it is the only caller.
+- The joint table holds `limbCount` `SkelJoint`s (0x34 bytes): each limb's 3x4 matrix relative
+  to its parent, rotation rows from the animation's Euler angles and the translation last, as
+  FUN_002BD9EC writes them. Link's `SkelAnime` sits at +0x254 in the player actor, 25 limbs, its
+  joint table inline after it.

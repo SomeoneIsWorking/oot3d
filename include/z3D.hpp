@@ -460,6 +460,9 @@ extern PlayState* gPlayState; //0x0050AF34
 // Graph_DrawFrame's virtual call of the frame end (0x3FD27C, docs/frame.md), from its start.
 #define GRAPH_DRAW_FRAME_END_CALL 0xD40
 
+// SkelAnime_DrawOpa's call that queues the skeleton's model (r1 the SkelAnime), from its start.
+#define SKELANIME_DRAW_OPA_QUEUE_CALL 0x70
+
 // nn::gx's command list (docs/frame.md): a buffer of PICA commands and the requests the frame end
 // hands the GSP in order.
 typedef struct {
