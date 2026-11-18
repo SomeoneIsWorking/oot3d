@@ -260,10 +260,14 @@ typedef struct {
     /* 0x221C */ float  xzSpeed; //probably
     /* 0x2220 */ char   unk_2220[0x0007];
     /* 0x2227 */ u8     isg;
-    /* 0x2228 */ char   unk_2228[0x0074];
+    /* 0x2228 */ char   unk_2228[0x0053];
+    /* 0x227B */ u8     damageFlashTurn; // Player_Draw adds 50 less invincibilityTimer (8 to 40) while the timer is above 0
+    /* 0x227C */ char   unk_227C[0x0020];
     /* 0x229C */ f32    pushedSpeed; // Pushing player, examples include water currents, floor conveyors, climbing sloped surfaces
     /* 0x22A0 */ s16    pushedYaw; // Yaw direction of player being pushed
-    /* 0x22A2 */ char   unk_22A2[0x064E];
+    /* 0x22A2 */ char   unk_22A2[0x01E6];
+    /* 0x2488 */ s8     invincibilityTimer; // counts down a tick after damage; the flash shows while above 0
+    /* 0x2489 */ char   unk_2489[0x0467];
     /* 0x28F0 */ s16    lookBase[3]; // focus.rot at the last motion reset (Player_UpdateLook)
     /* 0x28F6 */ char   unk_28F6[0x00C2];
     /* 0x29B8 */ u32    lookFlags; // PLAYER_LOOK_*

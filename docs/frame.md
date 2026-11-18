@@ -106,6 +106,11 @@ Measured in z3d-mods with the core's store journal around the call (USA build, K
   to its parent, rotation rows from the animation's Euler angles and the translation last, as
   FUN_002BD9EC writes them. Link's `SkelAnime` sits at +0x254 in the player actor, 25 limbs, its
   joint table inline after it.
+- The player's red damage flash is stepped in the draw: `Player_Draw` (0x4BF618), while
+  `Player.invincibilityTimer` (+0x2488, counted down a tick by the update, 0x250B50) is above 0,
+  adds 50 less the timer, clamped to 8 to 40, to `Player.damageFlashTurn` (+0x227B, a byte) and
+  sets the model's red fog from it. Watched in Hyrule Field by the Stalchildren (z3d-mods `field`
+  state): the timer 12, 11, 10 ... and the turn 0x20, 0x48, 0x70, 0x98, written at 0x4BF6CC.
 
 ## Fades
 
