@@ -9,6 +9,33 @@ typedef struct SkelJoint {
     /* 0x30 */ u32 unk_30;
 } SkelJoint; // size = 0x34
 
+// A CMAB material animation's file: the animation's block at `animOffset` from its start.
+typedef struct {
+    /* 0x00 */ char magic[4]; // "cmab"
+    /* 0x04 */ char unk_04[0x10];
+    /* 0x14 */ u32 animOffset;
+} CmabHeader;
+
+typedef struct {
+    /* 0x0 */ s32 unk_0;
+    /* 0x4 */ s32 frameCount; // AnimPlayer_Update wraps or holds the frame here
+} CmabAnim;
+
+// A material animation playing on a model (docs/frame.md "Material animations"): AnimPlayer_Update
+// adds `speed` to `frame`, wraps it at the animation's frame count when `loop` is set and holds it
+// at the end otherwise, then applies the frame to each target.
+typedef struct AnimPlayer {
+    /* 0x00 */ void* model;
+    /* 0x04 */ CmabHeader** anim;
+    /* 0x08 */ f32 frame;
+    /* 0x0C */ f32 speed;
+    /* 0x10 */ u8 loop;
+    /* 0x11 */ u8 paused; // no step while set
+    /* 0x12 */ char unk_12[0x2];
+    /* 0x14 */ void* targets[32];
+    /* 0x94 */ s32 targetCount;
+} AnimPlayer; // size = 0x98
+
 typedef struct SkelAnime {
     /* 0x00 */ void* unk_00;
     /* 0x04 */ struct ZARInfo* zarInfo;

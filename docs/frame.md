@@ -97,3 +97,17 @@ Measured in z3d-mods with the core's store journal around the call (USA build, K
   transition's type is 0x38 or more, then `TransitionFade_Draw` on `transitionFadeFlash` (+0x7F14)
   every tick. `TransitionFade_Draw` reads only the fill's colour (alpha at +4, then blue, green,
   red) and draws nothing at alpha 0.
+
+## Material animations
+
+- Texture scroll and the other material animations (CMAB files) play through `AnimPlayer`s
+  (0x98 bytes, include/z3Danimation.hpp). `AnimPlayer_Update` (0x373BEC) adds `speed` to `frame`,
+  wraps it at the animation's frame count when `loop` is set (holds it there otherwise), and
+  applies the frame to each of its targets, which write the materials' texture coordinates.
+  It does nothing while `paused` or the word at 0x54C8CC is set. 67 sites call it, actors' among them.
+- The scene's are stepped in the draw: `Gameplay_Draw` calls `Scene_Draw` (0x45BFC4), which runs
+  `AnimPlayer_Update` over the scene's lists (`SCENE_DRAW_ANIM_UPDATE_CALL*`) and then the scene's
+  draw handler from the table at 0x549138 by `PlayState.sceneConfig`. One list's frames are set
+  from the time of day first. Kokiri Forest's waterfall is the first list's one player (600
+  frames, speed 1, looping; its frame read live 207, 208, ... a tick, the texture coordinates
+  written right after by 0x40992C).

@@ -670,7 +670,7 @@ GLOBAL_ASM("asm/FUN_0045b8dc.s")
 
 GLOBAL_ASM("asm/FUN_0045b990.s")
 
-GLOBAL_ASM("asm/FUN_0045bfc4.s")
+GLOBAL_ASM("asm/Scene_Draw.s")
 
 GLOBAL_ASM("asm/FUN_0045c23c.s")
 

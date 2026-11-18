@@ -7496,7 +7496,7 @@
 --keep=Rand_CenteredFloat
 --keep=Actor_Spawn
 --keep=Actor_GetCollidedExplosive
---keep=FUN_00373bec
+--keep=AnimPlayer_Update
 --keep=FUN_00373d0c
 --keep=Animation_PlayOnce
 --keep=FUN_00373d98
@@ -10693,7 +10693,7 @@
 --keep=FUN_0045b6f4
 --keep=FUN_0045b8dc
 --keep=FUN_0045b990
---keep=FUN_0045bfc4
+--keep=Scene_Draw
 --keep=FUN_0045c23c
 --keep=FUN_0045c5a0
 --keep=FUN_0045c5f0

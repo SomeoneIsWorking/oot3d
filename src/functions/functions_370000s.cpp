@@ -162,7 +162,7 @@ GLOBAL_ASM("asm/Actor_Spawn.s")
 
 GLOBAL_ASM("asm/Actor_GetCollidedExplosive.s")
 
-GLOBAL_ASM("asm/FUN_00373bec.s")
+GLOBAL_ASM("asm/AnimPlayer_Update.s")
 
 GLOBAL_ASM("asm/FUN_00373d0c.s")
 

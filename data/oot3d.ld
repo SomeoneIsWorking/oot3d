@@ -30432,9 +30432,9 @@ text 0x00100000
 	{
 		* (i.Actor_GetCollidedExplosive)
 	}
-	FUN_00373bec 0x00373bec
+	AnimPlayer_Update 0x00373bec
 	{
-		* (i.FUN_00373bec)
+		* (i.AnimPlayer_Update)
 	}
 	FUN_00373d0c 0x00373d0c
 	{
@@ -43344,9 +43344,9 @@ text 0x00100000
 	{
 		* (i.FUN_0045b990)
 	}
-	FUN_0045bfc4 0x0045bfc4
+	Scene_Draw 0x0045bfc4
 	{
-		* (i.FUN_0045bfc4)
+		* (i.Scene_Draw)
 	}
 	FUN_0045c23c 0x0045c23c
 	{

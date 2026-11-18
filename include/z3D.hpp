@@ -493,6 +493,16 @@ extern PlayState* gPlayState; //0x0050AF34
 // Graph_DrawFrame's virtual call of the frame end (0x3FD27C, docs/frame.md), from its start.
 #define GRAPH_DRAW_FRAME_END_CALL 0xD40
 
+// Scene_Draw's calls of AnimPlayer_Update on the scene's material animations, from its start
+// (docs/frame.md "Material animations"): the first list's, then one of two lists by
+// gSaveContext +0x10 and one of two by +0x4 (the N64's nightFlag and linkAge); the list at 0x11C
+// sets its frame from the time of day first.
+#define SCENE_DRAW_ANIM_UPDATE_CALL 0x58
+#define SCENE_DRAW_ANIM_UPDATE_CALL_A0 0x164
+#define SCENE_DRAW_ANIM_UPDATE_CALL_A1 0x19C
+#define SCENE_DRAW_ANIM_UPDATE_CALL_B0 0x1E0
+#define SCENE_DRAW_ANIM_UPDATE_CALL_B1 0x218
+
 // SkelAnime_DrawOpa's call that queues the skeleton's model (r1 the SkelAnime), from its start.
 #define SKELANIME_DRAW_OPA_QUEUE_CALL 0x70
 
