@@ -108,18 +108,26 @@ typedef struct CutsceneContext {
     /* 0x1C */ f32   unk_1C;
     /* 0x20 */ u16   frames;
     /* 0x22 */ u16   unk_22;
-    /* 0x24 */ s32   unk_24;
-    /* 0x28 */ u16   unk_28;
-    /* 0x2A */ u16   unk_2A;
+    /* 0x24 */ s32   subCamId;
+    // The start frame of the eye and at point lists last handed to Camera_SetCSParams (0x2C4130).
+    /* 0x28 */ u16   camEyeSplinePointsAppliedFrame;
+    /* 0x2A */ u16   camAtSplinePointsAppliedFrame;
     /* 0x2C */ u16   unk_2C;
     /* 0x2E */ u16   unk_2E;
     /* 0x30 */ char  unk_30[0x04];
-    /* 0x34 */ s8    unk_34;
-    /* 0x35 */ s8    unk_35;
-    /* 0x36 */ char  unk_36[0x0A];
+    /* 0x34 */ s8    camAtReady;
+    /* 0x35 */ s8    camEyeReady;
+    /* 0x36 */ char  unk_36[0x02];
+    /* 0x38 */ void* camAtPoints;
+    /* 0x3C */ void* camEyePoints;
     /* 0x40 */ CsCmdActorAction* linkAction;
     /* 0x44 */ CsCmdActorAction* npcActions[10]; // "npcdemopnt"
-} CutsceneContext; // size = 0x6C
+    /* 0x6C */ char  unk_6C[0x18];
+    // The camera shot: command 0x97's segment covering the frame (-1 for none), also set when an
+    // at point list starts a shot.
+    /* 0x84 */ s32   camShot;
+    /* 0x88 */ void* camSpline; // command 0x97's "ccb" payload
+} CutsceneContext; // size >= 0x8C
 
 typedef struct OcLine OcLine; //TODO
 #define COLLISION_CHECK_AT_MAX 50
@@ -437,7 +445,7 @@ typedef struct PlayState {
     /* 0x208C */ ActorContext          actorCtx;
     /* 0x2264 */ char                  unk_2264[0x0034];
     /* 0x2298 */ CutsceneContext       csCtx; // "demo_play"
-    /* 0x2304 */ char                  unk_2304[0x059C];
+    /* 0x2324 */ char                  unk_2324[0x057C];
     /* 0x28A0 */ MessageContext        msgCtx;
     /* 0x2B80 */ char                  unk_2B80[0x0024];
     /* 0x2BA4 */ InterfaceContext      interfaceCtx;

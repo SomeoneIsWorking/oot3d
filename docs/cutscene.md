@@ -13,6 +13,23 @@ Findings from z3d-mods (its Start cutscene skip), checked on the USA build in Az
 - `Cutscene_Command_Terminator` (0x491364) takes the destination. Its own title-demo skip requires
   `*(u32*)(0x5043D4 + 0x18) == 0`, and that word is 1 during every gameplay cutscene.
 
+## The camera's shots
+- The N64 point-list commands (1, 2, 5, 6) keep their logic: each takes its list when its start
+  frame is past the list's applied frame (`camEyeSplinePointsAppliedFrame` +0x28 for eye lists,
+  `camAtSplinePointsAppliedFrame` +0x2A for at lists), sets `camEyeReady`/`camAtReady`
+  (+0x35/+0x34) and `camEyePoints`/`camAtPoints` (+0x3C/+0x38), and once both are ready stores the
+  start frame as applied, switches the cutscene camera (`subCamId` +0x24) to setting 0x25 and
+  calls 0x2C4130 with (camera, at points, eye points, the player, 0): `Camera_SetCSParams`. The
+  at-list commands also store the shot in `camShot` (+0x84).
+- Grezzo's 0x97 (`notes/cutscene_format.md`) parses its "ccb" payload into `camSpline` (+0x88)
+  and finds the segment whose frames cover `frames`. When that is not `camShot`, it stores it there
+  (-1 for none) and restarts the spline's frame counter at the cutscene's frame; otherwise the
+  counter steps by one. It evaluates the segment into +0x94 (0x33CB90) and hands the pose to the
+  cutscene camera (0x33CB1C).
+- So a shot starts exactly when `camShot` or an applied frame changes. Read live in the Kakariko
+  intro (warp 0xDB from Kokiri Forest): `subCamId` 1, the active camera 1, `camShot` 0 from the
+  start, 1 from about frame 190, the camera cutting from the village to the graveyard gate.
+
 ## Text inside a cutscene
 - A text command (0x13) holds its end frame while `Message_GetState()` (0x3769D8) is not 0, 2, 7
   or 8 (the check at 0x2C7AD4).

@@ -162,12 +162,12 @@ void FUN_0016e7f8(BgTreemouth* self, PlayState* play) {
         }
 
         play->csCtx.frames = 0;
-        play->csCtx.unk_28 = 0xFFFF;
-        play->csCtx.unk_2A = 0xFFFF;
+        play->csCtx.camEyeSplinePointsAppliedFrame = 0xFFFF;
+        play->csCtx.camAtSplinePointsAppliedFrame = 0xFFFF;
         play->csCtx.unk_2C = 0xFFFF;
         play->csCtx.unk_2E = 0xFFFF;
-        play->csCtx.unk_34 = 0;
-        play->csCtx.unk_35 = 0;
+        play->csCtx.camAtReady = 0;
+        play->csCtx.camEyeReady = 0;
 
         play->SetCutsceneState(CS_STATE_SKIPPABLE_EXEC);
 

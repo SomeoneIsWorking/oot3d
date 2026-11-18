@@ -69,8 +69,9 @@ D-pad Left), 16 falling, 3 talking.
   Read each tick: `animState` stays 1 for 21 ticks with the eye still, then becomes 2 (the store
   at 0x25C1DC) in the tick that writes `eye` and `eyeNext` once (0x25C328), from
   (-279.7, 48.4, 281.5) to (-228.7, 111.5, -13.1) on the door's far side: the door cut.
-- `Camera_SetCSParams` was not found by the N64's stores (`data0` at +0x124 + 0x48): this build's
-  cutscene cameras run Grezzo's spline commands (docs/cutscene.md, commands 0x96 and 0x97).
+- `Camera_SetCSParams` is 0x2C4130, called by the cutscene's point-list commands; Grezzo's
+  spline command 0x97 hands its pose to the cutscene camera through 0x33CB1C instead
+  (docs/cutscene.md "The camera's shots").
 
 ## The C-stick
 The game never opens `ir:rst`. z3d-mods' patch reads the C-stick from that service's shared

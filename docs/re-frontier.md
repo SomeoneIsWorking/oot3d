@@ -43,9 +43,9 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 ### cutscene.interpreter — CutsceneHandler_RunScript and Cutscene_ProcessCommands
 - status: re-verified
 - deps: cutscene.script-format
-- evidence: z3d-mods Start skip: stepping Cutscene_ProcessCommands to the end frame lands where watching lands (Kakariko intro, opening narration), save context equal but naviTimer and +0x15B4
+- evidence: z3d-mods Start skip: stepping Cutscene_ProcessCommands to the end frame lands where watching lands (Kakariko intro, opening narration), save context equal but naviTimer and +0x15B4; the camera cases decompiled (point lists and 0x97's segment selection into camShot), camShot read live stepping 0 to 1 at the Kakariko intro's shot change, which z3d-mods' interpolation cuts on
 - where: docs/cutscene.md
-- gap: 
+- gap: commands 0x96's entries and the spline frame counter's global (0x2C8118) unnamed
 - notes: 
 
 ### cutscene.textbox — Text commands, Message_GetState and Message_CloseTextbox
