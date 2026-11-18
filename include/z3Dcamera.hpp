@@ -69,9 +69,13 @@ typedef struct Camera {
     /* 0x18C */ s16 mode;
     /* 0x18E */ char unk_18E[0x002];
     /* 0x190 */ s16 camDataIdx;
-    /* 0x192 */ char unk_192[0x00A];
+    /* 0x192 */ char unk_192[0x002];
+    /* 0x194 */ s16 stateFlags; // the N64's, at its offset + 0x48; Camera_Special9 clears 0x2 and 0x4
+    /* 0x196 */ char unk_196[0x006];
     /* 0x19C */ s16 prevSetting;
-    /* 0x19E */ char unk_19E[0x01E];
+    /* 0x19E */ char unk_19E[0x008];
+    /* 0x1A6 */ s16 animState; // the N64's, at its offset + 0x48; Camera_Special9 steps it
+    /* 0x1A8 */ char unk_1A8[0x014];
 } Camera; // size = 0x1BC
 
 #endif

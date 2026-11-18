@@ -54,6 +54,18 @@ Setting 0x46, the back alley's, runs function 79, a fixed view.
 Modes read live in Kokiri Forest: 0 walking, 1 with L held, 6 in first person (The One Screen's
 D-pad Left), 16 falling, 3 talking.
 
+## Fields past the view
+- From `play` (+0xD4) on, the fields sit at the N64's `Camera` offsets plus 0x48: `dist`, `fov`,
+  `inputDir`, `camDir`, `status`, `setting`, `mode`, `bgCamIndex` (+0x190) and `prevSetting`
+  (+0x19C) read live, `stateFlags` (+0x194) and `animState` (+0x1A6) from `Camera_Special9`
+  (0x25BF08, function 0x46 in the table, the N64's `CAM_FUNC_SPEC9`), which stores both. The
+  struct is 0x1BC long, eight bytes more than the N64's plus 0x48; where they sit is not known.
+- The back alley's doors (entrance 0xAD) load another scene: opening one switches the camera to
+  setting 0x21 (function 47, the N64's `CAM_SET_FREE0` number) with `animState` 0, not to the
+  room door setting 0x1D (`CAM_SET_DOORC`, `Camera_Special9`). Doors within a scene were not run.
+- `Camera_SetCSParams` was not found by the N64's stores (`data0` at +0x124 + 0x48): this build's
+  cutscene cameras run Grezzo's spline commands (docs/cutscene.md, commands 0x96 and 0x97).
+
 ## The C-stick
 The game never opens `ir:rst`. z3d-mods' patch reads the C-stick from that service's shared
 memory itself.
