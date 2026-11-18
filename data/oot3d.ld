@@ -36440,9 +36440,9 @@ text 0x00100000
 	{
 		* (i.FUN_003feb40)
 	}
-	FUN_003fed90 0x003fed90
+	Model_Update 0x003fed90
 	{
-		* (i.FUN_003fed90)
+		* (i.Model_Update)
 	}
 	FUN_003fede4 0x003fede4
 	{

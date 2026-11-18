@@ -63,8 +63,8 @@ typedef struct {
     /* 0x0C */ s32  unk_0C;
     /* 0x10 */ u8   delayA;
     /* 0x11 */ u8   delayB;
-    /* 0x12 */ s16  unk_12;
-    /* 0x14 */ s16  unk_14;
+    /* 0x12 */ s16  alpha;     // stepped by TitleCard_Update
+    /* 0x14 */ s16  intensity; // stepped by TitleCard_Update
     /* 0x16 */ s16  unk_16;
 } TitleCardContext; // size = 0x18
 
@@ -514,6 +514,9 @@ extern PlayState* gPlayState; //0x0050AF34
 #define SCENE_DRAW_ANIM_UPDATE_CALL_A1 0x19C
 #define SCENE_DRAW_ANIM_UPDATE_CALL_B0 0x1E0
 #define SCENE_DRAW_ANIM_UPDATE_CALL_B1 0x218
+// Model_Update's tail branch to AnimPlayer_Update on the model's own material animation (r0 the
+// player, the model's +0xC), from its start (docs/frame.md "Material animations").
+#define MODEL_UPDATE_MATERIAL_CALL 0x4C
 
 // Target_Draw's turn of the arrow (docs/frame.md "The target arrow"), from its start: the angle
 // moved to s0, then made a float.

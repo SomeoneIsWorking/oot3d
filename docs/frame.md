@@ -124,6 +124,11 @@ Measured in z3d-mods with the core's store journal around the call (USA build, K
   transition's type is 0x38 or more, then `TransitionFade_Draw` on `transitionFadeFlash` (+0x7F14)
   every tick. `TransitionFade_Draw` reads only the fill's colour (alpha at +4, then blue, green,
   red) and draws nothing at alpha 0.
+- A place name's card fades by `ActorContext.titleCtx` (play +0x224C): `TitleCard_Update`
+  (0x47953C) steps `alpha` (+0x12) and `intensity` (+0x14) with `Math_StepToS` in the update, up
+  while `delayA` (+0x10) counts down and then down to 0, and the draw only reads them (Kakariko's
+  first entry from `kf`, warp 0xDB: alpha 0x50, 0x55, 0x5A, 0x5F and intensity 0x90, 0x99, 0xA2,
+  0xAB on four ticks).
 
 ## Material animations
 
@@ -138,6 +143,13 @@ Measured in z3d-mods with the core's store journal around the call (USA build, K
   from the time of day first. Kokiri Forest's waterfall is the first list's one player (600
   frames, speed 1, looping; its frame read live 207, 208, ... a tick, the texture coordinates
   written right after by 0x40992C).
+- A model's own material animation is the `AnimPlayer` at the model's +0xC: `Model_Update`
+  (0x3FED90), reached from the draw's queueing of a model (0x372170), poses the model and then
+  tail-branches to `AnimPlayer_Update` on it (`MODEL_UPDATE_MATERIAL_CALL`, r0 the player), so
+  it is stepped in the draw section. Zora's Domain's waterfall is such a model's: `BgSpot07Taki_Draw`
+  (0x29DDBC, actor 0x120) sets its player's speed and queues the model, and a write watch on
+  the player's frame (entrance 0x108 from `kf`, frame 59 a tick on, speed 1, looping) shows each
+  step written there with the draw's return address (0x29DEC4) in lr.
 
 ## Effects
 

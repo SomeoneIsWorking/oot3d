@@ -685,7 +685,7 @@ GLOBAL_ASM("asm/FUN_003feb14.s")
 
 GLOBAL_ASM("asm/FUN_003feb40.s")
 
-GLOBAL_ASM("asm/FUN_003fed90.s")
+GLOBAL_ASM("asm/Model_Update.s")
 
 GLOBAL_ASM("asm/FUN_003fede4.s")
 
