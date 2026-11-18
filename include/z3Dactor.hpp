@@ -185,6 +185,29 @@ typedef struct Actor {
    /* From here on, the structure and size varies for each actor */
 } Actor; // size = 0x1A4
 
+// ObjectKankyo's params that draw the floating fairies (ObjectKankyo_Draw's case 0, 0x159B2C).
+#define OBJECT_KANKYO_FAIRIES 0
+
+// One of ObjectKankyo's effects; a fairy is drawn at pos + base (docs/frame.md "Effects").
+typedef struct {
+    /* 0x00 */ u8 state; // 0 unused
+    /* 0x04 */ Vec3f pos; // moved by the update
+    /* 0x10 */ char unk_10[0xC];
+    /* 0x1C */ Vec3f base;
+    /* 0x28 */ char unk_28[0x14];
+    /* 0x3C */ u16 timer;
+    /* 0x3E */ char unk_3E[0x2];
+    /* 0x40 */ u8 alpha; // stepped by the draw
+    /* 0x44 */ f32 size;
+    /* 0x48 */ char unk_48[0xC];
+} ObjectKankyoEffect; // size = 0x54
+
+typedef struct {
+    /* 0x0000 */ Actor actor;
+    /* 0x01A4 */ ObjectKankyoEffect effects[64]; // PlayState.kankyoEffectCount of them in use
+    /* 0x16A4 */ char unk_16A4[0x218];
+} ObjectKankyo; // size = 0x18BC
+
 typedef struct DynaPolyActor {
     /* 0x000 */ struct Actor actor;
     /* 0x1A4 */ s32 bgId;

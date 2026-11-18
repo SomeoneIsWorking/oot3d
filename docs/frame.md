@@ -111,3 +111,13 @@ Measured in z3d-mods with the core's store journal around the call (USA build, K
   from the time of day first. Kokiri Forest's waterfall is the first list's one player (600
   frames, speed 1, looping; its frame read live 207, 208, ... a tick, the texture coordinates
   written right after by 0x40992C).
+
+## Effects
+
+- Kokiri Forest's floating light motes are `ObjectKankyo`'s fairies (actor 0x97, params 0;
+  `ObjectKankyo_Draw` 0x297508 sends params 0 to 0x159B2C). The actor holds 64
+  `ObjectKankyoEffect`s at +0x1A4, `PlayState.kankyoEffectCount` of them drawn; each fairy is
+  drawn at `pos + base`. The update moves `pos` (about 0.5 to 1.3 units a tick) and steps
+  `timer`; `base` stayed put while Link stood still. The draw steps `alpha` itself (up or down by
+  10, 20 or 100 a tick by `state` and `timer`) and pushes each fairy into a billboard batch
+  (0x371F1C, then 0x332A14 into the batch's arrays at +0x1E4), which its draw (0x3FC2F8) empties.

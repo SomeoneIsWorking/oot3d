@@ -443,7 +443,9 @@ typedef struct PlayState {
     /* 0x2BA4 */ InterfaceContext      interfaceCtx;
     /* 0x2E36 */ char                  unk_2E36[0x000A];
     /* 0x2E40 */ u8                    fishingPoleOut; // not 0: Hud_UpdateStatusLayout sets B_BUTTON_FISHING
-    /* 0x2E41 */ char                  unk_2E41[0x07BF];
+    /* 0x2E41 */ char                  unk_2E41[0x0430];
+    /* 0x3271 */ u8                    kankyoEffectCount; // the ObjectKankyo effects drawn (64 in Kokiri Forest)
+    /* 0x3272 */ char                  unk_3272[0x038E];
     /* 0x3600 */ f32                   unk_3600;
     /* 0x3604 */ char                  unk_3604[0x0454];
     /* 0x3A58 */ ObjectContext         objectCtx;
