@@ -519,8 +519,8 @@ extern PlayState* gPlayState; //0x0050AF34
 // nn::gx's command list (docs/frame.md): a buffer of PICA commands and the requests the frame end
 // hands the GSP in order.
 typedef struct {
-    /* 0x00 */ u32 type; // the GSP GX command id: 1 run a command list, 3 display transfer
-    /* 0x04 */ u32 args[6]; // the GSP GX command's first six parameter words
+    /* 0x00 */ u32 type; // the GSP GX command it becomes (docs/frame.md "Requests"), in the low byte
+    /* 0x04 */ u32 args[6]; // nngx's encoding of its parameters, not the GSP command's
 } GxRequest; // size = 0x1C
 
 typedef struct {

@@ -21,6 +21,28 @@ How one 30 Hz tick runs, from the disassembly of the USA build (Ghidra on `code.
   LightEvent at 0x5B5118 (wait 0x30B304) that the vblank handler signals until the counters at
   nngx state +0x154/+0x158 change.
 
+## Requests
+
+A `GxRequest` is nngx's own record, not a GSP command: its first byte is the kind (the GSP
+command id it becomes), byte 2 set stops the run after it, and six words follow. The frame end's
+dispatcher, 0x3027DC (from `nngxRunCmdlist`), turns each into GSP commands as follows (`r1` to
+`r6` the words):
+
+- 0, DMA: source `r1`, destination `r2`, size `r3`.
+- 1, command list: address `r1`, size `r2`; bit 0 of `r3` is the GSP command's flag, and unless
+  bit 2 of `r3` is set a cache flush of the list (GSP command 5) goes first.
+- 2, memory fill: per buffer a start (`r1`, `r4`), a value (`r2`, `r5`) and a size word (`r3`,
+  `r6`): the byte count in bits 0 to 22 (the end is start plus count) and the fill width in bits
+  23 and 24 (the GSP control is `(word >> 15 & 0x300) | 1`). A start of 0 is no buffer.
+- 3, display transfer: input `r1`, output `r2`, the input and output sizes `r3` and `r4` as the
+  GSP takes them (width low, height high), and `r5` in nngx's flag bits: bit 6 the flip, bits 0-2
+  the input format, 3-5 the output format, 7-8 the scaling, 9 the 32-pixel blocks, 10 linear input,
+  11 no swizzle. The GSP's crop bit (2) is set when the output is narrower or shorter than the
+  input.
+- 4, texture copy: input `r1`, output `r2`, size `r3`; `r4` and `r5` hold the input's and output's
+  width and gap with their halves the other way round from the GSP's; the GSP flags are 8, with 4
+  when either gap word's low half is nonzero.
+
 ## What the draw section touches
 
 Measured in z3d-mods with the core's store journal around the call (USA build, Kokiri Forest,
@@ -52,10 +74,10 @@ Measured in z3d-mods with the core's store journal around the call (USA build, K
   match the list object's six requests: four command lists and two display transfers (top and
   bottom screen).
 - The nngx command-list object (`GxCmdlist` in include/z3D.hpp, two of them at 0x14000020 and
-  0x1400006C, the bound one at `gNngxState.boundCmdlist`) holds the tick's requests (`GxRequest`:
-  the GSP GX command id, 1 run a command list or 3 display transfer, then the GSP command's
-  parameter words). Up to the frame end call they are all in it, four command lists and the two
-  screens' display transfers; the frame end hands them to the GSP. From `Gameplay_Update` +0xA8
+  0x1400006C, the bound one at `gNngxState.boundCmdlist`) holds the tick's requests (`GxRequest`,
+  "Requests" above: here 1 run a command list and 3 display transfer). Up to the frame end call
+  they are all in it, four command lists and the two screens' display transfers; the frame end
+  hands them to the GSP. From `Gameplay_Update` +0xA8
   to that call the section makes no SVC but ArbitrateAddress signals (0x30E280 on 0x5B5098,
   four a tick), and a run from the same start state leaves the same requests and PICA lists byte
   for byte.
