@@ -143,3 +143,16 @@ Measured in z3d-mods with the core's store journal around the call (USA build, K
   `timer`; `base` stayed put while Link stood still. The draw steps `alpha` itself (up or down by
   10, 20 or 100 a tick by `state` and `timer`) and pushes each fairy into a billboard batch
   (0x371F1C, then 0x332A14 into the batch's arrays at +0x1E4), which its draw (0x3FC2F8) empties.
+
+## The target arrow
+
+- The yellow arrow that spins over a targetable actor (over a Stalchild in Hyrule Field at night,
+  Navi hovering by it) is the Z-target arrow, not an effect: `Target_Draw` (0x47B124, the N64
+  game's `func_8002C124`) draws it from `ActorContext` +0x6C (`PlayState` +0x20F8) during the
+  draw. It turns the arrow about Y by `PlayState.gameplayFrames` (+0x5BF4, one a tick) times 3000
+  binary angles (0x177 << 3, masked to 16 bits) and sets the matrix on its two models (0x3721E0
+  at +0xADC and +0xAF8), so the turn steps once a tick. The angle in r0 is moved to s0 at +0xA58
+  (`TARGET_DRAW_ARROW_TURN_MOVE`), made a float at +0xA64 (`TARGET_DRAW_ARROW_TURN_CONVERT`) and
+  scaled by the unit in s1 for `Matrix_RotateY` (0x3735E8), as in MM3D. Found by write watches on the `TargetContext`'s model pointers in
+  z3d-mods (`field` state): the models' rotation words, and nothing else of the arrow, change
+  each tick.

@@ -44320,9 +44320,9 @@ text 0x00100000
 	{
 		* (i.FUN_0047af90)
 	}
-	FUN_0047b124 0x0047b124
+	Target_Draw 0x0047b124
 	{
-		* (i.FUN_0047b124)
+		* (i.Target_Draw)
 	}
 	FUN_0047bd10 0x0047bd10
 	{

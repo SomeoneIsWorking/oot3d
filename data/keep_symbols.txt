@@ -10937,7 +10937,7 @@
 --keep=FUN_0047ac3c
 --keep=FUN_0047af04
 --keep=FUN_0047af90
---keep=FUN_0047b124
+--keep=Target_Draw
 --keep=FUN_0047bd10
 --keep=FUN_0047bfd8
 --keep=FUN_0047bfec

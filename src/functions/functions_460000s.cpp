@@ -434,7 +434,7 @@ GLOBAL_ASM("asm/FUN_0047af04.s")
 
 GLOBAL_ASM("asm/FUN_0047af90.s")
 
-GLOBAL_ASM("asm/FUN_0047b124.s")
+GLOBAL_ASM("asm/Target_Draw.s")
 
 GLOBAL_ASM("asm/FUN_0047bd10.s")
 

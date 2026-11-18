@@ -459,7 +459,9 @@ typedef struct PlayState {
     /* 0x3A58 */ ObjectContext         objectCtx;
     /* 0x43DC */ char                  unk_43DC[0x0854];
     /* 0x4C30 */ RoomContext           roomCtx;
-    /* 0x5B88 */ char                  unk_5B88[0x0078];
+    /* 0x5B88 */ char                  unk_5B88[0x006C];
+    /* 0x5BF4 */ u32                   gameplayFrames; // one a tick; Target_Draw turns the arrow by it
+    /* 0x5BF8 */ char                  unk_5BF8[0x0008];
     /* 0x5C00 */ u8                    linkAgeOnLoad;
     /* 0x5C01 */ char                  unk_5C01[0x001F];
     /* 0x5C20 */ Path*                 setupPathList;
@@ -512,6 +514,13 @@ extern PlayState* gPlayState; //0x0050AF34
 #define SCENE_DRAW_ANIM_UPDATE_CALL_A1 0x19C
 #define SCENE_DRAW_ANIM_UPDATE_CALL_B0 0x1E0
 #define SCENE_DRAW_ANIM_UPDATE_CALL_B1 0x218
+
+// Target_Draw's turn of the arrow (docs/frame.md "The target arrow"), from its start: the angle
+// moved to s0, then made a float.
+#define TARGET_DRAW_ARROW_TURN_MOVE 0xA58
+#define TARGET_DRAW_ARROW_TURN_CONVERT 0xA64
+// The arrow's turn each tick, in binary angles.
+#define TARGET_ARROW_TURN_STEP 3000
 
 // SkelAnime_DrawOpa's call that queues the skeleton's model (r1 the SkelAnime), from its start.
 #define SKELANIME_DRAW_OPA_QUEUE_CALL 0x70
