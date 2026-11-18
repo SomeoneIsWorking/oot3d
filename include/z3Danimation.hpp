@@ -21,12 +21,17 @@ typedef struct {
     /* 0x4 */ s32 frameCount; // AnimPlayer_Update wraps or holds the frame here
 } CmabAnim;
 
+// A loaded CMAB, as an AnimPlayer holds it.
+typedef struct {
+    /* 0x0 */ CmabHeader* file;
+} CmabResource;
+
 // A material animation playing on a model (docs/frame.md "Material animations"): AnimPlayer_Update
 // adds `speed` to `frame`, wraps it at the animation's frame count when `loop` is set and holds it
 // at the end otherwise, then applies the frame to each target.
 typedef struct AnimPlayer {
     /* 0x00 */ void* model;
-    /* 0x04 */ CmabHeader** anim;
+    /* 0x04 */ CmabResource* anim;
     /* 0x08 */ f32 frame;
     /* 0x0C */ f32 speed;
     /* 0x10 */ u8 loop;
