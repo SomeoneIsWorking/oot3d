@@ -90,7 +90,7 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 - deps: 
 - evidence: live read of play+0x364 in Kokiri Forest: play (+0xD4) is the play state, |at-eye| matches dist (+0x124), playerPosRot (+0xDC) follows Link, camDir/inputDir (+0x182/+0x17C) turn as he walks, status 7, setting 1; mode (+0x18C) reads 0 walking, 1 with L held, 6 in first person, 16 falling; Camera_Update (0x2D84C4) loads +0xD4 and checks +0x188
 - where: include/z3Dcamera.hpp
-- gap: camDataIdx and prevSetting only read at rest; animState and stateFlags read from Camera_Special9 only, behaviorFlags and the distortion fields not yet checked; Quake_Update and Camera_GetCamDataId unchecked
+- gap: camDataIdx and prevSetting only read at rest; animState and stateFlags read from Camera_Special9 only (its step to 2 placing the eye beyond a Fire Temple door, read live), behaviorFlags and the distortion fields not yet checked; Quake_Update and Camera_GetCamDataId unchecked
 - notes: the OoT3D Randomizer's layout (no licence) was the starting guess; only fields seen live are named
 
 ### camera.update — Camera_Update's dispatch, call sites, View_LookAt and Camera_BGCheckInfo

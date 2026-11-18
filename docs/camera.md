@@ -62,7 +62,13 @@ D-pad Left), 16 falling, 3 talking.
   struct is 0x1BC long, eight bytes more than the N64's plus 0x48; where they sit is not known.
 - The back alley's doors (entrance 0xAD) load another scene: opening one switches the camera to
   setting 0x21 (function 47, the N64's `CAM_SET_FREE0` number) with `animState` 0, not to the
-  room door setting 0x1D (`CAM_SET_DOORC`, `Camera_Special9`). Doors within a scene were not run.
+  room door setting 0x1D (`CAM_SET_DOORC`, `Camera_Special9`).
+- A door within a scene (the Fire Temple's lobby, entrance 0x165, the left door at -280, 0, 140)
+  switches the main camera to setting 0x1D, whose mode 0 runs function 0x46,
+  `sCameraFunctions[0x46]` = 0x25BF08 = `Camera_Special9` (setting 0x1C's mode 0 runs 0x2C).
+  Read each tick: `animState` stays 1 for 21 ticks with the eye still, then becomes 2 (the store
+  at 0x25C1DC) in the tick that writes `eye` and `eyeNext` once (0x25C328), from
+  (-279.7, 48.4, 281.5) to (-228.7, 111.5, -13.1) on the door's far side: the door cut.
 - `Camera_SetCSParams` was not found by the N64's stores (`data0` at +0x124 + 0x48): this build's
   cutscene cameras run Grezzo's spline commands (docs/cutscene.md, commands 0x96 and 0x97).
 
