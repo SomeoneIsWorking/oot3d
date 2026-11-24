@@ -50,7 +50,8 @@ closes.
 is up.
 
 `gHud.state` (0x50AF68) reads `HUD_STATE_GAMEPLAY` (2) in play and 0 while the items, gear or
-system screen is up; those screens' own state words (0x50672C items, 0x504484 gear, 0x50A530
+system screen is up, and `HUD_STATE_VIEW` (11) while the touch screen's View is held (Link looks
+in first person; 2 again once it is let go, z3d-mods harness 2026-11-24); those screens' own state words (0x50672C items, 0x504484 gear, 0x50A530
 system; 0x506CE8 for the map, not seen up) read 2 while theirs is up. The One Screen (MIT) names
 the same words in its source.
 

@@ -349,6 +349,7 @@ typedef struct Hud {
 
 #define HUD_STATE_COVERED 0 // the items, gear, map or system screen is up
 #define HUD_STATE_GAMEPLAY 2
+#define HUD_STATE_VIEW 11 // the touch screen's View held: Link looks in first person
 
 #define HUD_STATUS_PLAY 0 // hearts and the magic meter
 #define HUD_STATUS_MINIGAME 1 // a shooting gallery, bowling or a timed minigame
