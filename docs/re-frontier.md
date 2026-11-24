@@ -96,9 +96,9 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 ### camera.update — Camera_Update's dispatch, call sites, View_LookAt and Camera_BGCheckInfo
 - status: re-verified
 - deps: camera.fields
-- evidence: z3d-mods' free camera built on it orbits Link in Kokiri Forest, stays inside Dodongo's Cavern's corridor walls and hands back on L, first person, text, the Market's fixed view and cutscenes (runs oot-fc6, oot-fc8); disassembly: the three bl Camera_Update sites (0x2E2DF8, 0x2E437C, 0x2E43A0), the settings and function tables loaded at 0x2D8890/0x2D88D4, the camDir store at 0x2D93EC, Camera_BGCheckInfo's reads and writes of colChk
+- evidence: z3d-mods' free camera built on it orbits Link in Kokiri Forest, stays inside Dodongo's Cavern's corridor walls and hands back on L, first person, text, the Market's fixed view and cutscenes (runs oot-fc6, oot-fc8); disassembly: the three bl Camera_Update sites (0x2E2DF8, 0x2E437C, 0x2E43A0), the settings and function tables loaded at 0x2D8890/0x2D88D4, the camDir store at 0x2D93EC, Camera_BGCheckInfo's reads and writes of colChk; a write watch on the view with the Slingshot aimed in the Deku Tree shows Gameplay_Draw's second update and View_Apply (0x2E2DFC, 0x2E2E08) only while aimed, View.updateCamera (+0x1D9) set for the draw
 - where: docs/camera.md
-- gap: 
+- gap: what sets View.updateCamera each tick in first person
 - notes: 
 
 ### camera.settings — sCameraSettings and the function each setting and mode runs

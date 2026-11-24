@@ -46,7 +46,8 @@ typedef struct {
     /* 0x1C8 */ Vec3f  unk_1C8;
     /* 0x1D4 */ f32    unk_1D4;
     /* 0x1D8 */ s8     flags;
-    /* 0x1D9 */ char   unk_1D9[0x003];
+    /* 0x1D9 */ s8     updateCamera; // set: Gameplay_Draw updates the active camera again (first person, aimed items)
+    /* 0x1DA */ char   unk_1DA[0x002];
 } View; // size = 0x1DC
 
 typedef struct {

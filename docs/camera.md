@@ -6,7 +6,11 @@ Findings from z3d-mods (its right-stick free camera), checked on the USA build i
 - `Play_Update` (0x2E2E60) updates the cameras at its end: the inactive ones in a loop
   (`bl Camera_Update` at +0x151C, 0x2E437C), then the active one, `cameraPtrs[activeCamera]`
   (+0x1540, 0x2E43A0). `Gameplay_Draw` (0x2E25F0) runs the active camera's update once more
-  (+0x808, 0x2E2DF8) when the byte at `PlayState + 0x361` is set, and clears it.
+  (+0x808, 0x2E2DF8) when the byte at `PlayState + 0x361` (`View.updateCamera`) is set, then
+  `View_Apply` (0x4592D0, at +0x814), and clears it. The byte is set every tick in first person
+  and with an aimed item, so there the drawn view is the one built from `Actor.focus` after the
+  player's update; it reads 0 between ticks. Seen by a write watch on the view (Deku Tree,
+  Slingshot aimed): the writes at 0x2E2DFC and 0x2E2E08 appear only while aimed.
   `Gameplay_Update` (0x45238C) calls `Play_Update` and tail-calls `Gameplay_Draw` (+0xA8).
 - `Camera_Update(Vec3s* out, Camera* camera)` (0x2D84C4) picks the camera function as
   `sCameraFunctions[sCameraSettings[setting & 0xFF].cameraModes[mode & 0xFF].funcIdx]` (the `blx`
