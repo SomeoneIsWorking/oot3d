@@ -183,6 +183,16 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 - gap: aimed items not run; zero play and zero drift read in the code and seen only in MM3D's same reader; what sets bit 1 of lookFlags
 - notes: 
 
+## file-select
+
+### file-select.layout — file select's quads, the touch screen's projection and The One Screen's fades on the top screen
+- status: re-verified
+- deps: 
+- evidence: quad tables at 0x5055B8 and +0x58 moved by an executable patch (BACK in the corner, fs-check); TouchScreen2D_BeginLayer0 to 3's projections widened at their Camera2D_SetMatrices calls; Presentation_DrawQueued's fade viewport (0x616CC4) grown 400 / 320 fades the whole screen (fade2, inputtest file-fade)
+- where: docs/file_select.md
+- gap: the fade primitive's own vertices (0x3339E8) not read
+- notes: 
+
 ## frame
 
 ### frame.loop — one tick: logic, draw, list run

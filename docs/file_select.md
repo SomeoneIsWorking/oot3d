@@ -40,3 +40,15 @@ file select is up: rows 0 to 400, and clip y = 0.8 - x / 200 (x -40 to 360) in a
 Every quad stays where it was and BACK, moved 40 to the left, shows in the corner (fs-check). The
 touch screen's own pass draws with the same projection, so on the touch screen itself file select
 is narrowed to its middle 256 pixels; with The One Screen that screen is not shown.
+
+## Its fades
+
+The One Screen draws file select's fades (the dim after Start on a file, lane 6 of the queue at
+0x5C0BA8) in its promoted pass: `Presentation_DrawQueued` binds a viewport of rows 0 to 400
+(`glViewport`, 0x2FEABC, called at 0x616CC4), draws the fade, then binds rows 40 to 360 again
+(0x616CE0). The fade is a quad over the touch screen's 0 to 320 drawn with the touch screen's
+projection, so the wider viewport alone spreads it over the top screen. Under z3d-mods'
+projection (x -40 to 360) that quad covers rows 40 to 360 only: the sides and BACK stay bright.
+z3d-mods grows that one viewport by 400 / 320 about its middle (rows -50 to 450) while file select
+is up, and the fade covers the whole screen (fade2, `inputtest file-fade`). The full touch-screen
+quads at (0, 0) to (320, 240) are not the fade: widening them changed nothing.
