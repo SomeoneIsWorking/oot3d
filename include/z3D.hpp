@@ -333,6 +333,26 @@ typedef struct FileChoose {
 #define FILE_CHOOSE_QUAD_BACK_LIT 118 // to 120: the BACK button lit
 #define FILE_CHOOSE_QUAD_BACK 173 // and 174: the BACK button
 
+// The pause screens' BACK quads (docs/pause.md): BACK lit and its two more, then BACK and one more.
+#define ITEM_MENU_QUAD_BACK_LIT 3
+#define ITEM_MENU_QUAD_BACK 26
+#define GEAR_MENU_QUAD_BACK_LIT 25
+#define GEAR_MENU_QUAD_BACK 30
+#define MAP_MENU_QUAD_BACK_LIT 7 // to 11: BACK lit in strips
+#define MAP_MENU_QUAD_BACK 19
+#define MAP_MENU_OTHER_QUAD_BACK_LIT 10
+#define MAP_MENU_OTHER_QUAD_BACK 39
+#define SAVE_MENU_QUAD_BACK_LIT 15
+#define SAVE_MENU_QUAD_BACK 38
+
+// The touch screen's backdrop, the brown book behind the pause screens: a model that
+// TouchScreen2D_BeginLayer0 draws through its vtable's fourth entry (0x3F9680) before the screens.
+typedef struct MenuBackdrop {
+    /* 0x00 */ void* vtable; // 0x4EBD60
+    /* 0x04 */ char unk_04[0x8];
+    /* 0x0C */ MTX34 transform; // identity: the book spans the touch screen's x 0 to 320
+} MenuBackdrop;
+
 // The gameplay HUD (gHud).
 typedef struct Hud {
     /* 0x00 */ struct PlayState* play;

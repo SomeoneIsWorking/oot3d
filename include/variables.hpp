@@ -32,10 +32,21 @@ extern CameraSetting sCameraSettings[78]; //0x00516ff0
 
 extern Hud gHud; //0x0050af34
 extern FileChoose gFileChoose; //0x00504fa0
-// The items and gear screens' state words: MENU_SCREEN_CLOSED, or MENU_SCREEN_UP while theirs is up.
+// The items, gear and map screens' state words: MENU_SCREEN_CLOSED, or MENU_SCREEN_UP while theirs is up.
 extern s32 gItemMenuState; //0x0050672c
 extern s32 gItemMenuCursorNode; //0x00506760
 extern s32 gGearMenuState; //0x00504484
+extern s32 gMapMenuState; //0x00506ce8
+// The save screen ("Save your progress?"): its state word, the same way.
+extern s32 gSaveMenuState; //0x0050a530
+// The pause screens' quad places, read when a screen opens: quad i is at quadPositions[i], two
+// floats in the touch screen's pixels from the top left (docs/pause.md).
+extern f32 gItemMenuQuadPositions[37][2]; //0x005067b8
+extern f32 gGearMenuQuadPositions[41][2]; //0x005044dc
+// The map screen's two layouts: the overworld map's, and one not drawn on it.
+extern f32 gMapMenuQuadPositions[30][2]; //0x005073a0
+extern f32 gMapMenuOtherQuadPositions[50][2]; //0x00506d60
+extern f32 gSaveMenuQuadPositions[78][2]; //0x0050a54c
 #define MENU_SCREEN_CLOSED 0
 #define MENU_SCREEN_UP 2
 // The ocarina screen (docs/ocarina.md): its state, and the entry of its song list on show, -1 for none.

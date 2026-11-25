@@ -193,6 +193,16 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 - gap: the fade primitive's own vertices (0x3339E8) not read
 - notes: 
 
+## pause
+
+### pause.layout — the pause screens' state words, BACK quads and backdrop on the top screen
+- status: re-verified
+- deps: file-select.layout
+- evidence: state words read 2 with each screen up; each screen's batch corners matched to its position table, BACK moved by an executable patch on items, gear, overworld and Deku Tree map and save (pages2, pages3); the backdrop model's transform scaled to 0.5 halved the book (bg-m0), spread to x -40 to 360 at its draw (0x6156EC)
+- where: docs/pause.md
+- gap: the map's second layout is the Deku Tree's here, other dungeons not seen; the screens' touch hit areas not read
+- notes: 
+
 ## frame
 
 ### frame.loop — one tick: logic, draw, list run
