@@ -416,31 +416,39 @@ typedef struct ItemMenu {
 
 #define ITEM_MENU_COLUMNS 6
 // The grid's top left and pitch, 11, 7 and 48 pixels, are three copies of float literals:
-// ItemMenu_NodePosition's places the items (its top at +0xC0, left +0xD0, pitch +0xCC),
-// ItemMenu_UpdateCursor's the cursor (top +0x32C), ItemMenu_UpdateTouch's maps a touch to an
-// item (top +0x314) and ItemMenu_PlaceCursor's aims the cursor's corners 2 px outside the node
-// (top +0x118). Moving all four moves the grid with its cursor and touches.
+// The grid's place, node (col, row) at left + pitch * col, top + pitch * row, is literals in four
+// functions: ItemMenu_NodePosition's places the items, ItemMenu_UpdateCursor's the cursor,
+// ItemMenu_UpdateTouch's maps a touch to an item (with 1 / pitch) and ItemMenu_PlaceCursor's aims
+// the cursor's corners 2 px outside the node. Each is the offset of its literal in the function.
 #define ITEM_MENU_NODE_POSITION_TOP 0xC0
+#define ITEM_MENU_NODE_POSITION_PITCH 0xCC
+#define ITEM_MENU_NODE_POSITION_LEFT 0xD0
+#define ITEM_MENU_UPDATE_CURSOR_PITCH 0x324
+#define ITEM_MENU_UPDATE_CURSOR_LEFT 0x328
 #define ITEM_MENU_UPDATE_CURSOR_TOP 0x32C
+#define ITEM_MENU_UPDATE_TOUCH_LEFT 0x30C
+#define ITEM_MENU_UPDATE_TOUCH_INVERSE_PITCH 0x310
 #define ITEM_MENU_UPDATE_TOUCH_TOP 0x314
+#define ITEM_MENU_UPDATE_TOUCH_PITCH 0x32C
+#define ITEM_MENU_PLACE_CURSOR_PITCH 0x114
 #define ITEM_MENU_PLACE_CURSOR_TOP 0x118
+#define ITEM_MENU_PLACE_CURSOR_LEFT 0x120
 // ItemMenu_Update hit-tests BACK and the tabs with Touch_InRect (0x33F428: x, y, width, height in
-// touch pixels, inclusive, and the stylus's phase), each rect three times as immediates: these are
-// the offsets of each call's `mov r1, #y`, and for BACK its `mov r0, #x` follows and its
-// `mov r2, #width` precedes it. BACK (4, 204, 52, 32), Items (182, 198, 72, 42), Gear (66, 204,
-// 54, 34), Map (124, 206, 54, 34).
-#define ITEM_MENU_BACK_TOUCH_Y_0 0x138
-#define ITEM_MENU_BACK_TOUCH_Y_1 0x2B0
-#define ITEM_MENU_BACK_TOUCH_Y_2 0x778
-#define ITEM_MENU_ITEMS_TOUCH_Y_0 0x160
-#define ITEM_MENU_ITEMS_TOUCH_Y_1 0x278
-#define ITEM_MENU_ITEMS_TOUCH_Y_2 0x7E4
-#define ITEM_MENU_GEAR_TOUCH_Y_0 0x188
-#define ITEM_MENU_GEAR_TOUCH_Y_1 0x1F4
-#define ITEM_MENU_GEAR_TOUCH_Y_2 0x850
-#define ITEM_MENU_MAP_TOUCH_Y_0 0x1B4
-#define ITEM_MENU_MAP_TOUCH_Y_1 0x310
-#define ITEM_MENU_MAP_TOUCH_Y_2 0x8BC
+// touch pixels, inclusive, and the stylus's phase on the stack), each rect three times as
+// immediates; these are the offsets of the calls. BACK (4, 204, 52, 32), Items (182, 198, 72, 42),
+// Gear (66, 204, 54, 34), Map (124, 206, 54, 34).
+#define ITEM_MENU_BACK_TOUCH_CALL_0 0x140
+#define ITEM_MENU_BACK_TOUCH_CALL_1 0x2B8
+#define ITEM_MENU_BACK_TOUCH_CALL_2 0x780
+#define ITEM_MENU_ITEMS_TOUCH_CALL_0 0x168
+#define ITEM_MENU_ITEMS_TOUCH_CALL_1 0x280
+#define ITEM_MENU_ITEMS_TOUCH_CALL_2 0x7EC
+#define ITEM_MENU_GEAR_TOUCH_CALL_0 0x190
+#define ITEM_MENU_GEAR_TOUCH_CALL_1 0x1FC
+#define ITEM_MENU_GEAR_TOUCH_CALL_2 0x858
+#define ITEM_MENU_MAP_TOUCH_CALL_0 0x1BC
+#define ITEM_MENU_MAP_TOUCH_CALL_1 0x318
+#define ITEM_MENU_MAP_TOUCH_CALL_2 0x8C4
 #define ITEM_MENU_ROWS 4
 // ItemMenu_UpdateCursor's wraps of the cursor's column: cmp r0, #6 after a move right, movmi r0, #5
 // after a move left.

@@ -78,7 +78,7 @@ it, with its own places for the button nodes 5, 11, 17 and 23. Their tops are th
 
 BACK and the tabs are hit-tested apart from their quads: `ItemMenu_Update` calls `Touch_InRect`
 (0x33F428; x, y, width, height in touch pixels, inclusive, and the stylus's phase) with each rect
-as immediates, three times each (`ITEM_MENU_*_TOUCH_Y_*`): BACK (4, 204, 52, 32), Items (182, 198,
+as immediates, three times each (`ITEM_MENU_*_TOUCH_CALL_*`): BACK (4, 204, 52, 32), Items (182, 198,
 72, 42), Gear (66, 204, 54, 34) and Map (124, 206, 54, 34). Moving a quad does not move its touch.
 
 `ItemMenu_Init` (0x46B534, once, from the menu's constructor at 0x455C40) builds the screen's
