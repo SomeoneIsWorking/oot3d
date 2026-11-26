@@ -30,6 +30,12 @@ corners' pointer at +0xC) and the table that holds the same places.
 | Map, the other layout | `gMapMenuOtherQuadPositions` (0x506D60) | 50 | 10 to 12 | 39, 40 |
 | Save | `gSaveMenuQuadPositions` (0x50A54C, sizes follow at 0x50A7BC) | 78 | 15 to 17 | 38, 39 |
 
+The item screen's sizes follow its positions at `gItemMenuQuadSizes` (0x5068E0). Its panel is
+quads 0 and 1, 124x200 each at (4, 0) and (128, 0), the second's cell mirrored. Under it the tabs'
+bar is quads 6 to 8 (`ITEM_MENU_QUAD_TAB_BAR`): an 8 wide end at (64, 202), a one-texel cell
+stretched 176 wide at (72, 202) and the end mirrored at (248, 202); with BACK lit (0 to 58) it
+runs under the panel's whole width (z3d-mods run centre4).
+
 BACK lit is a 50x38 and an 8x38 quad at (0, 202) and (50, 202) over a 56-wide one at (0, 204);
 the overworld map cuts that last one into strips 4, 16 and 16 tall (quads 9 to 11). BACK is 40
 and 16 wide at (0, 204), the save screen's at (0, 206). The map screen's object holds both

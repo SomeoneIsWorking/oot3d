@@ -426,6 +426,7 @@ typedef struct ItemMenu {
 #define ITEM_MENU_DRAW_LAYOUT_40_CALL 0x88
 
 // The pause screens' BACK quads (docs/pause.md): BACK lit and its two more, then BACK and one more.
+#define ITEM_MENU_QUAD_TAB_BAR 6 // to 8: the tabs' bar from x 64, its left end, its middle stretched to 248 and its right end
 #define ITEM_MENU_QUAD_BACK_LIT 3
 #define ITEM_MENU_QUAD_BACK 26
 #define ITEM_MENU_QUAD_COLUMN 12 // the item buttons' column: the stone under it

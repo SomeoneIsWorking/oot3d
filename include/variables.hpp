@@ -43,6 +43,8 @@ extern s32 gSaveMenuState; //0x0050a530
 // The pause screens' quad places, read when a screen opens: quad i is at quadPositions[i], two
 // floats in the touch screen's pixels from the top left (docs/pause.md).
 extern f32 gItemMenuQuadPositions[37][2]; //0x005067b8
+// Their widths and heights, the same way.
+extern f32 gItemMenuQuadSizes[37][2]; //0x005068e0
 // The item screen's quads' cells in menu_item_parts00.ctxb, in its pixels, set by ItemMenu_Init.
 extern f32 gItemMenuQuadUvs[37][2]; //0x00506b30
 extern f32 gItemMenuQuadUvSizes[37][2]; //0x00506a08

@@ -25,6 +25,11 @@ owner is the ocarina, which copies the ocarina's quads into its scene in the top
 pixels. A layout drawn after that call, from `TopHud_Draw`, lands on the top screen over the song
 list (z3d-mods run oi40); one drawn inside `OcarinaScreen_Draw` does not show.
 
+`Ocarina_Draw` places the song list at scale 0.85 centred on the top screen: x is
+(width - 320 * 0.85) / 2, the width loaded by `vldr s6` at 0x610EB0 (`ED9F3A27`) from the literal
+400.0 at 0x610F54, which the play page's branch (0x610E8C) shares. A different width there centres
+the list in that many pixels from the left edge (z3d-mods run centre1).
+
 ## The song list
 Twelve entries, four to a row. The cursor's column and row are the words at 0x5093FC and
 0x509400, and `gOcarinaSongListShown` (0x509404) is the entry on show, column + row * 4 (live:
