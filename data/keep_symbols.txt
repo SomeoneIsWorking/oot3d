@@ -5319,7 +5319,7 @@
 --keep=FUN_002f8af4
 --keep=FUN_002f8b80
 --keep=HudItemButtons_SetAlpha
---keep=FUN_002f8d40
+--keep=HudItemButtons_SetRect2D
 --keep=HudItemButtons_SetIcon
 --keep=HudItemButtons_Init
 --keep=FUN_002f9430

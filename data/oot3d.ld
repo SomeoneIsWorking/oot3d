@@ -21592,9 +21592,9 @@ text 0x00100000
 	{
 		* (i.HudItemButtons_SetAlpha)
 	}
-	FUN_002f8d40 0x002f8d40
+	HudItemButtons_SetRect2D 0x002f8d40
 	{
-		* (i.FUN_002f8d40)
+		* (i.HudItemButtons_SetRect2D)
 	}
 	HudItemButtons_SetIcon 0x002f8d74
 	{

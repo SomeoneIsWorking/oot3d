@@ -77,11 +77,13 @@ and +0x48.
 A `HudItemButtons` of the screen's own kind can be made and drawn by a patch: `Heap_New`
 (0x313CE0) of 0x474 bytes, `HudItemButtons_Init(layout, count, 0, noCounts)`, then
 `MenuModel_SetTexture` on its model (+4) and `QuadBatch_SetUvs` (0x2FC40C, cells in the texture's
-pixels over the batch's `textureSize`) for any sheet; `HudItemButtons_SetRect` (0x2E6CD4, ints),
+pixels over the batch's `textureSize`) for any sheet; `HudItemButtons_SetRect2D` (0x2F8D40, ints: `HudItemButtons_SetRect`, 0x2E6CD4, with its z, a float in s0, at 0),
 `HudItemButtons_SetAlpha` (0x2F8CE0, the alpha in s0), `HudItemButtons_UpdateAmmo` and
 `HudItemButtons_Draw` each frame. With noCounts 1 its quads draw as plain white in their shape;
-with 0 they draw the texture (z3d-mods runs oi40, oi41). A node's `HudCount` sizes its digits for
-a 42 pixel icon at the icon's x + 18; `QuadBatch_SetRects` (0x2FC534) on the count's batch after
+with 0 they draw the texture (z3d-mods runs oi40, oi41). A quad whose z is NaN, as a call that
+leaves s0 unset can make it, is not drawn on the touch screen's layers but is on the top screen's
+HUD (oi53). A node's `HudCount` sizes its digits for
+a 42 pixel icon at the icon's x + 18; `QuadBatch_SetRects` (0x2FC534, its z in s0) on the count's batch after
 `UpdateAmmo` places them, and their alpha starts at 0. z3d-mods' slot column is drawn this way on
 the item screen and, from The One Screen's top screen copy (docs/ocarina.md), on the song list.
 
@@ -91,7 +93,7 @@ there and draws the slots' labels from it (oi42).
 
 ## Quad batches
 A layout's quads are a `QuadBatch`: the count, the sheet's size, the base corners (four `Vec3f`
-a quad, set with the quad's rect: 0x2E6CD4 takes a layout, a quad and x, y, width and height),
+a quad, set with the quad's rect: 0x2E6CD4 takes a layout, a quad, x, y, width and height and a z in s0),
 the drawn corners and one `Vec2f` offset a quad at +0x1C. Each frame `QuadBatch_ApplyOffsets` (0x2F9A1C) writes every drawn
 corner as the base corner plus its quad's offset, and the layout's draw (0x2E6ED0) hands the drawn
 corners to the GPU through the identity transform at 0x2E7050, shared by every such layout.
