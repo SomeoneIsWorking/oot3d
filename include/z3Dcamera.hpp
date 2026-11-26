@@ -23,6 +23,7 @@
 #define CAM_FUNC_NORM1 2
 #define CAM_FUNC_NORM3 4
 #define CAM_FUNC_JUMP1 22
+#define CAM_FUNC_UNIQ1 42 // Camera_Unique1, hanging from a ledge and pulling up onto it
 #define CAM_FUNC_SPEC9 0x46 // Camera_Special9, the room door camera
 
 // Camera_Special9's animState when it has moved the eye to the door's far side.

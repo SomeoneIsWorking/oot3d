@@ -39,7 +39,9 @@ Mode 0 (`CAM_MODE_NORMAL`) of a setting runs `Camera_Normal1` for settings 0x01-
 function 20; 0x12-0x4D otherwise run fixed, pivoting, door, start or scripted functions. In a
 normal setting, mode 1 (Z-targeting without a target, `CAM_MODE_Z_PARALLEL`) runs function 7,
 modes 2-4 (targets and talking) 12, 14 and 27, first person and the aimed items (6-11) 19 and 66,
-climbing 23, jumping and falling (13, 16) `Camera_Jump1`, hanging 42, the spin charge 30.
+climbing 23, jumping and falling (13, 16) `Camera_Jump1`, hanging and pulling up onto a ledge (14)
+42 (`Camera_Unique1`), the spin charge 30. Kokiri Forest's south-west log walkway sits 40 units over
+the ground, so stepping back onto it from the ground runs mode 14 for about 11 ticks.
 
 Settings read live (`Camera.setting`, File 1 as a child):
 
@@ -83,7 +85,7 @@ memory itself.
 
 ## Checking it
 z3d-mods' free camera replaces both `bl Camera_Update` calls for the active camera and, while the
-selected function is `Camera_Normal1` or `Camera_Jump1`, places the eye on its own orbit around
+selected function is `Camera_Normal1`, `Camera_Jump1` or `Camera_Unique1`, places the eye on its own orbit around
 the game's `at` after the game's update. In Kokiri Forest the C-stick turns the view around Link
 and tilts it; L, first person and talking hand the view back on the same frame; the Market
 and a running cutscene do not react; in Dodongo's Cavern's entrance corridor the eye stays inside
