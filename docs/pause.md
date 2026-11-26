@@ -31,10 +31,10 @@ corners' pointer at +0xC) and the table that holds the same places.
 | Save | `gSaveMenuQuadPositions` (0x50A54C, sizes follow at 0x50A7BC) | 78 | 15 to 17 | 38, 39 |
 
 The item screen's sizes follow its positions at `gItemMenuQuadSizes` (0x5068E0). Its panel is
-quads 0 and 1, 124x200 each at (4, 0) and (128, 0), the second's cell mirrored. Under it the tabs'
-bar is quads 6 to 8 (`ITEM_MENU_QUAD_TAB_BAR`): an 8 wide end at (64, 202), a one-texel cell
-stretched 176 wide at (72, 202) and the end mirrored at (248, 202); with BACK lit (0 to 58) it
-runs under the panel's whole width (z3d-mods run centre4).
+quads 0 and 1 (`ITEM_MENU_QUAD_PANEL`), 124x200 each at (4, 0) and (128, 0), the second's cell
+mirrored; its cell has a lit bevel along the top only. Under it the tabs' bar is quads 6 to 8
+(`ITEM_MENU_QUAD_TAB_BAR`): an 8 wide end at (64, 202), a one-texel cell stretched 176 wide at
+(72, 202) and the end mirrored at (248, 202), with BACK lit from 0 to 58.
 
 BACK lit is a 50x38 and an 8x38 quad at (0, 202) and (50, 202) over a 56-wide one at (0, 204);
 the overworld map cuts that last one into strips 4, 16 and 16 tall (quads 9 to 11). BACK is 40
@@ -76,7 +76,7 @@ pixels; the column's stone is quad 12's cell (192, 0), 64x240, and a round butto
 21: its shadow's halves (168, 88), 24x48, the second mirrored, and its stone (124, 0), 44x44 at
 (+2, +2). Its model (+0x1C) is bound to `MENU_TEXTURE_ITEM_PARTS` with `MenuModel_SetTexture`
 (0x348A64). It ends with `ItemMenu_Reset` at +0x430 (`ITEM_MENU_INIT_LAST_CALL`).
-`ItemMenu_Draw` (0x434C5C) draws the screen's model, then the grid, the cursor, the letters and
+`ItemMenu_Draw` (0x434C5C) draws the screen's model (`blx r1` at +0x20, `ITEM_MENU_DRAW_MODEL_CALL`), then the grid, the cursor, the letters and
 the layouts at +0x40 (`bl HudItemButtons_Draw` at +0x88, `ITEM_MENU_DRAW_LAYOUT_40_CALL`), +0x44
 and +0x48.
 

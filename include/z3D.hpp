@@ -424,8 +424,11 @@ typedef struct ItemMenu {
 // ItemMenu_Draw's bl HudItemButtons_Draw for the layout at +0x40, after the grid, the cursor and
 // the letters.
 #define ITEM_MENU_DRAW_LAYOUT_40_CALL 0x88
+// ItemMenu_Draw's draw of the screen's model (`blx r1`), before every layout.
+#define ITEM_MENU_DRAW_MODEL_CALL 0x20
 
 // The pause screens' BACK quads (docs/pause.md): BACK lit and its two more, then BACK and one more.
+#define ITEM_MENU_QUAD_PANEL 0 // and 1: the grid's panel, its left half and its right half mirrored, rimmed at the top only
 #define ITEM_MENU_QUAD_TAB_BAR 6 // to 8: the tabs' bar from x 64, its left end, its middle stretched to 248 and its right end
 #define ITEM_MENU_QUAD_BACK_LIT 3
 #define ITEM_MENU_QUAD_BACK 26
