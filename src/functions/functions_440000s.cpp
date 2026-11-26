@@ -566,7 +566,7 @@ GLOBAL_ASM("asm/FUN_0045552c.s")
 
 GLOBAL_ASM("asm/FUN_004558e4.s")
 
-GLOBAL_ASM("asm/FUN_0045596c.s")
+GLOBAL_ASM("asm/PauseMenus_Init.s")
 
 GLOBAL_ASM("asm/FUN_00455d70.s")
 

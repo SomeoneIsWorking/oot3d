@@ -397,6 +397,21 @@ typedef struct ItemButtonLetters {
 #define ITEM_BUTTON_LETTERS 4
 
 // The item screen (gItemMenu, docs/pause.md).
+// The gear screen (gGearMenu): built once with the pause menus (PauseMenus_Init calls
+// GearMenu_Init); gGearMenuState is its +0x18.
+typedef struct GearMenu {
+    /* 0x00 */ char unk_00[0x0C];
+    /* 0x0C */ QuadBatch* quads; // from gGearMenuQuadPositions and gGearMenuQuadSizes
+} GearMenu;
+
+// The map screen (gMapMenu): built once with the pause menus (PauseMenus_Init calls MapMenu_Init),
+// not again when it opens.
+typedef struct MapMenu {
+    /* 0x00 */ char unk_00[0x10];
+    /* 0x10 */ QuadBatch* quads; // the overworld layout's, from gMapMenuQuadPositions
+    /* 0x14 */ QuadBatch* otherQuads; // from gMapMenuOtherQuadPositions
+} MapMenu;
+
 typedef struct ItemMenu {
     /* 0x00 */ char unk_00[0x1C];
     /* 0x1C */ void* model; // draws quads with menu_item_parts00.ctxb (ItemMenu_Init)
@@ -477,10 +492,46 @@ typedef struct ItemMenu {
 #define ITEM_MENU_ROUND_BUTTON_QUADS 3
 #define GEAR_MENU_QUAD_BACK_LIT 25
 #define GEAR_MENU_QUAD_BACK 30
+// Its tabs as the item screen's: the bar, the faces of Gear, Map and Items, and their frames.
+#define GEAR_MENU_QUAD_TAB_BAR 18 // to 20
+#define GEAR_MENU_QUAD_TABS 21 // to 23
+#define GEAR_MENU_QUAD_TAB_FRAMES 32 // to 40
+// PauseMenus_Init's call of GearMenu_Init.
+#define PAUSE_MENUS_GEAR_MENU_INIT_CALL 0x2E0
+// GearMenu_Update's calls of Touch_InRect for BACK (4, 202, 52, 32) and the tabs, twice each: Gear
+// (66, 198, 72, 42), Items (200, 206, 54, 34), Map (142, 206, 54, 34).
+#define GEAR_MENU_BACK_TOUCH_CALL_0 0xD4
+#define GEAR_MENU_BACK_TOUCH_CALL_1 0x650
+#define GEAR_MENU_GEAR_TOUCH_CALL_0 0xFC
+#define GEAR_MENU_GEAR_TOUCH_CALL_1 0x688
+#define GEAR_MENU_ITEMS_TOUCH_CALL_0 0x130
+#define GEAR_MENU_ITEMS_TOUCH_CALL_1 0x5CC
+#define GEAR_MENU_MAP_TOUCH_CALL_0 0x160
+#define GEAR_MENU_MAP_TOUCH_CALL_1 0x740
 #define MAP_MENU_QUAD_BACK_LIT 7 // to 11: BACK lit in strips
 #define MAP_MENU_QUAD_BACK 19
 #define MAP_MENU_OTHER_QUAD_BACK_LIT 10
 #define MAP_MENU_OTHER_QUAD_BACK 39
+// Each layout's tabs as the item screen's (ITEM_MENU_QUAD_TABS): the bar under them, the faces of
+// Gear, Map and Items and their frames, three each.
+#define MAP_MENU_QUAD_TAB_BAR 1 // to 3
+#define MAP_MENU_QUAD_TABS 4 // to 6
+#define MAP_MENU_QUAD_TAB_FRAMES 21 // to 29
+#define MAP_MENU_OTHER_QUAD_TAB_BAR 3 // to 5
+#define MAP_MENU_OTHER_QUAD_TABS 6 // to 8
+#define MAP_MENU_OTHER_QUAD_TAB_FRAMES 41 // to 49
+// PauseMenus_Init's call of MapMenu_Init.
+#define PAUSE_MENUS_MAP_MENU_INIT_CALL 0x2F8
+// MapMenu_Update's calls of Touch_InRect for BACK (4, 204, 52, 32) and the tabs, twice each: Map
+// (124, 198, 72, 42), Items (200, 206, 54, 34), Gear (66, 206, 54, 34).
+#define MAP_MENU_BACK_TOUCH_CALL_0 0x1D4
+#define MAP_MENU_BACK_TOUCH_CALL_1 0x3C4
+#define MAP_MENU_MAP_TOUCH_CALL_0 0x1FC
+#define MAP_MENU_MAP_TOUCH_CALL_1 0x430
+#define MAP_MENU_ITEMS_TOUCH_CALL_0 0x224
+#define MAP_MENU_ITEMS_TOUCH_CALL_1 0x338
+#define MAP_MENU_GEAR_TOUCH_CALL_0 0x250
+#define MAP_MENU_GEAR_TOUCH_CALL_1 0x530
 #define SAVE_MENU_QUAD_BACK_LIT 15
 #define SAVE_MENU_QUAD_BACK 38
 

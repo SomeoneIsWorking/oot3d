@@ -49,9 +49,14 @@ extern f32 gItemMenuQuadSizes[37][2]; //0x005068e0
 extern f32 gItemMenuQuadUvs[37][2]; //0x00506b30
 extern f32 gItemMenuQuadUvSizes[37][2]; //0x00506a08
 extern f32 gGearMenuQuadPositions[41][2]; //0x005044dc
+extern f32 gGearMenuQuadSizes[41][2]; //0x0050463c
+extern struct GearMenu gGearMenu; //0x0050446c
 // The map screen's two layouts: the overworld map's, and one not drawn on it.
 extern f32 gMapMenuQuadPositions[30][2]; //0x005073a0
 extern f32 gMapMenuOtherQuadPositions[50][2]; //0x00506d60
+extern f32 gMapMenuQuadSizes[30][2]; //0x00507490
+extern f32 gMapMenuOtherQuadSizes[50][2]; //0x00506ef0
+extern struct MapMenu gMapMenu; //0x00506cb0
 extern f32 gSaveMenuQuadPositions[78][2]; //0x0050a54c
 #define MENU_SCREEN_CLOSED 0
 #define MENU_SCREEN_UP 2

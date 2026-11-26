@@ -42,7 +42,14 @@ and 16 wide at (0, 204), the save screen's at (0, 206). The map screen's object 
 layouts' batches, the overworld's at +0x10 and the other's at +0x14: moving the first's corners
 moved the overworld map's frame, tabs and BACK; moving the second's moved nothing there. Inside
 the Deku Tree the map's BACK moves with the other layout's table (pages2), so it is likely the
-dungeon map's.
+dungeon map's. `MapMenu_Init` (0x46AC10, called by `PauseMenus_Init` 0x45596C) builds them once;
+opening the map does not build them again (z3d-mods watch on `gMapMenu` +0x10, mapwatch). Each has
+the item screen's tabs (`MAP_MENU_QUAD_TABS`, `_TAB_FRAMES`, `_TAB_BAR`), and `MapMenu_Update`
+(0x42D0C0) hit-tests BACK and the tabs with `Touch_InRect` as the item screen does
+(`MAP_MENU_*_TOUCH_CALL_*`). The gear screen is the same: `GearMenu_Init` (0x4670E4) builds its
+batch (`gGearMenu` +0x0C) once, its sizes are `gGearMenuQuadSizes` (0x50463C, three words after its
+positions' end), its tabs `GEAR_MENU_QUAD_TABS`, and `GearMenu_Update` (0x424300) hit-tests them
+(`GEAR_MENU_*_TOUCH_CALL_*`).
 
 The item screen's quads 12 to 24 are the item buttons' column right of the grid (x 256 to 320):
 12 the stone under it all, 13 to 18 the I and II squares at the top and bottom (17 and 18 the

@@ -10161,7 +10161,7 @@
 --keep=FUN_00423e48
 --keep=FUN_00423f54
 --keep=FUN_00423ff8
---keep=FUN_00424300
+--keep=GearMenu_Update
 --keep=FUN_00424bfc
 --keep=FUN_00424cb4
 --keep=FUN_00424efc
@@ -10227,7 +10227,7 @@
 --keep=FUN_0042cbe8
 --keep=FUN_0042cce8
 --keep=FUN_0042cd38
---keep=FUN_0042d0c0
+--keep=MapMenu_Update
 --keep=FUN_0042d9f0
 --keep=FUN_0042dab0
 --keep=FUN_0042dac8
@@ -10641,7 +10641,7 @@
 --keep=FUN_004554c4
 --keep=FUN_0045552c
 --keep=FUN_004558e4
---keep=FUN_0045596c
+--keep=PauseMenus_Init
 --keep=FUN_00455d70
 --keep=FUN_00455d84
 --keep=FUN_00455f18
@@ -10838,7 +10838,7 @@
 --keep=FUN_00466f28
 --keep=FUN_00466f58
 --keep=FUN_00467068
---keep=FUN_004670e4
+--keep=GearMenu_Init
 --keep=FUN_004673c0
 --keep=FUN_00467684
 --keep=FUN_00467c20
@@ -10867,7 +10867,7 @@
 --keep=FUN_0046aa44
 --keep=FUN_0046aa80
 --keep=FUN_0046aabc
---keep=FUN_0046ac10
+--keep=MapMenu_Init
 --keep=FUN_0046ac60
 --keep=FUN_0046ac98
 --keep=FUN_0046b0e4

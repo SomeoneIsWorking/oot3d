@@ -41192,9 +41192,9 @@ text 0x00100000
 	{
 		* (i.FUN_00423ff8)
 	}
-	FUN_00424300 0x00424300
+	GearMenu_Update 0x00424300
 	{
-		* (i.FUN_00424300)
+		* (i.GearMenu_Update)
 	}
 	FUN_00424bfc 0x00424bfc
 	{
@@ -41456,9 +41456,9 @@ text 0x00100000
 	{
 		* (i.FUN_0042cd38)
 	}
-	FUN_0042d0c0 0x0042d0c0
+	MapMenu_Update 0x0042d0c0
 	{
-		* (i.FUN_0042d0c0)
+		* (i.MapMenu_Update)
 	}
 	FUN_0042d9f0 0x0042d9f0
 	{
@@ -43136,9 +43136,9 @@ text 0x00100000
 	{
 		* (i.FUN_004558e4)
 	}
-	FUN_0045596c 0x0045596c
+	PauseMenus_Init 0x0045596c
 	{
-		* (i.FUN_0045596c)
+		* (i.PauseMenus_Init)
 	}
 	FUN_00455d70 0x00455d70
 	{
@@ -43924,9 +43924,9 @@ text 0x00100000
 	{
 		* (i.FUN_00467068)
 	}
-	FUN_004670e4 0x004670e4
+	GearMenu_Init 0x004670e4
 	{
-		* (i.FUN_004670e4)
+		* (i.GearMenu_Init)
 	}
 	FUN_004673c0 0x004673c0
 	{
@@ -44040,9 +44040,9 @@ text 0x00100000
 	{
 		* (i.FUN_0046aabc)
 	}
-	FUN_0046ac10 0x0046ac10
+	MapMenu_Init 0x0046ac10
 	{
-		* (i.FUN_0046ac10)
+		* (i.MapMenu_Init)
 	}
 	FUN_0046ac60 0x0046ac60
 	{

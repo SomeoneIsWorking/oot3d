@@ -124,7 +124,7 @@ GLOBAL_ASM("asm/FUN_00423f54.s")
 
 GLOBAL_ASM("asm/FUN_00423ff8.s")
 
-GLOBAL_ASM("asm/FUN_00424300.s")
+GLOBAL_ASM("asm/GearMenu_Update.s")
 
 GLOBAL_ASM("asm/FUN_00424bfc.s")
 
@@ -256,7 +256,7 @@ GLOBAL_ASM("asm/FUN_0042cce8.s")
 
 GLOBAL_ASM("asm/FUN_0042cd38.s")
 
-GLOBAL_ASM("asm/FUN_0042d0c0.s")
+GLOBAL_ASM("asm/MapMenu_Update.s")
 
 GLOBAL_ASM("asm/FUN_0042d9f0.s")
 
