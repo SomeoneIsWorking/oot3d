@@ -39,15 +39,26 @@ the Deku Tree the map's BACK moves with the other layout's table (pages2), so it
 dungeon map's.
 
 The item screen's quads 12 to 24 are the item buttons' column right of the grid (x 256 to 320):
-its frame (12 to 18, from 0 to 200) and two buttons' frames at y 70 and 122 (19 to 24); 0 and 1
-are the grid's frame, 6 to 11 and 28 to 36 the tabs. Moved 200 to the right (z3d-mods
-`inputtest pause-wide`), the column's stone went and the book showed there, but the buttons'
-letters (the game's I, X, Y and II, which the texture set draws as LB, Y, X and RB) stayed: they
-are four other quads, 11 to 13 pixels square at (270, 8), (270, 67), (260, 119) and (270, 192).
-Their corners are in the heap as (x, y, 0) triples (copies at 0x8757510 and 0x8762830 in run oi12),
-but zeroing either copy left them drawn, their places are not in the initialised data from
-0x4F0000 to 0x520000, and neither The One Screen's `Items_BeforeSubmit` (its gate at 0x610A2C) nor
-its HUD `labels` scene draws them (both switched off, run oi6).
+12 the stone under it all, 13 to 18 the I and II squares at the top and bottom (17 and 18 the
+buttons, 52 wide), 19 to 21 and 22 to 24 the two round buttons at y 70 and 122 (48 wide); 0 and 1
+are the grid's frame, 6 to 11 and 28 to 36 the tabs.
+
+The buttons' letters are not in that table. They are `gItemMenu.buttonLetters` (`ItemButtonLetters`,
+the object at +0x30 of the item screen's object 0x5066F8), four quads of a 128x128 sheet in the
+`QuadBatch` inline at its +0x48: X at (270, 67), Y at (260, 119), I at (270, 8) and II at (270, 192),
+11 to 13 pixels square (`ITEM_BUTTON_LETTER_*`). Their rects are set once, from integers in the
+code, so their places are in no data table; 0x2F94A8 runs the object each frame (the item screen's
+update, 0x433A90, calls it beside `HudItemButtons_UpdateAmmo` for the grid and the buttons' items
+at +0x3C to +0x48). A write watch on a letter's corner caught that frame's rebuild. Adding -150 to
+each letter's `QuadBatch.offsets` entry, or to its base corners, drew all four 150 to the left
+and they stayed there (z3d-mods runs oi19, oi20).
+
+## Quad batches
+A layout's quads are a `QuadBatch`: the count, the sheet's size, the base corners (four `Vec3f`
+a quad, set with the quad's rect: 0x2E6CD4 takes a layout, a quad and x, y, width and height),
+the drawn corners and one `Vec2f` offset a quad at +0x1C. Each frame 0x2F9A1C writes every drawn
+corner as the base corner plus its quad's offset, and the layout's draw (0x2E6ED0) hands the drawn
+corners to the GPU through the identity transform at 0x2E7050, shared by every such layout.
 
 ## The backdrop
 

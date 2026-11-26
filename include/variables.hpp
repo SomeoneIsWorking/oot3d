@@ -33,6 +33,7 @@ extern CameraSetting sCameraSettings[78]; //0x00516ff0
 extern Hud gHud; //0x0050af34
 extern FileChoose gFileChoose; //0x00504fa0
 // The items, gear and map screens' state words: MENU_SCREEN_CLOSED, or MENU_SCREEN_UP while theirs is up.
+extern struct ItemMenu gItemMenu; //0x005066f8
 extern s32 gItemMenuState; //0x0050672c
 extern s32 gItemMenuCursorNode; //0x00506760
 extern s32 gGearMenuState; //0x00504484

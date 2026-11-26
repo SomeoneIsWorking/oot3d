@@ -333,6 +333,38 @@ typedef struct FileChoose {
 #define FILE_CHOOSE_QUAD_BACK_LIT 118 // to 120: the BACK button lit
 #define FILE_CHOOSE_QUAD_BACK 173 // and 174: the BACK button
 
+// A touch screen layout's quads (docs/pause.md, "Quad batches"). Each frame the drawn corners are
+// rebuilt as the base corners plus each quad's offset (0x2F9A1C), so an offset moves a quad.
+typedef struct QuadBatch {
+    /* 0x00 */ s32 count;
+    /* 0x04 */ f32 textureSize[2];
+    /* 0x0C */ Vec3f (*corners)[4]; // base corners, set with the quad's rect
+    /* 0x10 */ Vec3f (*drawnCorners)[4];
+    /* 0x14 */ char unk_14[0x08];
+    /* 0x1C */ Vec2f* offsets; // one a quad, added to its base corners
+} QuadBatch;
+
+// The item screen's button letters (I, X, Y and II), ItemMenu.buttonLetters; 0x2F94A8 runs it each frame.
+typedef struct ItemButtonLetters {
+    /* 0x00 */ char unk_00[0x08];
+    /* 0x08 */ QuadBatch* quads; // ITEM_BUTTON_LETTERS of them, the batch at +0x48
+    /* 0x0C */ char unk_0C[0x3C];
+    /* 0x48 */ QuadBatch batch;
+} ItemButtonLetters;
+
+#define ITEM_BUTTON_LETTER_X 0 // their quads: the letters right of each button of the column
+#define ITEM_BUTTON_LETTER_Y 1
+#define ITEM_BUTTON_LETTER_I 2
+#define ITEM_BUTTON_LETTER_II 3
+#define ITEM_BUTTON_LETTERS 4
+
+// The item screen (gItemMenu, docs/pause.md).
+typedef struct ItemMenu {
+    /* 0x00 */ char unk_00[0x30];
+    /* 0x30 */ ItemButtonLetters* buttonLetters;
+    /* 0x34 */ s32 state; // gItemMenuState
+} ItemMenu;
+
 // The pause screens' BACK quads (docs/pause.md): BACK lit and its two more, then BACK and one more.
 #define ITEM_MENU_QUAD_BACK_LIT 3
 #define ITEM_MENU_QUAD_BACK 26
