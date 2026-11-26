@@ -415,6 +415,32 @@ typedef struct ItemMenu {
 } ItemMenu;
 
 #define ITEM_MENU_COLUMNS 6
+// The grid's top left and pitch, 11, 7 and 48 pixels, are three copies of float literals:
+// ItemMenu_NodePosition's places the items (its top at +0xC0, left +0xD0, pitch +0xCC),
+// ItemMenu_UpdateCursor's the cursor (top +0x32C), ItemMenu_UpdateTouch's maps a touch to an
+// item (top +0x314) and ItemMenu_PlaceCursor's aims the cursor's corners 2 px outside the node
+// (top +0x118). Moving all four moves the grid with its cursor and touches.
+#define ITEM_MENU_NODE_POSITION_TOP 0xC0
+#define ITEM_MENU_UPDATE_CURSOR_TOP 0x32C
+#define ITEM_MENU_UPDATE_TOUCH_TOP 0x314
+#define ITEM_MENU_PLACE_CURSOR_TOP 0x118
+// ItemMenu_Update hit-tests BACK and the tabs with Touch_InRect (0x33F428: x, y, width, height in
+// touch pixels, inclusive, and the stylus's phase), each rect three times as immediates: these are
+// the offsets of each call's `mov r1, #y`, and for BACK its `mov r0, #x` follows and its
+// `mov r2, #width` precedes it. BACK (4, 204, 52, 32), Items (182, 198, 72, 42), Gear (66, 204,
+// 54, 34), Map (124, 206, 54, 34).
+#define ITEM_MENU_BACK_TOUCH_Y_0 0x138
+#define ITEM_MENU_BACK_TOUCH_Y_1 0x2B0
+#define ITEM_MENU_BACK_TOUCH_Y_2 0x778
+#define ITEM_MENU_ITEMS_TOUCH_Y_0 0x160
+#define ITEM_MENU_ITEMS_TOUCH_Y_1 0x278
+#define ITEM_MENU_ITEMS_TOUCH_Y_2 0x7E4
+#define ITEM_MENU_GEAR_TOUCH_Y_0 0x188
+#define ITEM_MENU_GEAR_TOUCH_Y_1 0x1F4
+#define ITEM_MENU_GEAR_TOUCH_Y_2 0x850
+#define ITEM_MENU_MAP_TOUCH_Y_0 0x1B4
+#define ITEM_MENU_MAP_TOUCH_Y_1 0x310
+#define ITEM_MENU_MAP_TOUCH_Y_2 0x8BC
 #define ITEM_MENU_ROWS 4
 // ItemMenu_UpdateCursor's wraps of the cursor's column: cmp r0, #6 after a move right, movmi r0, #5
 // after a move left.
@@ -433,6 +459,7 @@ typedef struct ItemMenu {
 // The pause screens' BACK quads (docs/pause.md): BACK lit and its two more, then BACK and one more.
 #define ITEM_MENU_QUAD_PANEL 0 // and 1: the grid's panel, its left half and its right half mirrored, rimmed at the top only
 #define ITEM_MENU_QUAD_TABS 9 // to 11: Gear, Map and Items
+#define ITEM_MENU_QUAD_TAB_FRAMES 28 // to 36: the tabs' frames, three quads each
 #define ITEM_MENU_QUAD_TAB_BAR 6 // to 8: the tabs' bar from x 64, its left end, its middle stretched to 248 and its right end
 #define ITEM_MENU_QUAD_BACK_LIT 3
 #define ITEM_MENU_QUAD_BACK 26

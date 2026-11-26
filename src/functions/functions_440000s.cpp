@@ -102,7 +102,7 @@ GLOBAL_ASM("asm/FUN_00446a50.s")
 
 GLOBAL_ASM("asm/FUN_00446af0.s")
 
-GLOBAL_ASM("asm/FUN_00446e78.s")
+GLOBAL_ASM("asm/ItemMenu_PlaceCursor.s")
 
 GLOBAL_ASM("asm/FUN_00446f9c.s")
 

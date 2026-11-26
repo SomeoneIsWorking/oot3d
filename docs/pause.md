@@ -69,6 +69,18 @@ table does (z3d-mods run oi28). The cursor (`cursorColumn` +0x78, `cursorRow` +0
 past the grid's six columns into the buttons at `ItemMenu_UpdateCursor` +0x754 (`cmp r0, #6`) and
 left onto them at +0x7A4 (`movmi r0, #5`).
 
+The grid's place is four copies of the same literals, node (col, row) at x = 11 + 48·col,
+y = 7 + 48·row, 42 px: `ItemMenu_NodePosition` (0x2EB304) places the items,
+`ItemMenu_UpdateCursor` the cursor's node, `ItemMenu_UpdateTouch` (0x2EBA9C) maps a touch to a node,
+and `ItemMenu_PlaceCursor` (0x446E78, from `ItemMenu_Update`) aims the cursor's corners 2 px outside
+it, with its own places for the button nodes 5, 11, 17 and 23. Their tops are the
+`ITEM_MENU_*_TOP` offsets; patching all four moves the grid with its cursor and touches.
+
+BACK and the tabs are hit-tested apart from their quads: `ItemMenu_Update` calls `Touch_InRect`
+(0x33F428; x, y, width, height in touch pixels, inclusive, and the stylus's phase) with each rect
+as immediates, three times each (`ITEM_MENU_*_TOUCH_Y_*`): BACK (4, 204, 52, 32), Items (182, 198,
+72, 42), Gear (66, 204, 54, 34) and Map (124, 206, 54, 34). Moving a quad does not move its touch.
+
 `ItemMenu_Init` (0x46B534, once, from the menu's constructor at 0x455C40) builds the screen's
 batch of 37 quads (`gItemMenu.quads`, +0x24) from `gItemMenuQuadPositions`, their sizes,
 `gItemMenuQuadUvs` (0x506B30) and `gItemMenuQuadUvSizes` (0x506A08), in `menu_item_parts00.ctxb`'s

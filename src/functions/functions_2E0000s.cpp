@@ -304,7 +304,7 @@ GLOBAL_ASM("asm/FUN_002eb1bc.s")
 
 GLOBAL_ASM("asm/FUN_002eb210.s")
 
-GLOBAL_ASM("asm/FUN_002eb304.s")
+GLOBAL_ASM("asm/ItemMenu_NodePosition.s")
 
 GLOBAL_ASM("asm/FUN_002eb3d8.s")
 
@@ -314,7 +314,7 @@ GLOBAL_ASM("asm/ItemMenu_Reset.s")
 
 GLOBAL_ASM("asm/FUN_002eb72c.s")
 
-GLOBAL_ASM("asm/FUN_002eba9c.s")
+GLOBAL_ASM("asm/ItemMenu_UpdateTouch.s")
 
 GLOBAL_ASM("asm/ItemMenu_UpdateCursor.s")
 

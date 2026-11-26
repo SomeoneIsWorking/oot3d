@@ -5203,12 +5203,12 @@
 --keep=FUN_002eb0d8
 --keep=FUN_002eb1bc
 --keep=FUN_002eb210
---keep=FUN_002eb304
+--keep=ItemMenu_NodePosition
 --keep=FUN_002eb3d8
 --keep=FUN_002eb4e4
 --keep=ItemMenu_Reset
 --keep=FUN_002eb72c
---keep=FUN_002eba9c
+--keep=ItemMenu_UpdateTouch
 --keep=ItemMenu_UpdateCursor
 --keep=FUN_002ed224
 --keep=FUN_002ed908
@@ -6520,7 +6520,7 @@
 --keep=FUN_0033f400
 --keep=FUN_0033f40c
 --keep=FUN_0033f418
---keep=FUN_0033f428
+--keep=Touch_InRect
 --keep=FUN_0033f4cc
 --keep=EnDaiku_EscapeSuccess
 --keep=FUN_0033f7ac
@@ -10409,7 +10409,7 @@
 --keep=FUN_00445688
 --keep=FUN_00446a50
 --keep=FUN_00446af0
---keep=FUN_00446e78
+--keep=ItemMenu_PlaceCursor
 --keep=FUN_00446f9c
 --keep=FUN_00446fc4
 --keep=FUN_00447050

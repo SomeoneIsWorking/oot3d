@@ -771,7 +771,7 @@ GLOBAL_ASM("asm/FUN_0033f40c.s")
 
 GLOBAL_ASM("asm/FUN_0033f418.s")
 
-GLOBAL_ASM("asm/FUN_0033f428.s")
+GLOBAL_ASM("asm/Touch_InRect.s")
 
 GLOBAL_ASM("asm/FUN_0033f4cc.s")
 

@@ -21128,9 +21128,9 @@ text 0x00100000
 	{
 		* (i.FUN_002eb210)
 	}
-	FUN_002eb304 0x002eb304
+	ItemMenu_NodePosition 0x002eb304
 	{
-		* (i.FUN_002eb304)
+		* (i.ItemMenu_NodePosition)
 	}
 	FUN_002eb3d8 0x002eb3d8
 	{
@@ -21148,9 +21148,9 @@ text 0x00100000
 	{
 		* (i.FUN_002eb72c)
 	}
-	FUN_002eba9c 0x002eba9c
+	ItemMenu_UpdateTouch 0x002eba9c
 	{
-		* (i.FUN_002eba9c)
+		* (i.ItemMenu_UpdateTouch)
 	}
 	ItemMenu_UpdateCursor 0x002ec3e4
 	{
@@ -26412,9 +26412,9 @@ text 0x00100000
 	{
 		* (i.FUN_0033f418)
 	}
-	FUN_0033f428 0x0033f428
+	Touch_InRect 0x0033f428
 	{
-		* (i.FUN_0033f428)
+		* (i.Touch_InRect)
 	}
 	FUN_0033f4cc 0x0033f4cc
 	{
@@ -42192,9 +42192,9 @@ text 0x00100000
 	{
 		* (i.FUN_00446af0)
 	}
-	FUN_00446e78 0x00446e78
+	ItemMenu_PlaceCursor 0x00446e78
 	{
-		* (i.FUN_00446e78)
+		* (i.ItemMenu_PlaceCursor)
 	}
 	FUN_00446f9c 0x00446f9c
 	{
