@@ -5209,7 +5209,7 @@
 --keep=FUN_002eb628
 --keep=FUN_002eb72c
 --keep=FUN_002eba9c
---keep=FUN_002ec3e4
+--keep=ItemMenu_UpdateCursor
 --keep=FUN_002ed224
 --keep=FUN_002ed908
 --keep=FUN_002ed9d8
@@ -5324,12 +5324,12 @@
 --keep=HudItemButtons_Init
 --keep=FUN_002f9430
 --keep=FUN_002f9484
---keep=FUN_002f94a8
+--keep=ItemButtonLetters_Update
 --keep=FUN_002f9934
 --keep=FUN_002f99f4
 --keep=FUN_002f9a00
 --keep=FUN_002f9a0c
---keep=FUN_002f9a1c
+--keep=QuadBatch_ApplyOffsets
 --keep=FUN_002f9c44
 --keep=FUN_002f9c74
 --keep=FUN_002f9c88
@@ -10238,7 +10238,7 @@
 --keep=FUN_0042f96c
 --keep=FUN_0042f984
 --keep=FUN_004338c8
---keep=FUN_00433a90
+--keep=ItemMenu_Update
 --keep=FUN_00434c5c
 --keep=FUN_00434d50
 --keep=FUN_00434d74

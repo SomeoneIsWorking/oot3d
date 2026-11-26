@@ -198,7 +198,7 @@ Statuses: ✅ re-verified · 🟡 re-partial (honest gap) · 🔬 in-progress ·
 ### pause.layout — the pause screens' state words, BACK quads and backdrop on the top screen
 - status: re-verified
 - deps: file-select.layout
-- evidence: state words read 2 with each screen up; each screen's batch corners matched to its position table, BACK moved by an executable patch on items, gear, overworld and Deku Tree map and save (pages2, pages3); the backdrop model's transform scaled to 0.5 halved the book (bg-m0), spread to x -40 to 360 at its draw (0x6156EC); the item screen's button letters caught by a write watch on a corner (0x433A90's frame), their batch found by its corners' pointer and moved by its per-quad offsets and by its base corners (oi19, oi20); QuadBatch's offset composition read in 0x2F9A1C
+- evidence: state words read 2 with each screen up; each screen's batch corners matched to its position table, BACK moved by an executable patch on items, gear, overworld and Deku Tree map and save (pages2, pages3); the backdrop model's transform scaled to 0.5 halved the book (bg-m0), spread to x -40 to 360 at its draw (0x6156EC); the item screen's button letters caught by a write watch on a corner (0x433A90's frame), their batch found by its corners' pointer and moved by its per-quad offsets and by its base corners (oi19, oi20); QuadBatch's offset composition read in `QuadBatch_ApplyOffsets` (0x2F9A1C); the column moved by a patch of its quad table, the buttons' icons, counts and letters moved off by their offsets after the counts' draw, the cursor held on the grid by its two wrap compares (oi28)
 - where: docs/pause.md
 - gap: the map's second layout is the Deku Tree's here, other dungeons not seen; the screens' touch hit areas not read
 - notes: 

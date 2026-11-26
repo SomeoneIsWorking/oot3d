@@ -13,11 +13,11 @@ typedef long long s64;
 
 typedef struct {
     f32 x, y;
-} Vec2f;
+} Vec2f; // size = 0x8
 
 typedef struct {
     f32 x, y, z;
-} Vec3f;
+} Vec3f; // size = 0xC
 
 typedef struct {
     s16 x, y, z;

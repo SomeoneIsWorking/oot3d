@@ -316,7 +316,7 @@ GLOBAL_ASM("asm/FUN_002eb72c.s")
 
 GLOBAL_ASM("asm/FUN_002eba9c.s")
 
-GLOBAL_ASM("asm/FUN_002ec3e4.s")
+GLOBAL_ASM("asm/ItemMenu_UpdateCursor.s")
 
 GLOBAL_ASM("asm/FUN_002ed224.s")
 
@@ -546,7 +546,7 @@ GLOBAL_ASM("asm/FUN_002f9430.s")
 
 GLOBAL_ASM("asm/FUN_002f9484.s")
 
-GLOBAL_ASM("asm/FUN_002f94a8.s")
+GLOBAL_ASM("asm/ItemButtonLetters_Update.s")
 
 GLOBAL_ASM("asm/FUN_002f9934.s")
 
@@ -556,7 +556,7 @@ GLOBAL_ASM("asm/FUN_002f9a00.s")
 
 GLOBAL_ASM("asm/FUN_002f9a0c.s")
 
-GLOBAL_ASM("asm/FUN_002f9a1c.s")
+GLOBAL_ASM("asm/QuadBatch_ApplyOffsets.s")
 
 GLOBAL_ASM("asm/FUN_002f9c44.s")
 

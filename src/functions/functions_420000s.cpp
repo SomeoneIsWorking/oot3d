@@ -278,7 +278,7 @@ GLOBAL_ASM("asm/FUN_0042f984.s")
 
 GLOBAL_ASM("asm/FUN_004338c8.s")
 
-GLOBAL_ASM("asm/FUN_00433a90.s")
+GLOBAL_ASM("asm/ItemMenu_Update.s")
 
 GLOBAL_ASM("asm/FUN_00434c5c.s")
 

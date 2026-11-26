@@ -334,17 +334,33 @@ typedef struct FileChoose {
 #define FILE_CHOOSE_QUAD_BACK 173 // and 174: the BACK button
 
 // A touch screen layout's quads (docs/pause.md, "Quad batches"). Each frame the drawn corners are
-// rebuilt as the base corners plus each quad's offset (0x2F9A1C), so an offset moves a quad.
+// rebuilt as the base corners plus each quad's offset (QuadBatch_ApplyOffsets), so an offset moves a quad.
 typedef struct QuadBatch {
     /* 0x00 */ s32 count;
     /* 0x04 */ f32 textureSize[2];
-    /* 0x0C */ Vec3f (*corners)[4]; // base corners, set with the quad's rect
-    /* 0x10 */ Vec3f (*drawnCorners)[4];
+    /* 0x0C */ Vec3f* corners; // four a quad: the base corners, set with its rect
+    /* 0x10 */ Vec3f* drawnCorners; // four a quad
     /* 0x14 */ char unk_14[0x08];
     /* 0x1C */ Vec2f* offsets; // one a quad, added to its base corners
 } QuadBatch;
 
-// The item screen's button letters (I, X, Y and II), ItemMenu.buttonLetters; 0x2F94A8 runs it each frame.
+// A count drawn in digits beside an item (HudItemButtons.counts).
+typedef struct HudCount {
+    /* 0x00 */ char unk_00[0x08];
+    /* 0x08 */ QuadBatch* quads; // one a digit
+} HudCount;
+
+// A layout of item icons with their counts: the touch screen HUD's buttons and the item screen's grid
+// (HudItemButtons_SetIcon, HudItemButtons_UpdateAmmo).
+typedef struct HudItemButtons {
+    /* 0x000 */ char unk_000[0x0C];
+    /* 0x00C */ HudCount* counts[64]; // one an icon
+    /* 0x10C */ QuadBatch* quads; // one an icon
+    /* 0x110 */ char unk_110[0x114];
+    /* 0x224 */ s32 count;
+} HudItemButtons;
+
+// The item screen's button letters (I, X, Y and II), ItemMenu.buttonLetters; ItemButtonLetters_Update runs it.
 typedef struct ItemButtonLetters {
     /* 0x00 */ char unk_00[0x08];
     /* 0x08 */ QuadBatch* quads; // ITEM_BUTTON_LETTERS of them, the batch at +0x48
@@ -363,12 +379,26 @@ typedef struct ItemMenu {
     /* 0x00 */ char unk_00[0x30];
     /* 0x30 */ ItemButtonLetters* buttonLetters;
     /* 0x34 */ s32 state; // gItemMenuState
+    /* 0x38 */ char unk_38[0x04];
+    /* 0x3C */ HudItemButtons* items; // its icons and quads are the layout's nodes (ITEM_MENU_NODES)
+    /* 0x40 */ char unk_40[0x38];
+    /* 0x78 */ s32 cursorColumn; // to ITEM_MENU_COLUMNS - 1, the last the button nodes
+    /* 0x7C */ s32 cursorRow;
 } ItemMenu;
+
+#define ITEM_MENU_COLUMNS 6
+// ItemMenu_UpdateCursor's wraps of the cursor's column: cmp r0, #6 after a move right, movmi r0, #5
+// after a move left.
+#define ITEM_MENU_CURSOR_RIGHT_WRAP 0x754
+#define ITEM_MENU_CURSOR_LEFT_WRAP 0x7A4
+// ItemMenu_Update's bl HudItemButtons_UpdateAmmo for ItemMenu.items, which rebuilds its quads.
+#define ITEM_MENU_UPDATE_ITEMS_CALL 0x1178
 
 // The pause screens' BACK quads (docs/pause.md): BACK lit and its two more, then BACK and one more.
 #define ITEM_MENU_QUAD_BACK_LIT 3
 #define ITEM_MENU_QUAD_BACK 26
-#define ITEM_MENU_QUAD_COLUMN 12 // to 24: the item buttons' column, its frame and two buttons' frames
+#define ITEM_MENU_QUAD_COLUMN 12 // the item buttons' column: the stone under it
+#define ITEM_MENU_QUAD_COLUMN_BUTTONS 13 // to 24: its four buttons' frames
 #define GEAR_MENU_QUAD_BACK_LIT 25
 #define GEAR_MENU_QUAD_BACK 30
 #define MAP_MENU_QUAD_BACK_LIT 7 // to 11: BACK lit in strips

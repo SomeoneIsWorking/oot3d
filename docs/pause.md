@@ -47,16 +47,26 @@ The buttons' letters are not in that table. They are `gItemMenu.buttonLetters` (
 the object at +0x30 of the item screen's object 0x5066F8), four quads of a 128x128 sheet in the
 `QuadBatch` inline at its +0x48: X at (270, 67), Y at (260, 119), I at (270, 8) and II at (270, 192),
 11 to 13 pixels square (`ITEM_BUTTON_LETTER_*`). Their rects are set once, from integers in the
-code, so their places are in no data table; 0x2F94A8 runs the object each frame (the item screen's
-update, 0x433A90, calls it beside `HudItemButtons_UpdateAmmo` for the grid and the buttons' items
-at +0x3C to +0x48). A write watch on a letter's corner caught that frame's rebuild. Adding -150 to
+code, so their places are in no data table; `ItemButtonLetters_Update` (0x2F94A8) runs the object
+each frame (`ItemMenu_Update`, 0x433A90, calls it beside `HudItemButtons_UpdateAmmo` for the grid
+and the buttons' items at +0x3C to +0x48). A write watch on a letter's corner caught that frame's rebuild. Adding -150 to
 each letter's `QuadBatch.offsets` entry, or to its base corners, drew all four 150 to the left
 and they stayed there (z3d-mods runs oi19, oi20).
+
+The items on the buttons are the grid's own: `gItemMenu.items` (`HudItemButtons`, +0x3C) holds
+every node, the grid's and the buttons' (`ITEM_MENU_NODE_I`, `_X`, `_Y`, `_II`), and quad n of its
+batch is node n's icon. Each node's count is a `HudCount` at `counts[n]`; the count's draw rewrites
+its digits' offsets inside `HudItemButtons_UpdateAmmo`, which `ItemMenu_Update` calls for the grid
+at +0x1178 (`ITEM_MENU_UPDATE_ITEMS_CALL`). The quad table is read once, when the screen is built,
+so a runtime write to it or to the screen batch's offsets does not move the column; a patch of the
+table does (z3d-mods run oi28). The cursor (`cursorColumn` +0x78, `cursorRow` +0x7C) wraps right
+past the grid's six columns into the buttons at `ItemMenu_UpdateCursor` +0x754 (`cmp r0, #6`) and
+left onto them at +0x7A4 (`movmi r0, #5`).
 
 ## Quad batches
 A layout's quads are a `QuadBatch`: the count, the sheet's size, the base corners (four `Vec3f`
 a quad, set with the quad's rect: 0x2E6CD4 takes a layout, a quad and x, y, width and height),
-the drawn corners and one `Vec2f` offset a quad at +0x1C. Each frame 0x2F9A1C writes every drawn
+the drawn corners and one `Vec2f` offset a quad at +0x1C. Each frame `QuadBatch_ApplyOffsets` (0x2F9A1C) writes every drawn
 corner as the base corner plus its quad's offset, and the layout's draw (0x2E6ED0) hands the drawn
 corners to the GPU through the identity transform at 0x2E7050, shared by every such layout.
 
