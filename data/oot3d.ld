@@ -21552,9 +21552,9 @@ text 0x00100000
 	{
 		* (i.FUN_002f79b4)
 	}
-	FUN_002f7af4 0x002f7af4
+	MenuCursor_Aim 0x002f7af4
 	{
-		* (i.FUN_002f7af4)
+		* (i.MenuCursor_Aim)
 	}
 	FUN_002f7b44 0x002f7b44
 	{

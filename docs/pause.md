@@ -80,11 +80,13 @@ The grid's place is four copies of the same literals, node (col, row) at x = 11 
 y = 7 + 48·row, 42 px: `ItemMenu_NodePosition` (0x2EB304) places the items,
 `ItemMenu_UpdateCursor` the cursor's node, `ItemMenu_UpdateTouch` (0x2EBA9C) maps a touch to a node,
 and `ItemMenu_PlaceCursor` (0x446E78, from `ItemMenu_Update`) aims the cursor's corners 2 px outside
-it, with its own places for the button nodes 5, 11, 17 and 23. Their tops are the
-`ITEM_MENU_*_TOP` offsets; patching all four moves the grid with its cursor and touches.
+it, with its own places for the button nodes 5, 11, 17 and 23, through `MenuCursor_Aim`
+(0x2F7AF4; the cursor, `cornersColumn`, x and y in s0 and s1). Their tops are the
+`ITEM_MENU_*_TOP` offsets; moving all four moves the grid with its cursor and touches.
 
 BACK and the tabs are hit-tested apart from their quads: `ItemMenu_Update` calls `Touch_InRect`
-(0x33F428; x, y, width, height in touch pixels, inclusive, and the stylus's phase) with each rect
+(0x33F428; x, y, width, height in touch pixels, unsigned and inclusive, against `gTouch`, and the
+stylus's phase: 0 to 3 answer only while that phase's flag in `Touch` is set) with each rect
 as immediates, three times each (`ITEM_MENU_*_TOUCH_CALL_*`): BACK (4, 204, 52, 32), Items (182, 198,
 72, 42), Gear (66, 204, 54, 34) and Map (124, 206, 54, 34). Moving a quad does not move its touch.
 

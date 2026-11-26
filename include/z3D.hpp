@@ -397,6 +397,24 @@ typedef struct ItemButtonLetters {
 #define ITEM_BUTTON_LETTERS 4
 
 // The item screen (gItemMenu, docs/pause.md).
+// The stylus as the game reads it each frame (gTouch); Touch_InRect tests its point against a rect,
+// first its flag for the asked phase: 0 at +0x06, 1 at +0x08, 2 at +0x0A, 3 at +0x10, others none.
+typedef struct Touch {
+    /* 0x00 */ char unk_00[0x02];
+    /* 0x02 */ u16 x; // in the touch screen's pixels
+    /* 0x04 */ u16 y;
+    /* 0x06 */ u16 phase0;
+    /* 0x08 */ u16 phase1;
+    /* 0x0A */ u16 phase2;
+    /* 0x0C */ char unk_0C[0x04];
+    /* 0x10 */ u16 phase3;
+} Touch;
+
+// The pause screens' BACK as their updates hit-test it, at x 4, 52 by 32 (its y 202 or 204).
+#define PAUSE_BACK_TOUCH_X 4
+#define PAUSE_BACK_TOUCH_WIDTH 52
+#define PAUSE_BACK_TOUCH_HEIGHT 32
+
 // The gear screen (gGearMenu): built once with the pause menus (PauseMenus_Init calls
 // GearMenu_Init); gGearMenuState is its +0x18.
 typedef struct GearMenu {
@@ -424,9 +442,16 @@ typedef struct ItemMenu {
     /* 0x3C */ HudItemButtons* items; // its icons and quads are the layout's nodes (ITEM_MENU_NODES)
     /* 0x40 */ char unk_40[0x0C]; // three layouts, drawn last (docs/pause.md)
     /* 0x4C */ void* unk_4C; // drawn by 0x441FCC after the letters; not the cursor's corners (z3d-mods run inv1)
-    /* 0x50 */ char unk_50[0x28];
+    /* 0x50 */ char unk_50[0x14];
+    /* 0x64 */ s32 aimedNode; // ItemMenu_PlaceCursor's: cursorColumn + cursorRow * ITEM_MENU_COLUMNS
+    /* 0x68 */ char unk_68[0x10];
     /* 0x78 */ s32 cursorColumn; // to ITEM_MENU_COLUMNS - 1, the last the button nodes
     /* 0x7C */ s32 cursorRow;
+    /* 0x80 */ char unk_80[0x14];
+    /* 0x94 */ s32 cornersColumn; // where ItemMenu_PlaceCursor aims the corners; -1 off the screen
+    /* 0x98 */ s32 cornersRow;
+    /* 0x9C */ char unk_9C[0x14];
+    /* 0xB0 */ void* cursor; // the cursor's corners, aimed with MenuCursor_Aim
 } ItemMenu;
 
 #define ITEM_MENU_COLUMNS 6
@@ -448,6 +473,10 @@ typedef struct ItemMenu {
 #define ITEM_MENU_PLACE_CURSOR_PITCH 0x114
 #define ITEM_MENU_PLACE_CURSOR_TOP 0x118
 #define ITEM_MENU_PLACE_CURSOR_LEFT 0x120
+// ItemMenu_PlaceCursor aims the corners at cornersColumn and cornersRow, 2 px up and left of the
+// node, but at the button nodes (5, 11, 17, 23) at their own places (269, 5), (273, 71),
+// (261, 123) and (269, 189), and off the screen at (400, 240) while cornersColumn is -1.
+// ItemMenu_NodePosition's button nodes are at (271, top), (275, 73), (263, 125) and (271, 191).
 // ItemMenu_Update hit-tests BACK and the tabs with Touch_InRect (0x33F428: x, y, width, height in
 // touch pixels, inclusive, and the stylus's phase on the stack), each rect three times as
 // immediates; these are the offsets of the calls. BACK (4, 204, 52, 32), Items (182, 198, 72, 42),

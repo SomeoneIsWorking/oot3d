@@ -516,7 +516,7 @@ GLOBAL_ASM("asm/FUN_002f78c0.s")
 
 GLOBAL_ASM("asm/FUN_002f79b4.s")
 
-GLOBAL_ASM("asm/FUN_002f7af4.s")
+GLOBAL_ASM("asm/MenuCursor_Aim.s")
 
 GLOBAL_ASM("asm/FUN_002f7b44.s")
 

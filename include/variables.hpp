@@ -51,6 +51,7 @@ extern f32 gItemMenuQuadUvSizes[37][2]; //0x00506a08
 extern f32 gGearMenuQuadPositions[41][2]; //0x005044dc
 extern f32 gGearMenuQuadSizes[41][2]; //0x0050463c
 extern struct GearMenu gGearMenu; //0x0050446c
+extern struct Touch gTouch; //0x0050bb38
 // The map screen's two layouts: the overworld map's, and one not drawn on it.
 extern f32 gMapMenuQuadPositions[30][2]; //0x005073a0
 extern f32 gMapMenuOtherQuadPositions[50][2]; //0x00506d60

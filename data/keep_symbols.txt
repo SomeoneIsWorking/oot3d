@@ -5309,7 +5309,7 @@
 --keep=FUN_002f78a0
 --keep=FUN_002f78c0
 --keep=FUN_002f79b4
---keep=FUN_002f7af4
+--keep=MenuCursor_Aim
 --keep=FUN_002f7b44
 --keep=HudItemButtons_UpdateAmmo
 --keep=FUN_002f8708
