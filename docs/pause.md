@@ -38,6 +38,17 @@ moved the overworld map's frame, tabs and BACK; moving the second's moved nothin
 the Deku Tree the map's BACK moves with the other layout's table (pages2), so it is likely the
 dungeon map's.
 
+The item screen's quads 12 to 24 are the item buttons' column right of the grid (x 256 to 320):
+its frame (12 to 18, from 0 to 200) and two buttons' frames at y 70 and 122 (19 to 24); 0 and 1
+are the grid's frame, 6 to 11 and 28 to 36 the tabs. Moved 200 to the right (z3d-mods
+`inputtest pause-wide`), the column's stone went and the book showed there, but the buttons'
+letters (the game's I, X, Y and II, which the texture set draws as LB, Y, X and RB) stayed: they
+are four other quads, 11 to 13 pixels square at (270, 8), (270, 67), (260, 119) and (270, 192).
+Their corners are in the heap as (x, y, 0) triples (copies at 0x8757510 and 0x8762830 in run oi12),
+but zeroing either copy left them drawn, their places are not in the initialised data from
+0x4F0000 to 0x520000, and neither The One Screen's `Items_BeforeSubmit` (its gate at 0x610A2C) nor
+its HUD `labels` scene draws them (both switched off, run oi6).
+
 ## The backdrop
 
 The brown book behind the screens is a model, not a quad: `TouchScreen2D_BeginLayer0` (0x41EC2C)

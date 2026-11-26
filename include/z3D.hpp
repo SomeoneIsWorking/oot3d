@@ -336,6 +336,7 @@ typedef struct FileChoose {
 // The pause screens' BACK quads (docs/pause.md): BACK lit and its two more, then BACK and one more.
 #define ITEM_MENU_QUAD_BACK_LIT 3
 #define ITEM_MENU_QUAD_BACK 26
+#define ITEM_MENU_QUAD_COLUMN 12 // to 24: the item buttons' column, its frame and two buttons' frames
 #define GEAR_MENU_QUAD_BACK_LIT 25
 #define GEAR_MENU_QUAD_BACK 30
 #define MAP_MENU_QUAD_BACK_LIT 7 // to 11: BACK lit in strips
