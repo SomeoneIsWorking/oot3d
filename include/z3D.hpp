@@ -407,12 +407,15 @@ typedef struct ItemMenu {
     /* 0x34 */ s32 state; // gItemMenuState
     /* 0x38 */ char unk_38[0x04];
     /* 0x3C */ HudItemButtons* items; // its icons and quads are the layout's nodes (ITEM_MENU_NODES)
-    /* 0x40 */ char unk_40[0x38];
+    /* 0x40 */ char unk_40[0x0C]; // three layouts, drawn last (docs/pause.md)
+    /* 0x4C */ void* unk_4C; // drawn by 0x441FCC after the letters; not the cursor's corners (z3d-mods run inv1)
+    /* 0x50 */ char unk_50[0x28];
     /* 0x78 */ s32 cursorColumn; // to ITEM_MENU_COLUMNS - 1, the last the button nodes
     /* 0x7C */ s32 cursorRow;
 } ItemMenu;
 
 #define ITEM_MENU_COLUMNS 6
+#define ITEM_MENU_ROWS 4
 // ItemMenu_UpdateCursor's wraps of the cursor's column: cmp r0, #6 after a move right, movmi r0, #5
 // after a move left.
 #define ITEM_MENU_CURSOR_RIGHT_WRAP 0x754
@@ -429,6 +432,7 @@ typedef struct ItemMenu {
 
 // The pause screens' BACK quads (docs/pause.md): BACK lit and its two more, then BACK and one more.
 #define ITEM_MENU_QUAD_PANEL 0 // and 1: the grid's panel, its left half and its right half mirrored, rimmed at the top only
+#define ITEM_MENU_QUAD_TABS 9 // to 11: Gear, Map and Items
 #define ITEM_MENU_QUAD_TAB_BAR 6 // to 8: the tabs' bar from x 64, its left end, its middle stretched to 248 and its right end
 #define ITEM_MENU_QUAD_BACK_LIT 3
 #define ITEM_MENU_QUAD_BACK 26
