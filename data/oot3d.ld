@@ -21116,25 +21116,25 @@ text 0x00100000
 	{
 		* (i.FUN_002eb05c)
 	}
-	FUN_002eb0d8 0x002eb0d8
+	ItemMenu_CanPlace 0x002eb0d8
 	{
-		* (i.FUN_002eb0d8)
+		* (i.ItemMenu_CanPlace)
 	}
-	FUN_002eb1bc 0x002eb1bc
+	ItemMenu_AimCorners 0x002eb1bc
 	{
-		* (i.FUN_002eb1bc)
+		* (i.ItemMenu_AimCorners)
 	}
-	FUN_002eb210 0x002eb210
+	ItemMenu_SameBowSwap 0x002eb210
 	{
-		* (i.FUN_002eb210)
+		* (i.ItemMenu_SameBowSwap)
 	}
 	ItemMenu_NodePosition 0x002eb304
 	{
 		* (i.ItemMenu_NodePosition)
 	}
-	FUN_002eb3d8 0x002eb3d8
+	ItemMenu_PlaceHeld 0x002eb3d8
 	{
-		* (i.FUN_002eb3d8)
+		* (i.ItemMenu_PlaceHeld)
 	}
 	FUN_002eb4e4 0x002eb4e4
 	{
@@ -21608,9 +21608,9 @@ text 0x00100000
 	{
 		* (i.FUN_002f9430)
 	}
-	FUN_002f9484 0x002f9484
+	TouchPoint_Get 0x002f9484
 	{
-		* (i.FUN_002f9484)
+		* (i.TouchPoint_Get)
 	}
 	ItemButtonLetters_Update 0x002f94a8
 	{
@@ -26152,13 +26152,13 @@ text 0x00100000
 	{
 		* (i.FUN_0033b5b0)
 	}
-	FUN_0033b5d0 0x0033b5d0
+	Pad_Repeated 0x0033b5d0
 	{
-		* (i.FUN_0033b5d0)
+		* (i.Pad_Repeated)
 	}
-	FUN_0033b5ec 0x0033b5ec
+	Pad_Pressed 0x0033b5ec
 	{
-		* (i.FUN_0033b5ec)
+		* (i.Pad_Pressed)
 	}
 	FUN_0033b608 0x0033b608
 	{

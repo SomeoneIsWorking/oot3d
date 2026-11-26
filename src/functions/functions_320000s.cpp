@@ -652,9 +652,9 @@ GLOBAL_ASM("asm/FUN_0033b584.s")
 
 GLOBAL_ASM("asm/FUN_0033b5b0.s")
 
-GLOBAL_ASM("asm/FUN_0033b5d0.s")
+GLOBAL_ASM("asm/Pad_Repeated.s")
 
-GLOBAL_ASM("asm/FUN_0033b5ec.s")
+GLOBAL_ASM("asm/Pad_Pressed.s")
 
 GLOBAL_ASM("asm/FUN_0033b608.s")
 

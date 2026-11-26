@@ -81,8 +81,20 @@ y = 7 + 48·row, 42 px: `ItemMenu_NodePosition` (0x2EB304) places the items,
 `ItemMenu_UpdateCursor` the cursor's node, `ItemMenu_UpdateTouch` (0x2EBA9C) maps a touch to a node,
 and `ItemMenu_PlaceCursor` (0x446E78, from `ItemMenu_Update`) aims the cursor's corners 2 px outside
 it, with its own places for the button nodes 5, 11, 17 and 23, through `MenuCursor_Aim`
-(0x2F7AF4; the cursor, `cornersColumn`, x and y in s0 and s1). Their tops are the
-`ITEM_MENU_*_TOP` offsets; moving all four moves the grid with its cursor and touches.
+(0x2F7AF4; the cursor, then x and y in s0 and s1). Their tops are the `ITEM_MENU_*_TOP` offsets;
+moving all four moves the grid with its cursor and touches.
+
+`ItemMenu_UpdateCursor` runs in two states. Selecting (2): X or Y (`Pad_Pressed`) assigns the
+cursor's item to node 11 or 17, A picks it up (`fromNode`, the held icon over it through
+`ItemMenu_PlaceHeld`, `targetCursor` on it, state 8), B closes the screen (`FUN_002fd84c(0, 1)`,
+state 14); otherwise `Pad_Repeated`'s + pad moves the cursor, each move and the last with
+`SFX_MENU_CURSOR`. Moving (8): A drops the item on the cursor's node (`toNode`; back on its own
+node is a cancel), X or Y assigns it, B puts it back; a placed move goes to state 9 and one
+`ItemMenu_CanPlace` refuses to 1 through `ItemMenu_ApplyLayout(1)`; `ItemMenu_SameBowSwap` sends
+both A and X/Y to state 12. Each move ends with `ItemMenu_AimCorners(1, 1)`. `ItemMenu_UpdateTouch`
+(phase 1 lifted, 2 dragged) tests every node's 42 px square with `Touch_InRect`, phase 0 while no
+node is pressed (`pressedNode` -1) and 2 on the pressed one: down on a node presses it, lifted
+picks its item up as A does, dragged sets `to*`.
 
 BACK and the tabs are hit-tested apart from their quads: `ItemMenu_Update` calls `Touch_InRect`
 (0x33F428; x, y, width, height in touch pixels, unsigned and inclusive, against `gTouch`, and the

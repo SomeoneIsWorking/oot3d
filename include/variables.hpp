@@ -52,6 +52,9 @@ extern f32 gGearMenuQuadPositions[41][2]; //0x005044dc
 extern f32 gGearMenuQuadSizes[41][2]; //0x0050463c
 extern struct GearMenu gGearMenu; //0x0050446c
 extern struct Touch gTouch; //0x0050bb38
+// Audio_PlaySoundGeneral's usual frequency and volume scale (1.0) and reverb (0).
+extern f32 gSfxDefaultFreqAndVolScale; //0x0054ac20
+extern s8 gSfxDefaultReverb; //0x0054ac24
 // The map screen's two layouts: the overworld map's, and one not drawn on it.
 extern f32 gMapMenuQuadPositions[30][2]; //0x005073a0
 extern f32 gMapMenuOtherQuadPositions[50][2]; //0x00506d60

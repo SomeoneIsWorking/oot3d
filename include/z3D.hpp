@@ -223,6 +223,12 @@ typedef struct {
 #define PAD_A (1 << 0)
 #define PAD_R (1 << 8)
 #define PAD_L (1 << 9)
+// ItemMenu_UpdateCursor's: B puts a moved item back, the + pad moves the cursor.
+#define PAD_B (1 << 1)
+#define PAD_RIGHT (1 << 4)
+#define PAD_LEFT (1 << 5)
+#define PAD_UP (1 << 6)
+#define PAD_DOWN (1 << 7)
 
 // The A button's label (InterfaceContext.doAction): the N64's numbers, the word cells of hud_all00.ctxb
 // in column order (docs/hud.md). CHECK, RETURN, DROP, SPEAK, NEXT and NONE were seen live.
@@ -430,29 +436,56 @@ typedef struct MapMenu {
     /* 0x14 */ QuadBatch* otherQuads; // from gMapMenuOtherQuadPositions
 } MapMenu;
 
+// ItemMenu_UpdateCursor and ItemMenu_UpdateTouch move an item from a node (from*) to a node or
+// one of the buttons (to*), the held item's icon following.
 typedef struct ItemMenu {
-    /* 0x00 */ char unk_00[0x1C];
+    /* 0x00 */ u16 fromX; // the moved item's node's place, as ItemMenu_NodePosition puts it
+    /* 0x02 */ u16 fromY;
+    /* 0x04 */ u16 toColumn; // where a dragged item is over (ItemMenu_UpdateTouch)
+    /* 0x06 */ u16 toRow;
+    /* 0x08 */ u16 toX;
+    /* 0x0A */ u16 toY;
+    /* 0x0C */ u16 swapLine[4]; // from x, y, to x, y; set with swapStart when a move starts
+    /* 0x14 */ u16 swapStart[4];
     /* 0x1C */ void* model; // draws quads with menu_item_parts00.ctxb (ItemMenu_Init)
     /* 0x20 */ void* drawn; // the model's entry in the draw list; ItemMenu_Draw draws it first
     /* 0x24 */ QuadBatch* quads; // the screen's, from gItemMenuQuadPositions and gItemMenuQuadUvs
     /* 0x28 */ char unk_28[0x08];
     /* 0x30 */ ItemButtonLetters* buttonLetters;
     /* 0x34 */ s32 state; // gItemMenuState
-    /* 0x38 */ char unk_38[0x04];
+    /* 0x38 */ s32 stateStep; // 1 as the state turns 12
     /* 0x3C */ HudItemButtons* items; // its icons and quads are the layout's nodes (ITEM_MENU_NODES)
-    /* 0x40 */ char unk_40[0x0C]; // three layouts, drawn last (docs/pause.md)
+    /* 0x40 */ HudItemButtons* unk_40; // these three layouts are drawn last (docs/pause.md)
+    /* 0x44 */ HudItemButtons* held; // the moved item's icon, 52 px over its node (ItemMenu_PlaceHeld)
+    /* 0x48 */ HudItemButtons* unk_48;
     /* 0x4C */ void* unk_4C; // drawn by 0x441FCC after the letters; not the cursor's corners (z3d-mods run inv1)
-    /* 0x50 */ char unk_50[0x14];
+    /* 0x50 */ s32 fromNode;
+    /* 0x54 */ s32 toNode;
+    /* 0x58 */ s32 swapTimer; // 0 as a move starts
+    /* 0x5C */ s32 swapDelay; // 0 as a move starts
+    /* 0x60 */ s32 closeTimer; // 0 as B closes the screen (state 14)
     /* 0x64 */ s32 aimedNode; // ItemMenu_PlaceCursor's: cursorColumn + cursorRow * ITEM_MENU_COLUMNS
-    /* 0x68 */ char unk_68[0x10];
+    /* 0x68 */ char unk_68[0x08];
+    /* 0x70 */ s32 pressedNode; // the node the stylus went down on; -1 none
+    /* 0x74 */ s32 chosenNode; // the moved item's node, as the move is accepted (state 9)
     /* 0x78 */ s32 cursorColumn; // to ITEM_MENU_COLUMNS - 1, the last the button nodes
     /* 0x7C */ s32 cursorRow;
-    /* 0x80 */ char unk_80[0x14];
+    /* 0x80 */ char unk_80[0x08];
+    /* 0x88 */ s32 savedColumn; // the cursor's node as a move starts; -1 none
+    /* 0x8C */ s32 savedRow;
+    /* 0x90 */ char unk_90[0x04];
     /* 0x94 */ s32 cornersColumn; // where ItemMenu_PlaceCursor aims the corners; -1 off the screen
     /* 0x98 */ s32 cornersRow;
-    /* 0x9C */ char unk_9C[0x14];
-    /* 0xB0 */ void* cursor; // the cursor's corners, aimed with MenuCursor_Aim
+    /* 0x9C */ char unk_9C[0x10];
+    /* 0xAC */ s32 cursorTimer; // 0 as the cursor moves
+    /* 0xB0 */ void* cursor; // the cursor's corners (ItemMenu_PlaceCursor)
+    /* 0xB4 */ void* targetCursor; // the corners on a move's node, aimed with MenuCursor_Aim
 } ItemMenu;
+
+// The menus' sounds (Audio_PlaySoundGeneral, with gSfxDefaultFreqAndVolScale and gSfxDefaultReverb).
+#define SFX_MENU_DECIDE 0x100048D
+#define SFX_MENU_CURSOR 0x100048E
+#define SFX_MENU_CANCEL 0x100048F
 
 #define ITEM_MENU_COLUMNS 6
 // The grid's top left and pitch, 11, 7 and 48 pixels, are three copies of float literals:

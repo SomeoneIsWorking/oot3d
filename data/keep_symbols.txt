@@ -5200,11 +5200,11 @@
 --keep=__set_errno
 --keep=TryGetFileSize
 --keep=FUN_002eb05c
---keep=FUN_002eb0d8
---keep=FUN_002eb1bc
---keep=FUN_002eb210
+--keep=ItemMenu_CanPlace
+--keep=ItemMenu_AimCorners
+--keep=ItemMenu_SameBowSwap
 --keep=ItemMenu_NodePosition
---keep=FUN_002eb3d8
+--keep=ItemMenu_PlaceHeld
 --keep=FUN_002eb4e4
 --keep=ItemMenu_Reset
 --keep=FUN_002eb72c
@@ -5323,7 +5323,7 @@
 --keep=HudItemButtons_SetIcon
 --keep=HudItemButtons_Init
 --keep=FUN_002f9430
---keep=FUN_002f9484
+--keep=TouchPoint_Get
 --keep=ItemButtonLetters_Update
 --keep=FUN_002f9934
 --keep=FUN_002f99f4
@@ -6455,8 +6455,8 @@
 --keep=FUN_0033b548
 --keep=FUN_0033b584
 --keep=FUN_0033b5b0
---keep=FUN_0033b5d0
---keep=FUN_0033b5ec
+--keep=Pad_Repeated
+--keep=Pad_Pressed
 --keep=FUN_0033b608
 --keep=FUN_0033b6bc
 --keep=FUN_0033b880

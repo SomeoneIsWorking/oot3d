@@ -298,15 +298,15 @@ GLOBAL_ASM("asm/TryGetFileSize.s")
 
 GLOBAL_ASM("asm/FUN_002eb05c.s")
 
-GLOBAL_ASM("asm/FUN_002eb0d8.s")
+GLOBAL_ASM("asm/ItemMenu_CanPlace.s")
 
-GLOBAL_ASM("asm/FUN_002eb1bc.s")
+GLOBAL_ASM("asm/ItemMenu_AimCorners.s")
 
-GLOBAL_ASM("asm/FUN_002eb210.s")
+GLOBAL_ASM("asm/ItemMenu_SameBowSwap.s")
 
 GLOBAL_ASM("asm/ItemMenu_NodePosition.s")
 
-GLOBAL_ASM("asm/FUN_002eb3d8.s")
+GLOBAL_ASM("asm/ItemMenu_PlaceHeld.s")
 
 GLOBAL_ASM("asm/FUN_002eb4e4.s")
 
@@ -544,7 +544,7 @@ GLOBAL_ASM("asm/HudItemButtons_Init.s")
 
 GLOBAL_ASM("asm/FUN_002f9430.s")
 
-GLOBAL_ASM("asm/FUN_002f9484.s")
+GLOBAL_ASM("asm/TouchPoint_Get.s")
 
 GLOBAL_ASM("asm/ItemButtonLetters_Update.s")
 
