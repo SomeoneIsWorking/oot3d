@@ -146,7 +146,7 @@ GLOBAL_ASM("asm/FUN_0042590c.s")
 
 GLOBAL_ASM("asm/FUN_00425ab4.s")
 
-GLOBAL_ASM("asm/FUN_00426748.s")
+GLOBAL_ASM("asm/OcarinaScreen_Draw.s")
 
 GLOBAL_ASM("asm/FUN_004267a0.s")
 
@@ -280,7 +280,7 @@ GLOBAL_ASM("asm/FUN_004338c8.s")
 
 GLOBAL_ASM("asm/ItemMenu_Update.s")
 
-GLOBAL_ASM("asm/FUN_00434c5c.s")
+GLOBAL_ASM("asm/ItemMenu_Draw.s")
 
 GLOBAL_ASM("asm/FUN_00434d50.s")
 

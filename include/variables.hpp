@@ -43,6 +43,9 @@ extern s32 gSaveMenuState; //0x0050a530
 // The pause screens' quad places, read when a screen opens: quad i is at quadPositions[i], two
 // floats in the touch screen's pixels from the top left (docs/pause.md).
 extern f32 gItemMenuQuadPositions[37][2]; //0x005067b8
+// The item screen's quads' cells in menu_item_parts00.ctxb, in its pixels, set by ItemMenu_Init.
+extern f32 gItemMenuQuadUvs[37][2]; //0x00506b30
+extern f32 gItemMenuQuadUvSizes[37][2]; //0x00506a08
 extern f32 gGearMenuQuadPositions[41][2]; //0x005044dc
 // The map screen's two layouts: the overworld map's, and one not drawn on it.
 extern f32 gMapMenuQuadPositions[30][2]; //0x005073a0
@@ -66,6 +69,8 @@ extern u8 gAudioOcarinaInputEnabled; //0x0054ac5c
 extern TopHud gTopHud; //0x004fc648
 extern Minimap gMinimap; //0x004fda6c
 extern void* gMenuTextures[26]; //0x0055b490
+// The allocator of graphics objects (menu textures, models): its vtable[2] is alloc(self, size).
+extern void* gGfxAllocator; //0x0055a1f4
 extern MessageManager gMessageManager; //0x005c1878
 
 extern GameInfo* gGameInfo;

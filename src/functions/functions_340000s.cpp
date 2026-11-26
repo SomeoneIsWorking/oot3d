@@ -294,7 +294,7 @@ GLOBAL_ASM("asm/FUN_00348904.s")
 
 GLOBAL_ASM("asm/FUN_0034897c.s")
 
-GLOBAL_ASM("asm/FUN_00348a64.s")
+GLOBAL_ASM("asm/MenuModel_SetTexture.s")
 
 GLOBAL_ASM("asm/FUN_00348b90.s")
 

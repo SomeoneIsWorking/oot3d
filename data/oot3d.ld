@@ -20840,9 +20840,9 @@ text 0x00100000
 	{
 		* (i.FUN_002e6c3c)
 	}
-	FUN_002e6cd4 0x002e6cd4
+	HudItemButtons_SetRect 0x002e6cd4
 	{
-		* (i.FUN_002e6cd4)
+		* (i.HudItemButtons_SetRect)
 	}
 	FUN_002e6dcc 0x002e6dcc
 	{
@@ -21140,9 +21140,9 @@ text 0x00100000
 	{
 		* (i.FUN_002eb4e4)
 	}
-	FUN_002eb628 0x002eb628
+	ItemMenu_Reset 0x002eb628
 	{
-		* (i.FUN_002eb628)
+		* (i.ItemMenu_Reset)
 	}
 	FUN_002eb72c 0x002eb72c
 	{
@@ -21588,9 +21588,9 @@ text 0x00100000
 	{
 		* (i.FUN_002f8b80)
 	}
-	FUN_002f8ce0 0x002f8ce0
+	HudItemButtons_SetAlpha 0x002f8ce0
 	{
-		* (i.FUN_002f8ce0)
+		* (i.HudItemButtons_SetAlpha)
 	}
 	FUN_002f8d40 0x002f8d40
 	{
@@ -21868,13 +21868,13 @@ text 0x00100000
 	{
 		* (i.FUN_002fc3fc)
 	}
-	FUN_002fc40c 0x002fc40c
+	QuadBatch_SetUvs 0x002fc40c
 	{
-		* (i.FUN_002fc40c)
+		* (i.QuadBatch_SetUvs)
 	}
-	FUN_002fc534 0x002fc534
+	QuadBatch_SetRects 0x002fc534
 	{
-		* (i.FUN_002fc534)
+		* (i.QuadBatch_SetRects)
 	}
 	FUN_002fc694 0x002fc694
 	{
@@ -22168,13 +22168,13 @@ text 0x00100000
 	{
 		* (i.FUN_00301260)
 	}
-	FUN_003012b4 0x003012b4
+	Texture_Init 0x003012b4
 	{
-		* (i.FUN_003012b4)
+		* (i.Texture_Init)
 	}
-	FUN_00301300 0x00301300
+	FileRequest_New 0x00301300
 	{
-		* (i.FUN_00301300)
+		* (i.FileRequest_New)
 	}
 	FUN_00301390 0x00301390
 	{
@@ -22432,9 +22432,9 @@ text 0x00100000
 	{
 		* (i.FUN_00303e50)
 	}
-	FUN_00303ea8 0x00303ea8
+	FileRequest_Data 0x00303ea8
 	{
-		* (i.FUN_00303ea8)
+		* (i.FileRequest_Data)
 	}
 	FUN_00303ebc 0x00303ebc
 	{
@@ -24096,9 +24096,9 @@ text 0x00100000
 	{
 		* (i.FUN_00313cd4)
 	}
-	FUN_00313ce0 0x00313ce0
+	Heap_New 0x00313ce0
 	{
-		* (i.FUN_00313ce0)
+		* (i.Heap_New)
 	}
 	FUN_00313cec 0x00313cec
 	{
@@ -24560,13 +24560,13 @@ text 0x00100000
 	{
 		* (i.ZAR_SetupZARInfo)
 	}
-	FUN_0031b99c 0x0031b99c
+	FileRequest_Delete 0x0031b99c
 	{
-		* (i.FUN_0031b99c)
+		* (i.FileRequest_Delete)
 	}
-	FUN_0031b9c0 0x0031b9c0
+	FileRequest_Wait 0x0031b9c0
 	{
-		* (i.FUN_0031b9c0)
+		* (i.FileRequest_Wait)
 	}
 	FUN_0031bb84 0x0031bb84
 	{
@@ -27108,9 +27108,9 @@ text 0x00100000
 	{
 		* (i.FUN_0034897c)
 	}
-	FUN_00348a64 0x00348a64
+	MenuModel_SetTexture 0x00348a64
 	{
-		* (i.FUN_00348a64)
+		* (i.MenuModel_SetTexture)
 	}
 	FUN_00348b90 0x00348b90
 	{
@@ -41236,9 +41236,9 @@ text 0x00100000
 	{
 		* (i.FUN_00425ab4)
 	}
-	FUN_00426748 0x00426748
+	OcarinaScreen_Draw 0x00426748
 	{
-		* (i.FUN_00426748)
+		* (i.OcarinaScreen_Draw)
 	}
 	FUN_004267a0 0x004267a0
 	{
@@ -41504,9 +41504,9 @@ text 0x00100000
 	{
 		* (i.ItemMenu_Update)
 	}
-	FUN_00434c5c 0x00434c5c
+	ItemMenu_Draw 0x00434c5c
 	{
-		* (i.FUN_00434c5c)
+		* (i.ItemMenu_Draw)
 	}
 	FUN_00434d50 0x00434d50
 	{
@@ -44060,9 +44060,9 @@ text 0x00100000
 	{
 		* (i.FUN_0046b0f4)
 	}
-	FUN_0046b534 0x0046b534
+	ItemMenu_Init 0x0046b534
 	{
-		* (i.FUN_0046b534)
+		* (i.ItemMenu_Init)
 	}
 	FUN_0046b974 0x0046b974
 	{
@@ -44660,9 +44660,9 @@ text 0x00100000
 	{
 		* (i.FUN_00480e98)
 	}
-	FUN_00481194 0x00481194
+	MenuTextures_Load 0x00481194
 	{
-		* (i.FUN_00481194)
+		* (i.MenuTextures_Load)
 	}
 	FUN_00481370 0x00481370
 	{

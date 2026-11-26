@@ -162,7 +162,7 @@ GLOBAL_ASM("asm/FUN_002e69d0.s")
 
 GLOBAL_ASM("asm/FUN_002e6c3c.s")
 
-GLOBAL_ASM("asm/FUN_002e6cd4.s")
+GLOBAL_ASM("asm/HudItemButtons_SetRect.s")
 
 GLOBAL_ASM("asm/FUN_002e6dcc.s")
 
@@ -310,7 +310,7 @@ GLOBAL_ASM("asm/FUN_002eb3d8.s")
 
 GLOBAL_ASM("asm/FUN_002eb4e4.s")
 
-GLOBAL_ASM("asm/FUN_002eb628.s")
+GLOBAL_ASM("asm/ItemMenu_Reset.s")
 
 GLOBAL_ASM("asm/FUN_002eb72c.s")
 
@@ -534,7 +534,7 @@ GLOBAL_ASM("asm/FUN_002f8af4.s")
 
 GLOBAL_ASM("asm/FUN_002f8b80.s")
 
-GLOBAL_ASM("asm/FUN_002f8ce0.s")
+GLOBAL_ASM("asm/HudItemButtons_SetAlpha.s")
 
 GLOBAL_ASM("asm/FUN_002f8d40.s")
 
@@ -668,9 +668,9 @@ GLOBAL_ASM("asm/FUN_002fc3f0.s")
 
 GLOBAL_ASM("asm/FUN_002fc3fc.s")
 
-GLOBAL_ASM("asm/FUN_002fc40c.s")
+GLOBAL_ASM("asm/QuadBatch_SetUvs.s")
 
-GLOBAL_ASM("asm/FUN_002fc534.s")
+GLOBAL_ASM("asm/QuadBatch_SetRects.s")
 
 GLOBAL_ASM("asm/FUN_002fc694.s")
 

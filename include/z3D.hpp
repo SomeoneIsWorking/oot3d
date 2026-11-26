@@ -268,9 +268,16 @@ typedef struct InterfaceContext {
     /* 0x28E */ char unk_28E[0x04];
 } InterfaceContext; // size = 0x292
 
+// MenuTextures_Load (0x481194) loads each as "rom:/menu/<language>/<name>": mbstowcs to UTF-16
+// (MENU_TEXTURE_PATH_LENGTH), FileRequest_New(path, 0, 0, 0), FileRequest_Wait, then a texture
+// object of TEXTURE_SIZE from gGfxAllocator, Texture_Init(texture, FileRequest_Data(request), 0, 0),
+// then SystemArena_Free of the data and FileRequest_Delete.
+#define MENU_TEXTURE_PATH_LENGTH 0x106
+#define TEXTURE_SIZE 0x54
 // A menu texture's slot in gMenuTextures (the order of the name table at 0x4D4010).
 #define MENU_TEXTURE_HUD 1 // hud_all00.ctxb
 #define MENU_TEXTURE_TOP_PARTS 2 // menu_top_parts00.ctxb
+#define MENU_TEXTURE_ITEM_PARTS 3 // menu_item_parts00.ctxb, 256x256
 #define MENU_TEXTURE_ITEM_ICONS 10 // icon_item_menu00.ctxb
 // icon_item_menu00.ctxb: item id n is the cell at column n % 12, row n / 12 (HudItemButtons_SetIcon).
 #define ITEM_ICON_SIZE 42
@@ -337,28 +344,43 @@ typedef struct FileChoose {
 // rebuilt as the base corners plus each quad's offset (QuadBatch_ApplyOffsets), so an offset moves a quad.
 typedef struct QuadBatch {
     /* 0x00 */ s32 count;
-    /* 0x04 */ f32 textureSize[2];
+    /* 0x04 */ f32 textureSize[2]; // its sheet's, in pixels: QuadBatch_SetUvs divides by it
     /* 0x0C */ Vec3f* corners; // four a quad: the base corners, set with its rect
     /* 0x10 */ Vec3f* drawnCorners; // four a quad
-    /* 0x14 */ char unk_14[0x08];
+    /* 0x14 */ f32* uvs; // eight a quad (QuadBatch_SetUvs)
+    /* 0x18 */ f32* colors; // sixteen a quad: four RGBA corners
     /* 0x1C */ Vec2f* offsets; // one a quad, added to its base corners
 } QuadBatch;
 
+#define HUD_ITEM_BUTTONS_MAX 64
+
 // A count drawn in digits beside an item (HudItemButtons.counts).
+// HudItemButtons_SetRect puts its digits at the icon's x + 18, sized for a 42 pixel icon.
 typedef struct HudCount {
-    /* 0x00 */ char unk_00[0x08];
-    /* 0x08 */ QuadBatch* quads; // one a digit
+    /* 0x00 */ char unk_00[0x04];
+    /* 0x04 */ s32 digits; // the most it draws, the ones first
+    /* 0x08 */ QuadBatch* quads; // one a digit, the ones first; a digit not drawn is offset away
 } HudCount;
 
 // A layout of item icons with their counts: the touch screen HUD's buttons and the item screen's grid
-// (HudItemButtons_SetIcon, HudItemButtons_UpdateAmmo).
+// (HudItemButtons_Init, _SetIcon, _SetRect, _UpdateAmmo, _Draw). Its model draws its batch with
+// one sheet, the item icons' unless MenuModel_SetTexture binds another.
 typedef struct HudItemButtons {
-    /* 0x000 */ char unk_000[0x0C];
-    /* 0x00C */ HudCount* counts[64]; // one an icon
+    /* 0x000 */ char unk_000[0x04];
+    /* 0x004 */ void* model; // MenuModel_SetTexture's
+    /* 0x008 */ void* drawn; // the model's entry in the draw list; HudItemButtons_Draw draws it
+    /* 0x00C */ HudCount* counts[HUD_ITEM_BUTTONS_MAX]; // one an icon, none with noCounts
     /* 0x10C */ QuadBatch* quads; // one an icon
-    /* 0x110 */ char unk_110[0x114];
+    /* 0x110 */ char unk_110[0x110];
+    /* 0x220 */ s32 noCounts; // HudItemButtons_Init's last argument
     /* 0x224 */ s32 count;
-} HudItemButtons;
+    /* 0x228 */ s32 items[HUD_ITEM_BUTTONS_MAX]; // HudItemButtons_SetIcon's
+    /* 0x328 */ s32 amounts[HUD_ITEM_BUTTONS_MAX]; // the count each shows, -1 for none
+    /* 0x428 */ s32 kind; // 0 and 1 a layout of items; 2 to 8 the top screen's B button's (TopHud.bButtonMode + 1)
+    /* 0x42C */ s32 bButtonAmount;
+    /* 0x430 */ char unk_430[0x04];
+    /* 0x434 */ u8 counted[HUD_ITEM_BUTTONS_MAX]; // whether its count is drawn
+} HudItemButtons; // size = 0x474
 
 // The item screen's button letters (I, X, Y and II), ItemMenu.buttonLetters; ItemButtonLetters_Update runs it.
 typedef struct ItemButtonLetters {
@@ -376,7 +398,11 @@ typedef struct ItemButtonLetters {
 
 // The item screen (gItemMenu, docs/pause.md).
 typedef struct ItemMenu {
-    /* 0x00 */ char unk_00[0x30];
+    /* 0x00 */ char unk_00[0x1C];
+    /* 0x1C */ void* model; // draws quads with menu_item_parts00.ctxb (ItemMenu_Init)
+    /* 0x20 */ void* drawn; // the model's entry in the draw list; ItemMenu_Draw draws it first
+    /* 0x24 */ QuadBatch* quads; // the screen's, from gItemMenuQuadPositions and gItemMenuQuadUvs
+    /* 0x28 */ char unk_28[0x08];
     /* 0x30 */ ItemButtonLetters* buttonLetters;
     /* 0x34 */ s32 state; // gItemMenuState
     /* 0x38 */ char unk_38[0x04];
@@ -393,12 +419,19 @@ typedef struct ItemMenu {
 #define ITEM_MENU_CURSOR_LEFT_WRAP 0x7A4
 // ItemMenu_Update's bl HudItemButtons_UpdateAmmo for ItemMenu.items, which rebuilds its quads.
 #define ITEM_MENU_UPDATE_ITEMS_CALL 0x1178
+// ItemMenu_Init's last call (bl 0x2EB628), after every layout of the screen is built.
+#define ITEM_MENU_INIT_LAST_CALL 0x430
+// ItemMenu_Draw's bl HudItemButtons_Draw for the layout at +0x40, after the grid, the cursor and
+// the letters.
+#define ITEM_MENU_DRAW_LAYOUT_40_CALL 0x88
 
 // The pause screens' BACK quads (docs/pause.md): BACK lit and its two more, then BACK and one more.
 #define ITEM_MENU_QUAD_BACK_LIT 3
 #define ITEM_MENU_QUAD_BACK 26
 #define ITEM_MENU_QUAD_COLUMN 12 // the item buttons' column: the stone under it
 #define ITEM_MENU_QUAD_COLUMN_BUTTONS 13 // to 24: its four buttons' frames
+#define ITEM_MENU_QUAD_ROUND_BUTTON 19 // to 21: the upper round button, its shadow's left and right halves and its stone
+#define ITEM_MENU_ROUND_BUTTON_QUADS 3
 #define GEAR_MENU_QUAD_BACK_LIT 25
 #define GEAR_MENU_QUAD_BACK 30
 #define MAP_MENU_QUAD_BACK_LIT 7 // to 11: BACK lit in strips

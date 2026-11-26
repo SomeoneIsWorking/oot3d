@@ -63,6 +63,32 @@ table does (z3d-mods run oi28). The cursor (`cursorColumn` +0x78, `cursorRow` +0
 past the grid's six columns into the buttons at `ItemMenu_UpdateCursor` +0x754 (`cmp r0, #6`) and
 left onto them at +0x7A4 (`movmi r0, #5`).
 
+`ItemMenu_Init` (0x46B534, once, from the menu's constructor at 0x455C40) builds the screen's
+batch of 37 quads (`gItemMenu.quads`, +0x24) from `gItemMenuQuadPositions`, their sizes,
+`gItemMenuQuadUvs` (0x506B30) and `gItemMenuQuadUvSizes` (0x506A08), in `menu_item_parts00.ctxb`'s
+pixels; the column's stone is quad 12's cell (192, 0), 64x240, and a round button is quads 19 to
+21: its shadow's halves (168, 88), 24x48, the second mirrored, and its stone (124, 0), 44x44 at
+(+2, +2). Its model (+0x1C) is bound to `MENU_TEXTURE_ITEM_PARTS` with `MenuModel_SetTexture`
+(0x348A64). It ends with `ItemMenu_Reset` at +0x430 (`ITEM_MENU_INIT_LAST_CALL`).
+`ItemMenu_Draw` (0x434C5C) draws the screen's model, then the grid, the cursor, the letters and
+the layouts at +0x40 (`bl HudItemButtons_Draw` at +0x88, `ITEM_MENU_DRAW_LAYOUT_40_CALL`), +0x44
+and +0x48.
+
+A `HudItemButtons` of the screen's own kind can be made and drawn by a patch: `Heap_New`
+(0x313CE0) of 0x474 bytes, `HudItemButtons_Init(layout, count, 0, noCounts)`, then
+`MenuModel_SetTexture` on its model (+4) and `QuadBatch_SetUvs` (0x2FC40C, cells in the texture's
+pixels over the batch's `textureSize`) for any sheet; `HudItemButtons_SetRect` (0x2E6CD4, ints),
+`HudItemButtons_SetAlpha` (0x2F8CE0, the alpha in s0), `HudItemButtons_UpdateAmmo` and
+`HudItemButtons_Draw` each frame. With noCounts 1 its quads draw as plain white in their shape;
+with 0 they draw the texture (z3d-mods runs oi40, oi41). A node's `HudCount` sizes its digits for
+a 42 pixel icon at the icon's x + 18; `QuadBatch_SetRects` (0x2FC534) on the count's batch after
+`UpdateAmmo` places them, and their alpha starts at 0. z3d-mods' slot column is drawn this way on
+the item screen and, from The One Screen's top screen copy (docs/ocarina.md), on the song list.
+
+A texture outside `gMenuTextures` loads as `MenuTextures_Load` (0x481194) loads those, see
+`MENU_TEXTURE_PATH_LENGTH` in z3D.hpp: z3d-mods loads `rom:/message/parts.ctxb` a second time
+there and draws the slots' labels from it (oi42).
+
 ## Quad batches
 A layout's quads are a `QuadBatch`: the count, the sheet's size, the base corners (four `Vec3f`
 a quad, set with the quad's rect: 0x2E6CD4 takes a layout, a quad and x, y, width and height),

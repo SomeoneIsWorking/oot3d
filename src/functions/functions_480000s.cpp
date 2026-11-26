@@ -18,7 +18,7 @@ GLOBAL_ASM("asm/FUN_00480bb8.s")
 
 GLOBAL_ASM("asm/FUN_00480e98.s")
 
-GLOBAL_ASM("asm/FUN_00481194.s")
+GLOBAL_ASM("asm/MenuTextures_Load.s")
 
 GLOBAL_ASM("asm/FUN_00481370.s")
 

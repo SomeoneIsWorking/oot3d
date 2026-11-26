@@ -116,7 +116,7 @@ GLOBAL_ASM("asm/FUN_00313c18.s")
 
 GLOBAL_ASM("asm/FUN_00313cd4.s")
 
-GLOBAL_ASM("asm/FUN_00313ce0.s")
+GLOBAL_ASM("asm/Heap_New.s")
 
 GLOBAL_ASM("asm/FUN_00313cec.s")
 
@@ -335,9 +335,9 @@ GLOBAL_ASM("asm/FUN_0031b090.s")
 
 GLOBAL_ASM("asm/ZAR_SetupZARInfo.s")
 
-GLOBAL_ASM("asm/FUN_0031b99c.s")
+GLOBAL_ASM("asm/FileRequest_Delete.s")
 
-GLOBAL_ASM("asm/FUN_0031b9c0.s")
+GLOBAL_ASM("asm/FileRequest_Wait.s")
 
 GLOBAL_ASM("asm/FUN_0031bb84.s")
 

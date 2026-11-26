@@ -5132,7 +5132,7 @@
 --keep=FUN_002e6998
 --keep=FUN_002e69d0
 --keep=FUN_002e6c3c
---keep=FUN_002e6cd4
+--keep=HudItemButtons_SetRect
 --keep=FUN_002e6dcc
 --keep=FUN_002e6e58
 --keep=FUN_002e6ed0
@@ -5206,7 +5206,7 @@
 --keep=FUN_002eb304
 --keep=FUN_002eb3d8
 --keep=FUN_002eb4e4
---keep=FUN_002eb628
+--keep=ItemMenu_Reset
 --keep=FUN_002eb72c
 --keep=FUN_002eba9c
 --keep=ItemMenu_UpdateCursor
@@ -5318,7 +5318,7 @@
 --keep=FUN_002f8a34
 --keep=FUN_002f8af4
 --keep=FUN_002f8b80
---keep=FUN_002f8ce0
+--keep=HudItemButtons_SetAlpha
 --keep=FUN_002f8d40
 --keep=HudItemButtons_SetIcon
 --keep=HudItemButtons_Init
@@ -5387,8 +5387,8 @@
 --keep=FUN_002fc3e4
 --keep=FUN_002fc3f0
 --keep=FUN_002fc3fc
---keep=FUN_002fc40c
---keep=FUN_002fc534
+--keep=QuadBatch_SetUvs
+--keep=QuadBatch_SetRects
 --keep=FUN_002fc694
 --keep=FUN_002fc748
 --keep=FUN_002fc950
@@ -5462,8 +5462,8 @@
 --keep=FUN_00301164
 --keep=FUN_0030120c
 --keep=FUN_00301260
---keep=FUN_003012b4
---keep=FUN_00301300
+--keep=Texture_Init
+--keep=FileRequest_New
 --keep=FUN_00301390
 --keep=ConvertToAcceleration
 --keep=ReadLatest
@@ -5528,7 +5528,7 @@
 --keep=FUN_00303db4
 --keep=FUN_00303ddc
 --keep=FUN_00303e50
---keep=FUN_00303ea8
+--keep=FileRequest_Data
 --keep=FUN_00303ebc
 --keep=FUN_003040ac
 --keep=FUN_00304200
@@ -5944,7 +5944,7 @@
 --keep=FUN_00313bdc
 --keep=FUN_00313c18
 --keep=FUN_00313cd4
---keep=FUN_00313ce0
+--keep=Heap_New
 --keep=FUN_00313cec
 --keep=FUN_00313d58
 --keep=FUN_00313d6c
@@ -6060,8 +6060,8 @@
 --keep=FUN_0031b034
 --keep=FUN_0031b090
 --keep=ZAR_SetupZARInfo
---keep=FUN_0031b99c
---keep=FUN_0031b9c0
+--keep=FileRequest_Delete
+--keep=FileRequest_Wait
 --keep=FUN_0031bb84
 --keep=FUN_0031bd30
 --keep=FUN_0031bebc
@@ -6693,7 +6693,7 @@
 --keep=FUN_003488e4
 --keep=FUN_00348904
 --keep=FUN_0034897c
---keep=FUN_00348a64
+--keep=MenuModel_SetTexture
 --keep=FUN_00348b90
 --keep=FUN_00348be4
 --keep=FUN_00348f34
@@ -10172,7 +10172,7 @@
 --keep=FUN_004258fc
 --keep=FUN_0042590c
 --keep=FUN_00425ab4
---keep=FUN_00426748
+--keep=OcarinaScreen_Draw
 --keep=FUN_004267a0
 --keep=FUN_004267b4
 --keep=FUN_00426870
@@ -10239,7 +10239,7 @@
 --keep=FUN_0042f984
 --keep=FUN_004338c8
 --keep=ItemMenu_Update
---keep=FUN_00434c5c
+--keep=ItemMenu_Draw
 --keep=FUN_00434d50
 --keep=FUN_00434d74
 --keep=sqrtf
@@ -10872,7 +10872,7 @@
 --keep=FUN_0046ac98
 --keep=FUN_0046b0e4
 --keep=FUN_0046b0f4
---keep=FUN_0046b534
+--keep=ItemMenu_Init
 --keep=FUN_0046b974
 --keep=FUN_0046b9a0
 --keep=FUN_0046ba4c
@@ -11022,7 +11022,7 @@
 --keep=FUN_004807f8
 --keep=FUN_00480bb8
 --keep=FUN_00480e98
---keep=FUN_00481194
+--keep=MenuTextures_Load
 --keep=FUN_00481370
 --keep=FUN_004814dc
 --keep=FUN_004814ec

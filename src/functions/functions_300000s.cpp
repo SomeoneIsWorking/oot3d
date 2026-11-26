@@ -30,9 +30,9 @@ GLOBAL_ASM("asm/FUN_0030120c.s")
 
 GLOBAL_ASM("asm/FUN_00301260.s")
 
-GLOBAL_ASM("asm/FUN_003012b4.s")
+GLOBAL_ASM("asm/Texture_Init.s")
 
-GLOBAL_ASM("asm/FUN_00301300.s")
+GLOBAL_ASM("asm/FileRequest_New.s")
 
 GLOBAL_ASM("asm/FUN_00301390.s")
 
@@ -160,7 +160,7 @@ GLOBAL_ASM("asm/FUN_00303ddc.s")
 
 GLOBAL_ASM("asm/FUN_00303e50.s")
 
-GLOBAL_ASM("asm/FUN_00303ea8.s")
+GLOBAL_ASM("asm/FileRequest_Data.s")
 
 GLOBAL_ASM("asm/FUN_00303ebc.s")
 

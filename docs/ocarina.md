@@ -18,6 +18,13 @@ The ocarina screen is the object at 0x5093E4. `gOcarinaScreenState` (+0x14, 0x50
 Under The One Screen the ocarina comes out on D-pad Right, ZR goes from the play page to the song
 list, and A on the list puts the ocarina away (live, runs ctl-oca1, ctl-song2).
 
+`OcarinaScreen_Draw` (0x426748) runs from `TouchScreen2D_BeginLayer0` (0x41EE74), so its models
+reach the touch screen only. The One Screen's top screen copy is its own: its `Hud_Draw` (0x6145F4,
+891b60e's payload) calls `Ocarina_Draw` (0x610D88) at 0x61462C (`EBFFF1D5`) while the frontend's
+owner is the ocarina, which copies the ocarina's quads into its scene in the top screen's 400x240
+pixels. A layout drawn after that call, from `TopHud_Draw`, lands on the top screen over the song
+list (z3d-mods run oi40); one drawn inside `OcarinaScreen_Draw` does not show.
+
 ## The song list
 Twelve entries, four to a row. The cursor's column and row are the words at 0x5093FC and
 0x509400, and `gOcarinaSongListShown` (0x509404) is the entry on show, column + row * 4 (live:
