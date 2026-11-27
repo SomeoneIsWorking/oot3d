@@ -73,7 +73,8 @@ makes one for each piece of text on screen, and the message manager has its own
 - Seen in Azahar's texture dump (z3d-mods runs `txt-dump1`, `txt-atlas1`): the game's own mode
   uploads a new 256 by 256 A4 texture for each new text (six by the first dialog); mode 1
   uploads one, the same in every screen.
-- z3d-mods forces mode 1 at `TextRenderer_Init` + 0x13C and gives the characters past 255 the
+- The mode is `TextRenderer_Init`'s fifth argument (on the stack; kept in r11 and handed on at
+  + 0x13C); both callers pass 2. z3d-mods overrides `TextRenderer_Init` to pass 1, and gives the characters past 255 the
   cells of the control codes, 0 to 0x1F, in the table's order, at the lookup in
   `TextRenderer_FillStaticGlyphTexture` + 0x80 and the cell choice in `TextRenderer_AddGlyph`
   + 0x150 (its `patch/oot3d/font_atlas.cpp`). The texture is then a function of the font file
