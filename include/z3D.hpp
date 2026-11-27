@@ -457,7 +457,8 @@ typedef struct ItemMenu {
     /* 0x1C */ void* model; // draws quads with menu_item_parts00.ctxb (ItemMenu_Init)
     /* 0x20 */ void* drawn; // the model's entry in the draw list; ItemMenu_Draw draws it first
     /* 0x24 */ QuadBatch* quads; // the screen's, from gItemMenuQuadPositions and gItemMenuQuadUvs
-    /* 0x28 */ char unk_28[0x08];
+    /* 0x28 */ void* unk_28; // ItemMenu_Draw draws it last while stateStep is 2 or more
+    /* 0x2C */ void* unk_2C; // drawn while any of gItemMenuDrawFlags is 1
     /* 0x30 */ ItemButtonLetters* buttonLetters;
     /* 0x34 */ s32 state; // gItemMenuState
     /* 0x38 */ s32 stateStep; // 1 as the state turns 12
@@ -477,7 +478,8 @@ typedef struct ItemMenu {
     /* 0x74 */ s32 chosenNode; // the moved item's node, as the move is accepted (state 9)
     /* 0x78 */ s32 cursorColumn; // to ITEM_MENU_COLUMNS - 1, the last the button nodes
     /* 0x7C */ s32 cursorRow;
-    /* 0x80 */ char unk_80[0x08];
+    /* 0x80 */ char unk_80[0x04];
+    /* 0x84 */ s32 itemsDelay; // while above 0 ItemMenu_Draw counts it down instead of drawing items
     /* 0x88 */ s32 savedColumn; // the cursor's node as a move starts; -1 none
     /* 0x8C */ s32 savedRow;
     /* 0x90 */ char unk_90[0x04];

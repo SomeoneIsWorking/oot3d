@@ -114,9 +114,14 @@ pixels; the column's stone is quad 12's cell (192, 0), 64x240, and a round butto
 21: its shadow's halves (168, 88), 24x48, the second mirrored, and its stone (124, 0), 44x44 at
 (+2, +2). Its model (+0x1C) is bound to `MENU_TEXTURE_ITEM_PARTS` with `MenuModel_SetTexture`
 (0x348A64). It ends with `ItemMenu_Reset` at +0x430 (`ITEM_MENU_INIT_LAST_CALL`).
-`ItemMenu_Draw` (0x434C5C) draws the screen's model (`blx r1` at +0x20, `ITEM_MENU_DRAW_MODEL_CALL`), then the grid, the cursor, the letters and
-the layouts at +0x40 (`bl HudItemButtons_Draw` at +0x88, `ITEM_MENU_DRAW_LAYOUT_40_CALL`), +0x44
-and +0x48.
+`ItemMenu_Draw` (0x434C5C) does nothing while `state` is 0. It draws `drawn` through its vtable's
+fourth entry (`blx r1` at +0x20, `ITEM_MENU_DRAW_MODEL_CALL`) and stops there while `closeTimer`
+is not 0. Then come the grid (`items`, while `itemsDelay` is 0; above 0 it counts down a draw
+instead), `cursor` and `targetCursor` and the letters through `FUN_002fb934` (the object's
+drawable at +4, through its vtable's fourth entry), `unk_4C` through `FUN_00441fcc` (the same
+code), and the layouts at +0x40 (`bl HudItemButtons_Draw` at +0x88,
+`ITEM_MENU_DRAW_LAYOUT_40_CALL`), +0x44 and +0x48. Last come `unk_2C` while any of
+`gItemMenuDrawFlags`' words 1 to 3 is 1, and `unk_28` while `stateStep` is 2 or more.
 
 A `HudItemButtons` of the screen's own kind can be made and drawn by a patch: `Heap_New`
 (0x313CE0) of 0x474 bytes, `HudItemButtons_Init(layout, count, 0, noCounts)`, then
