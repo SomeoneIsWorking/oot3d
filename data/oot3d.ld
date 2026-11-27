@@ -43932,9 +43932,9 @@ text 0x00100000
 	{
 		* (i.FUN_004673c0)
 	}
-	FUN_00467684 0x00467684
+	SaveMenu_Init 0x00467684
 	{
-		* (i.FUN_00467684)
+		* (i.SaveMenu_Init)
 	}
 	FUN_00467c20 0x00467c20
 	{
@@ -44056,9 +44056,9 @@ text 0x00100000
 	{
 		* (i.FUN_0046b0e4)
 	}
-	FUN_0046b0f4 0x0046b0f4
+	FileChoose_InitQuads 0x0046b0f4
 	{
-		* (i.FUN_0046b0f4)
+		* (i.FileChoose_InitQuads)
 	}
 	ItemMenu_Init 0x0046b534
 	{

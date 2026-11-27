@@ -240,7 +240,7 @@ GLOBAL_ASM("asm/GearMenu_Init.s")
 
 GLOBAL_ASM("asm/FUN_004673c0.s")
 
-GLOBAL_ASM("asm/FUN_00467684.s")
+GLOBAL_ASM("asm/SaveMenu_Init.s")
 
 GLOBAL_ASM("asm/FUN_00467c20.s")
 
@@ -302,7 +302,7 @@ GLOBAL_ASM("asm/FUN_0046ac98.s")
 
 GLOBAL_ASM("asm/FUN_0046b0e4.s")
 
-GLOBAL_ASM("asm/FUN_0046b0f4.s")
+GLOBAL_ASM("asm/FileChoose_InitQuads.s")
 
 GLOBAL_ASM("asm/ItemMenu_Init.s")
 

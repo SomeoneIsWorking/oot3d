@@ -8,11 +8,11 @@ How file select places what it draws, for moving it on the top screen under The 
 `gFileChoose` (0x504FA0) is the screen's object. `active` (+0x10) is not 0 while it is up;
 The One Screen's `FileSelect_Active` reads it with `SaveContext.gameMode` 2.
 
-When the screen opens, the function at 0x46B0F4 makes a batch of 184 quads (0x2FC694), keeps it
-in `quads` (+0x30) and gives it its corners with FUN_002fc534(batch, positions, sizes, count,
+When the screen opens, `FileChoose_InitQuads` (0x46B0F4) makes a batch of 184 quads (0x2FC694), keeps it
+in `quads` (+0x30) and gives it its corners with `QuadBatch_SetRects`(batch, positions, sizes, count,
 first): quad i is the rectangle `quadSizes[i]` (a table at 0x5055B8, width and height) at
-`quadPositions[i]` (+0x58, x and y), in the touch screen's pixels from the top left. Both tables
-are initialised data, so a patch of the executable moves a quad. Nothing writes the corners again
+`quadPositions[i]` (+0x58, x and y), in the touch screen's pixels from the top left; the sizes are
+`gFileChooseQuadSizes`. The same call on the batch after it has run moves a quad. Nothing writes the corners again
 while the screen is up (a write watch on BACK's for a second, fsprobe).
 
 | Quads | What | Place |

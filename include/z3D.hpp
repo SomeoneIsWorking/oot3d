@@ -423,6 +423,13 @@ typedef struct Touch {
 
 // The gear screen (gGearMenu): built once with the pause menus (PauseMenus_Init calls
 // GearMenu_Init); gGearMenuState is its +0x18.
+// The save prompt (gSaveMenu): built once with the pause menus (PauseMenus_Init calls
+// SaveMenu_Init); gSaveMenuState is its +0x28.
+typedef struct SaveMenu {
+    /* 0x00 */ char unk_00[0x08];
+    /* 0x08 */ QuadBatch* quads; // from gSaveMenuQuadPositions and gSaveMenuQuadSizes
+} SaveMenu;
+
 typedef struct GearMenu {
     /* 0x00 */ char unk_00[0x0C];
     /* 0x0C */ QuadBatch* quads; // from gGearMenuQuadPositions and gGearMenuQuadSizes

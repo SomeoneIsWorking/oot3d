@@ -18,7 +18,12 @@ screen on the top screen while one is not 0.
 
 Each screen's quads get their corners when it opens, as file select's do (docs/file_select.md):
 quad i is its size at its place in the screen's position table, in the touch screen's pixels
-from the top left. The tables are initialised data, so a patch of the executable moves a quad.
+from the top left. Each screen's builder sets every corner once, with `QuadBatch_SetRects`
+(0x2FC534; the batch, positions, sizes, count and first quad) over the tables, so the same call on
+the batch after the builder has run moves a quad: `ItemMenu_Init`, `GearMenu_Init`, `MapMenu_Init`
+(below) and `SaveMenu_Init` (0x467684, once, from `PauseMenus_Init` +0x310; its batch is
+`gSaveMenu.quads`, +8). Their first instructions are a `push`, so a patch can replace a builder
+and run the game's by that `push` and a branch to its second instruction.
 Found from the batches' corners in the heap with each screen up (the batch's count, then its
 corners' pointer at +0xC) and the table that holds the same places.
 

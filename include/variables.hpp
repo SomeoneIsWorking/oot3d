@@ -62,6 +62,10 @@ extern f32 gMapMenuQuadSizes[30][2]; //0x00507490
 extern f32 gMapMenuOtherQuadSizes[50][2]; //0x00506ef0
 extern struct MapMenu gMapMenu; //0x00506cb0
 extern f32 gSaveMenuQuadPositions[78][2]; //0x0050a54c
+extern f32 gSaveMenuQuadSizes[78][2]; //0x0050a7bc
+extern struct SaveMenu gSaveMenu; //0x0050a508
+// File select's quads' widths and heights (FileChoose_InitQuads).
+extern f32 gFileChooseQuadSizes[184][2]; //0x005055b8
 #define MENU_SCREEN_CLOSED 0
 #define MENU_SCREEN_UP 2
 // The ocarina screen (docs/ocarina.md): its state, and the entry of its song list on show, -1 for none.

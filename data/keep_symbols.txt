@@ -10840,7 +10840,7 @@
 --keep=FUN_00467068
 --keep=GearMenu_Init
 --keep=FUN_004673c0
---keep=FUN_00467684
+--keep=SaveMenu_Init
 --keep=FUN_00467c20
 --keep=FUN_00467ce0
 --keep=FUN_00467fa8
@@ -10871,7 +10871,7 @@
 --keep=FUN_0046ac60
 --keep=FUN_0046ac98
 --keep=FUN_0046b0e4
---keep=FUN_0046b0f4
+--keep=FileChoose_InitQuads
 --keep=ItemMenu_Init
 --keep=FUN_0046b974
 --keep=FUN_0046b9a0
