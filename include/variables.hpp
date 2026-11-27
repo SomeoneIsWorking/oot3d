@@ -34,6 +34,8 @@ extern Hud gHud; //0x0050af34
 extern FileChoose gFileChoose; //0x00504fa0
 // The items, gear and map screens' state words: MENU_SCREEN_CLOSED, or MENU_SCREEN_UP while theirs is up.
 extern struct ItemMenu gItemMenu; //0x005066f8
+// The touch screen's 2D camera: TouchScreen2D_Begin and each TouchScreen2D_BeginLayer set its matrices.
+extern struct Camera2D gTouchCamera2D; //0x005c58d8
 // Three words, at +4, +8 and +0xC; ItemMenu_Draw draws gItemMenu.unk_2C while any is 1, and
 // ItemMenu_SameBowSwap and ItemMenu_ApplyLayout read them too.
 extern s32 gItemMenuDrawFlags[4]; //0x0055b628

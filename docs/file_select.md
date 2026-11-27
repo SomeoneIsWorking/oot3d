@@ -27,8 +27,9 @@ them while the screen opened (0x46B128), and the call at 0x46B144.
 
 Graph_DrawFrame draws the touch screen in four 2D layers, `TouchScreen2D_BeginLayer0` to `3`
 (0x41EC2C, 0x41D184, 0x41C4DC, 0x41AF88). Each builds the same projection and hands it to
-`Camera2D_SetMatrices` (0x3246EC; r1 the projection, r2 the view), at +0x1CC, +0x1C4, +0x1F0 and
-+0x1B8. The projection's rows, for the screen turned on its side: clip x = 1 - y / 120 and clip y
+`Camera2D_SetMatrices` (0x3246EC; r0 the camera, r1 the projection, r2 the view), at +0x1CC,
++0x1C4, +0x1F0 and +0x1B8, always on `gTouchCamera2D` (0x5C58D8), as `TouchScreen2D_Begin` and
+`FUN_0042a300` do; the game's other calls pass other cameras. The projection's rows, for the screen turned on its side: clip x = 1 - y / 120 and clip y
 = 1 - x / 160, so x 0 to 320 fills the viewport. At file select layers 0, 1 and 3 run every frame
 (a write watch on the view `Camera2D_SetMatrices` copies to 0x5B5018, by return address);
 `TouchScreen2D_Begin` (0x3243A8, the same projection, from FUN_0032b770) does not.
@@ -36,7 +37,8 @@ Graph_DrawFrame draws the touch screen in four 2D layers, `TouchScreen2D_BeginLa
 The One Screen draws the touch screen's file select on the top screen with that projection and a
 viewport of framebuffer rows 40 to 360 (`Presentation_Target`, `bind_target(..., 40, stereo,
 320)`, at 0x6163FC), so a quad left of x 0 or right of 320 is cut off. z3d-mods widens both while
-file select is up: rows 0 to 400, and clip y = 0.8 - x / 200 (x -40 to 360) in all four layers.
+file select is up: rows 0 to 400, and clip y = 0.8 - x / 200 (x -40 to 360) in all four layers and `TouchScreen2D_Begin`'s pass, whose file select sky then keeps its aspect
+instead of being stretched 400 / 320 (fs3).
 Every quad stays where it was and BACK, moved 40 to the left, shows in the corner (fs-check). The
 touch screen's own pass draws with the same projection, so on the touch screen itself file select
 is narrowed to its middle 256 pixels; with The One Screen that screen is not shown.
